@@ -1,0 +1,288 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>网件路由器R6400 梅林固件折腾篇 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="由于R6800是联发科的芯片，暂时不支持梅林固件。 所以410块挂咸鱼卖了。开始折腾R6400. 主要分为以下部分 1. 将drcom放到梅林固件里面"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/post/2017-08-18-%E7%BD%91%E4%BB%B6%E8%B7%AF%E7%94%B1%E5%99%A8r6400%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E6%8A%98%E8%85%BE%E7%AF%87/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="网件路由器R6400 梅林固件折腾篇">
+<meta property="og:description" content="由于R6800是联发科的芯片，暂时不支持梅林固件。 所以410块挂咸鱼卖了。开始折腾R6400. 主要分为以下部分 1. 将drcom放到梅林固件里面">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/post/2017-08-18-%E7%BD%91%E4%BB%B6%E8%B7%AF%E7%94%B1%E5%99%A8r6400%E6%A2%85%E6%9E%97%E5%9B%BA%E4%BB%B6%E6%8A%98%E8%85%BE%E7%AF%87/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-08-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2017-08-18T00:00:00+00:00">
+<meta itemprop=name content="网件路由器R6400 梅林固件折腾篇">
+<meta itemprop=description content="由于R6800是联发科的芯片，暂时不支持梅林固件。 所以410块挂咸鱼卖了。开始折腾R6400. 主要分为以下部分 1. 将drcom放到梅林固件里面"><meta itemprop=datePublished content="2017-08-18T00:00:00+00:00">
+<meta itemprop=dateModified content="2017-08-18T00:00:00+00:00">
+<meta itemprop=wordCount content="651">
+<meta itemprop=keywords content="路由器,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="网件路由器R6400 梅林固件折腾篇">
+<meta name=twitter:description content="由于R6800是联发科的芯片，暂时不支持梅林固件。 所以410块挂咸鱼卖了。开始折腾R6400. 主要分为以下部分 1. 将drcom放到梅林固件里面"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>网件路由器R6400 梅林固件折腾篇</h1>
+<div class=post-meta>
+<span class=post-time> 2017-08-18 </span>
+<div class=post-category>
+<a href=/categories/other/> other </a>
+</div>
+<span class=more-meta> 约 651 字 </span>
+<span class=more-meta> 预计阅读 2 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#将drcom放进路由器>将drcom放进路由器</a></li>
+<li><a href=#aira2下载迅雷和百度网盘>aira2下载迅雷和百度网盘</a>
+<ul>
+<li><a href=#下载百度网盘>下载百度网盘</a></li>
+<li><a href=#迅雷离线下载>迅雷离线下载</a></li>
+</ul>
+</li>
+<li><a href=#kp屏蔽广告>KP屏蔽广告</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>由于R6800是联发科的芯片，暂时不支持梅林固件。<br>
+所以410块挂咸鱼卖了。开始折腾R6400.</p>
+<p>主要分为以下部分<br>
+1. 将drcom放到梅林固件里面，实现开机自动启动<br>
+2. 安装aira2，实现迅雷离线下载，与百度网盘下载。(以前下载百度网盘飞快，但是下载百度网盘限速了。现在很流行的下载软件Pandownload就是采用aira2技术)<br>
+3. 安装KP实现屏蔽广告</p>
+<h1 id=将drcom放进路由器>将drcom放进路由器</h1>
+<p><a href=http://blog.csdn.net/qq_15654993/article/details/75267555>前半部分参考我这篇文章</a> 从下载drcom_d_config.py latest-wired.py 看到测试结束即可。</p>
+<p>！！！切记 放到路由器的时候将”IS_TEST= True”改为”IS_TEST= False”</p>
+<p>用MiniTool分区向导免费版将一个U盘格式化成ext格式。插到路由器上<br>
+设置好了之后重启一下路由器<br>
+<img src="http://img.blog.csdn.net/20170818094751177?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=设置如下></p>
+<p>点进USB相关应用，安装好download master。<br>
+然后执行以下代码</p>
+<blockquote>
+<p>entware-setup.sh<br>
+1</p>
+</blockquote>
+<p>好了之后执行</p>
+<blockquote>
+<p>opkg install python</p>
+</blockquote>
+<p>完了将drcom.py和drcom.config放到/opt里面</p>
+<p><img src="http://img.blog.csdn.net/20170818095309401?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=opt></p>
+<p>在/opt/etc/init.d下创建文件rc.local 并赋予777权限</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>cp /opt/drcom.conf /etc
+cp /opt/etc/init.d/rc.local /etc
+python /opt/drcom.py &amp;
+exit 0
+</code></pre></td></tr></table>
+</div>
+</div><p>最后一步在/jffs/scripts下<br>
+post-mount最后一行添加</p>
+<blockquote>
+<p>/opt/etc/init.d/rc.local start</p>
+</blockquote>
+<p>然后重启，脚本就可以跑起来了<br>
+<img src="http://img.blog.csdn.net/20170818095712582?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=ps></p>
+<p>结束进程</p>
+<blockquote>
+<p>kill 2850</p>
+</blockquote>
+<h1 id=aira2下载迅雷和百度网盘>aira2下载迅雷和百度网盘</h1>
+<p>在软件中心安装好aira2<br>
+<img src="http://img.blog.csdn.net/20170818100419080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=设置aira2><br>
+百度网盘助手: <a href=http://pan.baidu.com/s/1dFpL8Jn>http://pan.baidu.com/s/1dFpL8Jn</a> 密码: 7ih7<br>
+<strong>aira2 webUI设置</strong><br>
+<img src="http://img.blog.csdn.net/20170818101016424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="aira2 webUI设置"><br>
+<strong>连接成功</strong><br>
+<img src="http://img.blog.csdn.net/20170818101039979?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=连接成功><br>
+<strong>Glutton设置</strong><br>
+<img src="http://img.blog.csdn.net/20170818101056957?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=Glutton设置><br>
+<strong>YAAW设置</strong><br>
+<img src="http://img.blog.csdn.net/20170818101133210?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=YAAW设置></p>
+<h2 id=下载百度网盘>下载百度网盘</h2>
+<p><strong>安装网盘助手</strong><br>
+<img src="http://img.blog.csdn.net/20170818100232178?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=安装网盘助手><br>
+<strong>插件设置</strong><br>
+<img src="http://img.blog.csdn.net/20170818101527185?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=插件设置><br>
+<strong>试着下载一次</strong><br>
+<img src="http://img.blog.csdn.net/20170818102740070?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=百度网盘下载测试></p>
+<h2 id=迅雷离线下载>迅雷离线下载</h2>
+<p>安装扩展：迅雷离线助手</p>
+<p>进入网址：<a href=http://lixian.xunlei.com/>http://lixian.xunlei.com/</a> 登陆</p>
+<p><img src="http://img.blog.csdn.net/20170818103135393?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=插件设置></p>
+<p><img src="http://img.blog.csdn.net/20170818103209881?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=下载测试></p>
+<h1 id=kp屏蔽广告>KP屏蔽广告</h1>
+<p><img src="http://img.blog.csdn.net/20170818103635094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=参考这里的教程></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-08-18
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/>路由器</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/post/chinese-preview/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">[中文] 《长恨歌》</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/107/>
+<span class="next-text nav-default">微信公众平台配置服务器之后实现自动回复</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>
