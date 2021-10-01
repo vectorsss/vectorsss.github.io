@@ -18,7 +18,7 @@ url: "/archives/242"
 # (SAO)操作开始
 
 1. 注销APPLE ID
-2. 切换到美区,看下图 ![右下角切换到美区](http://img.blog.csdn.net/20171218153319678?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTU2NTQ5OTM=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+2. 切换到美区,看下图 ![右下角切换到美区](https://image.i-ll.cc/2021-10-01-210726.png)
 3. 随便找一个免费的应用,获取.
 4. 创建新的APPLE ID(邮箱必须可用)
 5. 填写信息.三个问题完了之后continue.
