@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://blogg.i-ll.cc/sitemap.xml
+Sitemap: https://blog.i-ll.cc/sitemap.xml
