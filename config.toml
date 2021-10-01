@@ -1,7 +1,7 @@
 baseURL = "https://blogg.i-ll.cc/"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
-title = "淡淡博客"
+title = "淡淡博客 – 记录生活点滴，关注Python数据挖掘、深度学习相关技术"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
@@ -53,7 +53,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
 
-  since = "2017"            # Site creation time          # 站点建立时间
+  since = "2016"            # Site creation time          # 站点建立时间
   # use public git repo url to link lastmod git commit, enableGitInfo should be true.
   # 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.
   gitRepo = "https://github.com/MLZC/mlzc.github.io"
