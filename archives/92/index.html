@@ -31,7 +31,7 @@
 <meta itemprop=name content="常见排序算法以及对应的时间复杂度和空间复杂度">
 <meta itemprop=description content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内"><meta itemprop=datePublished content="2017-07-08T00:00:00+00:00">
 <meta itemprop=dateModified content="2017-07-08T00:00:00+00:00">
-<meta itemprop=wordCount content="2405">
+<meta itemprop=wordCount content="2385">
 <meta itemprop=keywords content="排序,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="常见排序算法以及对应的时间复杂度和空间复杂度">
 <meta name=twitter:description content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -95,7 +95,7 @@
 <div class=post-category>
 <a href=/categories/coding/> coding </a>
 </div>
-<span class=more-meta> 约 2405 字 </span>
+<span class=more-meta> 约 2385 字 </span>
 <span class=more-meta> 预计阅读 5 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
 </div>
@@ -109,7 +109,7 @@
 <ul>
 <li><a href=#排序的分类>排序的分类</a>
 <ul>
-<li><a href=#内排序又可以分为以下几类>内排序又可以分为以下几类：</a></li>
+<li><a href=#内排序又可以分为以下几类>内排序又可以分为以下几类</a></li>
 </ul>
 </li>
 <li><a href=#冒泡排序>冒泡排序</a></li>
@@ -122,9 +122,9 @@
 <li><a href=#归并排序>归并排序</a></li>
 <li><a href=#基数排序>基数排序</a></li>
 <li><a href=#猴子排序>猴子排序</a></li>
+<li><a href=#常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</a></li>
 </ul>
 </li>
-<li><a href=#常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</a></li>
 </ul>
 </nav>
 </div>
@@ -133,7 +133,7 @@
 <p><strong>排序</strong>：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。</p>
 <h2 id=排序的分类>排序的分类</h2>
 <p>排序大的分类可分为<strong>内排序</strong>和<strong>外排序</strong>，不需要访问外存就能进行排序的叫做内排序。</p>
-<h3 id=内排序又可以分为以下几类>内排序又可以分为以下几类：</h3>
+<h3 id=内排序又可以分为以下几类>内排序又可以分为以下几类</h3>
 <ol>
 <li>插入排序：直接插入排序、二分法插入排序、希尔排序。</li>
 <li>选择排序：直接选择排序、堆排序。</li>
@@ -149,14 +149,14 @@
 <h2 id=快速排序>快速排序</h2>
 <p>选择一个基准元素,通常选择第一个元素或者最后一个元素,通过一趟扫描，将待排序列分成两部分,一部分比基准元素小,一部分大于等于基准元素,此时基准元素在其排好序后的正确位置,然后再用同样的方法递归地排序划分的两部分。快速排序是不稳定排序。</p>
 <h2 id=直接插入排序>直接插入排序</h2>
-<p>将序列分为两个部分{{有序序列},{无序}}，每次处理就是将无序数列的第一个元素与有序数列的元素从后往前逐个进行比较，找出插入位置，将该元素插入到有序数列的合适位置中。如果碰到相等的元素，就会把它插入到想等元素后面，顺序不会改变，所以直接插入排序是稳定排序。</p>
+<p>将序列分为两个部分<strong>有序</strong>和<strong>无序</strong>，每次处理就是将无序数列的第一个元素与有序数列的元素从后往前逐个进行比较，找出插入位置，将该元素插入到有序数列的合适位置中。如果碰到相等的元素，就会把它插入到想等元素后面，顺序不会改变，所以直接插入排序是稳定排序。</p>
 <h2 id=二分插入排序>二分插入排序</h2>
-<p>在直接插入排序的基础上，对有序序列进行划分。例如：序列为**{{a[0]&mldr;&mldr;a[i-1]},a[i]}**其中**{a[0]&mldr;&mldr;a[i-1]}**为有序序列，取**a[(i-1)/2]**，将其与**a[i]**比较，即可确定**a[i]**的范围**(a[0]&mldr;a[(i-1)/2]**或者**a[(i-1)/2]&mldr;a[i-1])**,然后继续在已确定的范围内进行二分。范围依次缩小为：**1/2、1/4、1/8、1/16&mldr;&mldr;**可快速确定a[i]应该插入的位置。二分插入排序也是稳定排序。</p>
+<p>在直接插入排序的基础上，对有序序列进行划分。例如：序列为$a_0,\cdots,a_{i-1},a_{i}$, 其中$a_0,\cdots,a_{i-1}$为有序序列，取$a_{\frac{i-1}{2}}$，将其与$a_i$比较，即可确定$a_i$的范围$a_0,\cdots,a_{\frac{i-1}{2}}$或者$a_{\frac{i-1}{2}},\cdots,a_{i-1}$。然后继续在已确定的范围内进行二分。范围依次缩小为：$\frac{1}{2}, \frac{1}{4}, \frac{1}{8},\frac{1}{16}$。可快速确定 $a_i$应该插入的位置。二分插入排序也是稳定排序。</p>
 <h2 id=希尔排序>希尔排序</h2>
-<p>将整个序列分割成若干个小的子序列，每个子序列内分别进行插入排序。一般情况下步长取n/2。直到最后一次步长为1，即所有元素在一个组中进行排序。由于希尔排序是先将整个序列划分为多个子序列进行排序，相同的元素顺序在这个过程中顺序可能会被打乱，所以希尔排序是不稳定排序。</p>
+<p>将整个序列分割成若干个小的子序列，每个子序列内分别进行插入排序。一般情况下步长取 n/2。直到最后一次步长为 1，即所有元素在一个组中进行排序。由于希尔排序是先将整个序列划分为多个子序列进行排序，相同的元素顺序在这个过程中顺序可能会被打乱，所以希尔排序是不稳定排序。</p>
 <h2 id=直接选择排序>直接选择排序</h2>
-<p>从待排序的数据元素中，选出最小或最大的元素与序列第一个数交换。直到所有数据排完。直接选择排序是不稳定排序。例如：<strong>{3，3，1}</strong>，第一次排序就将1和第一个3交换，想等元素的顺序改变了。</p>
-<p><strong>以n=10的一个数组49, 38, 65, 97, 26, 13, 27, 49, 55, 4为例</strong></p>
+<p>从待排序的数据元素中，选出最小或最大的元素与序列第一个数交换。直到所有数据排完。直接选择排序是不稳定排序。例如：<strong>{3，3，1}</strong>，第一次排序就将 1 和第一个 3 交换，想等元素的顺序改变了。</p>
+<p>以 n=10 的一个数组 49, 38, 65, 97, 26, 13, 27, 49, 55, 4 为例:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -183,7 +183,7 @@
 </span><span class=lnt>22
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>第一次 gap = 10 / 2 = 5
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>第一次 gap = 10 / 2 = 5
 
 49   38   65   97   26   13   27   49   55   4
 
@@ -211,27 +211,27 @@
 <p><strong>堆排序是一种树形选择排序，是对直接选择排序的有效改进。</strong><br>
 最大堆:每个节点的值都大于等于它的孩子节点。<br>
 最小堆:每个节点的值都小于等于它的孩子节点。<br>
-最大堆第0个数据是最大数，最小堆第0个数据是最小数。<br>
-<strong>堆排序是不稳定排序</strong></p>
-<p><strong>思想</strong></p>
+最大堆第 0 个数据是最大数，最小堆第 0 个数据是最小数。<br>
+<strong>堆排序是不稳定排序</strong>
+<strong>思想</strong></p>
 <ol>
 <li>建堆</li>
-<li>交换第0个数据和最后一个数据，弹出最大或者最小数据。</li>
-<li>重复1. 2. 直到最后两个节点交换完成。</li>
+<li>交换第 0 个数据和最后一个数据，弹出最大或者最小数据。</li>
+<li>重复 1. 2. 直到最后两个节点交换完成。</li>
 </ol>
 <h2 id=归并排序>归并排序</h2>
 <p>归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。<br>
 如何将两个有序序列合并？(升序)<br>
 <strong>{a[0]&mldr;&mldr;a[i-1]},{b[0]&mldr;&mldr;b[j-1]}</strong><br>
-若<strong>b[0]，取</strong>b[0]<strong>放入数组</strong>c<strong>中，然后继续比较数组</strong>a<strong>和</strong>b<strong>中的第一个元素，直到数组</strong>a<strong>和</strong>b<strong>中最后一对元素比较完成。</strong></p>
-<p><strong>思想</strong></p>
+若<strong>b[0]&lt;a[0]</strong>, 取b[0]放入数组<strong>c</strong>中，然后继续比较数组<strong>a</strong>和<strong>b</strong>中的第一个元素，直到数组<strong>a</strong>和<strong>b</strong>中最后一对元素比较完成。
+<strong>思想</strong></p>
 <p>将数组分成二组<strong>a</strong>,<strong>b</strong>如果这二组组内的数据都是有序的，那么就可以按照上述方法对这二组数据进行排序。如果这二组数据是无序的？<br>
 可以将<strong>a</strong>,<strong>b</strong>组各自再分成二组。递归操作，直到每个小组只有一个数据，每个小组只有一个元素所以我们可以认为它已经是有序序列，然后进行合并。<br>
 先分解后合并。<br>
 <strong>归并排序是稳定排序</strong></p>
 <h2 id=基数排序>基数排序</h2>
-<p>将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。从最低位起从0-9依次扫描序列，一边扫描一边将扫描到的数据加到新的序列中，得到一个序列。然后比较高一位，重复上述操作，直到最高位排序完成。数列就变成一个有序序列。基数排序是稳定排序。</p>
-<p><strong>以全是二位数的序列举例</strong></p>
+<p>将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。从最低位起从 0-9 依次扫描序列，一边扫描一边将扫描到的数据加到新的序列中，得到一个序列。然后比较高一位，重复上述操作，直到最高位排序完成。数列就变成一个有序序列。基数排序是稳定排序。
+<strong>以全是二位数的序列举例</strong></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -264,7 +264,7 @@
 </span><span class=lnt>28
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>初始序列：
+<pre tabindex=0 class=chroma><code class=language-text data-lang=text>初始序列：
 73,22,93,43,55,14,28,65,39,81
 首先根据个位数的数值，将他们放到对应的数值下面
 0
@@ -300,8 +300,8 @@
 <li>随机打乱数组，检查是否有序。</li>
 <li>有序则输出，无序则重复上述步骤。</li>
 </ol>
-<p>时间复杂度最低1次，最高可执行到世界的尽头。。。</p>
-<h1 id=常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</h1>
+<p>时间复杂度最低 1 次，最高可执行到世界的尽头。。。</p>
+<h2 id=常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</h2>
 <table>
 <thead>
 <tr>
