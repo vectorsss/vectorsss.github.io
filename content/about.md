@@ -33,5 +33,5 @@ Email：[danndanv5@hotmail.com](mailto:danndanv5@hotmail.com)
 本站作品采用[知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。
 
 <blockquote>
-  最后更新于2021.10.01(GTM+3)
+  最后更新于2021.10.01(GMT+3)
 </blockquote>

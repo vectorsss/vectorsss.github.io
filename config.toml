@@ -181,7 +181,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     wechat = "/img/wechatpay-qr.JPG"           # 微信二维码
     alipay = "/img/alipay-qr.JPG"           # 支付宝二维码
 
-  [params.social]                                         # 社交链接
+  [params.social]                                     # 社交链接
     a-email = "mailto:dandanhome@hotmail.com"
     # b-stack-overflow = "http://localhost:1313"
     # c-twitter = "http://localhost:1313"
