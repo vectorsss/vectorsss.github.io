@@ -1,0 +1,483 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>常见排序算法以及对应的时间复杂度和空间复杂度 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/92/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="常见排序算法以及对应的时间复杂度和空间复杂度">
+<meta property="og:description" content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/92/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-07-08T00:00:00+00:00">
+<meta property="article:modified_time" content="2017-07-08T00:00:00+00:00">
+<meta itemprop=name content="常见排序算法以及对应的时间复杂度和空间复杂度">
+<meta itemprop=description content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内"><meta itemprop=datePublished content="2017-07-08T00:00:00+00:00">
+<meta itemprop=dateModified content="2017-07-08T00:00:00+00:00">
+<meta itemprop=wordCount content="2405">
+<meta itemprop=keywords content="排序,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="常见排序算法以及对应的时间复杂度和空间复杂度">
+<meta name=twitter:description content="排序：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。 排序的分类 排序大的分类可分为内排序和外排序，不需要访问外存就能进行排序的叫做内"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>常见排序算法以及对应的时间复杂度和空间复杂度</h1>
+<div class=post-meta>
+<span class=post-time> 2017-07-08 </span>
+<div class=post-category>
+<a href=/categories/coding/> coding </a>
+</div>
+<span class=more-meta> 约 2405 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#排序的分类>排序的分类</a>
+<ul>
+<li><a href=#内排序又可以分为以下几类>内排序又可以分为以下几类：</a></li>
+</ul>
+</li>
+<li><a href=#冒泡排序>冒泡排序</a></li>
+<li><a href=#快速排序>快速排序</a></li>
+<li><a href=#直接插入排序>直接插入排序</a></li>
+<li><a href=#二分插入排序>二分插入排序</a></li>
+<li><a href=#希尔排序>希尔排序</a></li>
+<li><a href=#直接选择排序>直接选择排序</a></li>
+<li><a href=#堆排序>堆排序</a></li>
+<li><a href=#归并排序>归并排序</a></li>
+<li><a href=#基数排序>基数排序</a></li>
+<li><a href=#猴子排序>猴子排序</a></li>
+</ul>
+</li>
+<li><a href=#常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p><strong>排序</strong>：将杂乱无章的数据，按照一定的方法进行排列的过程叫做排序。</p>
+<h2 id=排序的分类>排序的分类</h2>
+<p>排序大的分类可分为<strong>内排序</strong>和<strong>外排序</strong>，不需要访问外存就能进行排序的叫做内排序。</p>
+<h3 id=内排序又可以分为以下几类>内排序又可以分为以下几类：</h3>
+<ol>
+<li>插入排序：直接插入排序、二分法插入排序、希尔排序。</li>
+<li>选择排序：直接选择排序、堆排序。</li>
+<li>交换排序：冒泡排序、快速排序。</li>
+<li>归并排序</li>
+<li>基数排序</li>
+</ol>
+<p>排序也可以分为<strong>稳定排序</strong>和<strong>不稳定排序</strong></p>
+<p><strong>稳定排序</strong>：假设在待排序的文件中，存在两个或两个以上的记录具有相同的关键字，在用某种排序法排序后，若这些相同关键字的元素的相对次序仍然不变，则这种排序方法是稳定的。即；若<strong>a[i]=a[j]</strong>,**a[i]<strong>在</strong>a[j]<strong>之前，经过排序后</strong>a[i]<strong>依然在</strong>a[j]**之前。冒泡排序、直接插入排序、二分插入排序、归并排序，基数排序都是稳定排序。<br>
+<strong>不稳定排序</strong>：直接选择排序、堆排序、快速排序、希尔排序，猴子排序。</p>
+<h2 id=冒泡排序>冒泡排序</h2>
+<p>以升序为例，比较相邻的元素，如果第一个比第二个大，则交换他们两个。如果两个元素一样大，则继续比较下一对。所以冒泡排序是一种稳定排序。</p>
+<h2 id=快速排序>快速排序</h2>
+<p>选择一个基准元素,通常选择第一个元素或者最后一个元素,通过一趟扫描，将待排序列分成两部分,一部分比基准元素小,一部分大于等于基准元素,此时基准元素在其排好序后的正确位置,然后再用同样的方法递归地排序划分的两部分。快速排序是不稳定排序。</p>
+<h2 id=直接插入排序>直接插入排序</h2>
+<p>将序列分为两个部分{{有序序列},{无序}}，每次处理就是将无序数列的第一个元素与有序数列的元素从后往前逐个进行比较，找出插入位置，将该元素插入到有序数列的合适位置中。如果碰到相等的元素，就会把它插入到想等元素后面，顺序不会改变，所以直接插入排序是稳定排序。</p>
+<h2 id=二分插入排序>二分插入排序</h2>
+<p>在直接插入排序的基础上，对有序序列进行划分。例如：序列为**{{a[0]&mldr;&mldr;a[i-1]},a[i]}**其中**{a[0]&mldr;&mldr;a[i-1]}**为有序序列，取**a[(i-1)/2]**，将其与**a[i]**比较，即可确定**a[i]**的范围**(a[0]&mldr;a[(i-1)/2]**或者**a[(i-1)/2]&mldr;a[i-1])**,然后继续在已确定的范围内进行二分。范围依次缩小为：**1/2、1/4、1/8、1/16&mldr;&mldr;**可快速确定a[i]应该插入的位置。二分插入排序也是稳定排序。</p>
+<h2 id=希尔排序>希尔排序</h2>
+<p>将整个序列分割成若干个小的子序列，每个子序列内分别进行插入排序。一般情况下步长取n/2。直到最后一次步长为1，即所有元素在一个组中进行排序。由于希尔排序是先将整个序列划分为多个子序列进行排序，相同的元素顺序在这个过程中顺序可能会被打乱，所以希尔排序是不稳定排序。</p>
+<h2 id=直接选择排序>直接选择排序</h2>
+<p>从待排序的数据元素中，选出最小或最大的元素与序列第一个数交换。直到所有数据排完。直接选择排序是不稳定排序。例如：<strong>{3，3，1}</strong>，第一次排序就将1和第一个3交换，想等元素的顺序改变了。</p>
+<p><strong>以n=10的一个数组49, 38, 65, 97, 26, 13, 27, 49, 55, 4为例</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>第一次 gap = 10 / 2 = 5
+
+49   38   65   97   26   13   27   49   55   4
+
+分成了五组(49, 13) (38, 27) (65, 49)  (97, 55)  (26, 4)
+这样每组排序后就变成了(13, 49)  (27, 38)  (49, 65)  (55, 97)  (4, 26)，下同。
+
+第二次 gap = 5 / 2 = 2
+
+排序后
+
+
+13   27   49   55   4    49   38   65   97   26
+
+第三次 gap = 2 / 2 = 1
+
+4   26   13   27   38    49   49   55   97   65
+
+
+第四次 gap = 1 / 2 = 0 排序完成得到数组：
+
+4   13   26   27   38    49   49   55   65   97
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=堆排序>堆排序</h2>
+<p><strong>堆排序是一种树形选择排序，是对直接选择排序的有效改进。</strong><br>
+最大堆:每个节点的值都大于等于它的孩子节点。<br>
+最小堆:每个节点的值都小于等于它的孩子节点。<br>
+最大堆第0个数据是最大数，最小堆第0个数据是最小数。<br>
+<strong>堆排序是不稳定排序</strong></p>
+<p><strong>思想</strong></p>
+<ol>
+<li>建堆</li>
+<li>交换第0个数据和最后一个数据，弹出最大或者最小数据。</li>
+<li>重复1. 2. 直到最后两个节点交换完成。</li>
+</ol>
+<h2 id=归并排序>归并排序</h2>
+<p>归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。<br>
+如何将两个有序序列合并？(升序)<br>
+<strong>{a[0]&mldr;&mldr;a[i-1]},{b[0]&mldr;&mldr;b[j-1]}</strong><br>
+若<strong>b[0]，取</strong>b[0]<strong>放入数组</strong>c<strong>中，然后继续比较数组</strong>a<strong>和</strong>b<strong>中的第一个元素，直到数组</strong>a<strong>和</strong>b<strong>中最后一对元素比较完成。</strong></p>
+<p><strong>思想</strong></p>
+<p>将数组分成二组<strong>a</strong>,<strong>b</strong>如果这二组组内的数据都是有序的，那么就可以按照上述方法对这二组数据进行排序。如果这二组数据是无序的？<br>
+可以将<strong>a</strong>,<strong>b</strong>组各自再分成二组。递归操作，直到每个小组只有一个数据，每个小组只有一个元素所以我们可以认为它已经是有序序列，然后进行合并。<br>
+先分解后合并。<br>
+<strong>归并排序是稳定排序</strong></p>
+<h2 id=基数排序>基数排序</h2>
+<p>将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。从最低位起从0-9依次扫描序列，一边扫描一边将扫描到的数据加到新的序列中，得到一个序列。然后比较高一位，重复上述操作，直到最高位排序完成。数列就变成一个有序序列。基数排序是稳定排序。</p>
+<p><strong>以全是二位数的序列举例</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>初始序列：
+73,22,93,43,55,14,28,65,39,81
+首先根据个位数的数值，将他们放到对应的数值下面
+0
+1 81
+2 22
+3 73 93 43
+4 14
+5 55 65
+6
+7
+8 28
+9 39
+排序好的序列为：
+81,22,73,93,43,14,55,65,28,39
+再根据十位数数值对上面拼接好的序列进行排序
+0
+1 14
+2 22 28
+3 39
+4 43
+5 55
+6 65
+7 73
+8 81
+9 93
+最终的有序序列：
+14,22,28,39,43,55,65,73,81,93
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=猴子排序>猴子排序</h2>
+<p><a href=http://www.baike.com/wiki/%E6%97%A0%E9%99%90%E7%8C%B4%E5%AD%90%E5%AE%9A%E7%90%86>无限猴子定理</a>:指一只猴子随机在打字机键盘上按键，最后必然可以打出法国国家图书馆的每本图书。</p>
+<ol>
+<li>随机打乱数组，检查是否有序。</li>
+<li>有序则输出，无序则重复上述步骤。</li>
+</ol>
+<p>时间复杂度最低1次，最高可执行到世界的尽头。。。</p>
+<h1 id=常见排序算法及对应的时间复杂度和空间复杂度>常见排序算法及对应的时间复杂度和空间复杂度</h1>
+<table>
+<thead>
+<tr>
+<th>排序方法</th>
+<th>时间复杂度（平均）</th>
+<th>时间复杂度（最坏)</th>
+<th>时间复杂度（最好)</th>
+<th>空间复杂度</th>
+<th>稳定性</th>
+<th>复杂性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接插入排序</td>
+<td>O(n2)</td>
+<td>O(n2)</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>稳定</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>O(nlog2n)</td>
+<td>O(n2)</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+<td>较复杂</td>
+</tr>
+<tr>
+<td>直接选择排序</td>
+<td>O(n2)</td>
+<td>O(n2)</td>
+<td>O(n2)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>O(nlog2n)</td>
+<td>O(nlog2n)</td>
+<td>O(nlog2n)</td>
+<td>O(1)</td>
+<td>不稳定</td>
+<td>较复杂</td>
+</tr>
+<tr>
+<td>冒泡排序</td>
+<td>O(n2)</td>
+<td>O(n2)</td>
+<td>O(n)</td>
+<td>O(1)</td>
+<td>稳定</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlog2n)</td>
+<td>O(n2)</td>
+<td>O(nlog2n)</td>
+<td>O(nlog2n)</td>
+<td>不稳定</td>
+<td>较复杂</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlog2n)</td>
+<td>O(nlog2n)</td>
+<td>O(nlog2n)</td>
+<td>O(n)</td>
+<td>稳定</td>
+<td>较复杂</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>O(d(n+r))</td>
+<td>O(d(n+r))</td>
+<td>O(d(n+r))</td>
+<td>O(n+r)</td>
+<td>稳定</td>
+<td>较复杂</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-07-08
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E6%8E%92%E5%BA%8F/>排序</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/91/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">字符串的输入输出 C/C++</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/93/>
+<span class="next-text nav-default">简单数据结构(队列 栈 树 堆 )</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

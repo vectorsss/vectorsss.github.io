@@ -1,0 +1,475 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Mdic字典文件转换mac原生字典 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="Requirements 转换过程中需要用到PyGlossary，直接去github克隆仓库，或者直接去releases页面下载最新版。作者在这里已经给出了Requ"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/582/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Mdic字典文件转换mac原生字典">
+<meta property="og:description" content="Requirements 转换过程中需要用到PyGlossary，直接去github克隆仓库，或者直接去releases页面下载最新版。作者在这里已经给出了Requ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/582/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-01-16T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-01-16T00:00:00+00:00">
+<meta itemprop=name content="Mdic字典文件转换mac原生字典">
+<meta itemprop=description content="Requirements 转换过程中需要用到PyGlossary，直接去github克隆仓库，或者直接去releases页面下载最新版。作者在这里已经给出了Requ"><meta itemprop=datePublished content="2021-01-16T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-01-16T00:00:00+00:00">
+<meta itemprop=wordCount content="2925">
+<meta itemprop=keywords content="macos,效率,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Mdic字典文件转换mac原生字典">
+<meta name=twitter:description content="Requirements 转换过程中需要用到PyGlossary，直接去github克隆仓库，或者直接去releases页面下载最新版。作者在这里已经给出了Requ"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Mdic字典文件转换mac原生字典</h1>
+<div class=post-meta>
+<span class=post-time> 2021-01-16 </span>
+<div class=post-category>
+<a href=/categories/%E5%B7%A5%E5%85%B7-%E6%95%88%E7%8E%87/> 工具-效率 </a>
+</div>
+<span class=more-meta> 约 2925 字 </span>
+<span class=more-meta> 预计阅读 6 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#convert-mdict-to-mac-os-x-dictionary>Convert Mdict to Mac OS X dictionary</a></li>
+<li><a href=#example>Example</a>
+<ul>
+<li><a href=#ldoce5>LDOCE5</a></li>
+<li><a href=#cambridge-english-pronouncing-dictionary---18th-edition>Cambridge English Pronouncing Dictionary - 18th Edition</a></li>
+</ul>
+</li>
+<li><a href=#summary>Summary</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=requirements>Requirements</h1>
+<p>转换过程中需要用到<a href=https://github.com/ilius/pyglossary>PyGlossary</a>，直接去github克隆仓库，或者直接去<a href=https://github.com/ilius/pyglossary/releases>releases</a>页面下载最新版。作者在这里已经给出了Requirements. 我电脑上配置了anaconda环境，通过<code>brew</code>安装好gtk+3和pygobject3之后，通过Gtk3-based interface运行程序一直报错。而且Tkinter-based interface也是报错，懒得折腾虚拟环境了。所以索性就直接用命令行运行了。</p>
+<p>以下所有操作都是基于macOs Big Sur 11.1进行的</p>
+<p>如果需要用过Command-line interface运行的话，可以通过执行以下命令。</p>
+<blockquote>
+<p>pip3 install prompt_toolkit python3 main.py &ndash;ui=cmd</p>
+</blockquote>
+<p>我是直接通过命令行逐步运行的。</p>
+<p>下面的链接是官方给出的例子。</p>
+<p><a href=https://github.com/ilius/pyglossary/blob/master/doc/apple.md>https://github.com/ilius/pyglossary/blob/master/doc/apple.md</a></p>
+<ul>
+<li>
+<p><strong>Reading from AppleDict Binary (.dictionary)</strong></p>
+<blockquote>
+<p>sudo pip3 install lxml</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Writing to AppleDict</strong></p>
+<blockquote>
+<p>sudo pip3 install lxml beautifulsoup4 html5lib</p>
+</blockquote>
+</li>
+</ul>
+<p>除了这几个包，还需要下载<a href=http://developer.apple.com/downloads>Command Line Tools for Xcode</a>，直接登录自己的apple id就可以下载。</p>
+<p>找到<strong>Additional Tools for Xcode</strong>，下载解压。<strong>Dictionary Development Kit</strong>是<strong>Additional Tools for Xcode</strong>的一部分。在解压好的<strong>Additional Tools for Xcode</strong>文件夹里面找到<strong>Dictionary Development Kit，将它放到</strong>~/Developer/Extras/文件夹下。</p>
+<p>这一步只是为了省事，避免在接下来的步骤中需要手动调整Makefile里面的路径。</p>
+<h1 id=convert-mdict-to-mac-os-x-dictionary>Convert Mdict to Mac OS X dictionary</h1>
+<p>建议大家把一个词典和它相对应的所有资源文件全部放到一个文件夹下。</p>
+<p>假设我们已经有了一个词典文件，在<code>~/Downloads/oald8/oald8.mdx</code> 里面。跟<code>mdx</code> 在同一个文件夹里面的还有<code>mdd</code> 资源文件。</p>
+<p>假设我们把最新版的pyglossary解压在了这个文件夹~/Software/pyglossary</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>cd ~/Downloads/oald8/
+python3 ~/Software/pyglossary/main.py --write-format=AppleDict oald8.mdx oald8-apple
+cd oald8-apple
+</code></pre></td></tr></table>
+</div>
+</div><p>我是将pyglossary文件夹和词典文件夹放在同一个目录下。所以我的命令是这样的：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>python3 ./main.py --write-format=AppleDict ../oald8/oald8.mdx ../oald8-apple
+cd ../oald8-apple
+</code></pre></td></tr></table>
+</div>
+</div><p>这个文件夹里面<code>oald8.xml</code> 放的是词典文件，其他资源文件都在<code>OtherResources</code> 里面。</p>
+<p>需要把所有<code>oald8.xml</code> 里面相对链接里面的"\&ldquo;去掉。</p>
+<blockquote>
+<p>sed -i "&rdquo; &rsquo;s:src="/:src=":g' oald8.xml</p>
+</blockquote>
+<p>然后还有一个问题是音频文件，原始的音频文件里面有不少spx格式，原作者说的是需要用speex转换，实际上并不需要。直接改一下后缀名就可以了。修改后缀名可以进入到文件夹里面，全选右键，重命名。然后选择后缀即可。改成wav或者mp3都行。我改的是mp3。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>find OtherResources -name <span class=s2>&#34;*.spx&#34;</span> -execdir sh -c <span class=s1>&#39;spx={};speexdec $spx ${spx%.*}.wav&#39;</span> <span class=se>\;</span>
+sed -i <span class=s2>&#34;&#34;</span> <span class=s1>&#39;s|sound://\([/_a-zA-Z0-9]*\).spx|\1.wav|g&#39;</span> oald8.xml
+</code></pre></td></tr></table>
+</div>
+</div><p>spx文件一般都在<code>OtherResources/media/spx</code> 路径下。接下里就是把词典文件<code>oald8.xml</code> 里面所有的引用全部改掉。</p>
+<p>打脸了，直接改后缀在词典里面是播放不出来的，还是需要使用<a href=https://www.speex.org/>speex</a>。安装speex的过程中需要从源码编译安装，使用port install speex命令是不行的。很多人说还需要将wav转换成mp3，实际上是不需要的。亲测。当然如果需要优化存储的话还是需要使用mp3。wav比spx甚至大了几十倍。。。下面是我转换Cambridge English Pronouncing Dictionary - 18th Edition得到的一张对比图：</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104447.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled.png></p>
+<blockquote>
+<p>sed -i "" &rsquo;s|sound://([/_a-zA-Z0-9]*).spx|\1.wav|g' oald8.xml</p>
+</blockquote>
+<p>以上两步实际上都是需要自己查看xml里面的代码，看看是以那种形式出现的。并不一定都跟上面相同。我在最后会给出我转换不同词典的过程中用到的正则表达式。</p>
+<p>最后一步就是编译，安装。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>make
+</code></pre></td></tr></table>
+</div>
+</div><p>make过程中可能会出现一些问题：</p>
+<blockquote>
+<p>~/Developer/Extras/Dictionary Development Kit/bin/build_dict.sh: line 221: /bin/cp: Argument list too long</p>
+</blockquote>
+<p>解决方案是将<code>build_dict.sh</code> 的第221行改为下面的代码，重新执行make。</p>
+<blockquote>
+<p>rsync -a &ldquo;$OTHER_RSRC_DIR&rdquo;/ &ldquo;$OBJECTS_DIR&rdquo;/dict.dictionary/"$CONTENTS_DATA_PATH" || error &ldquo;Error.&rdquo;</p>
+</blockquote>
+<p>完成之后，会在当前文件夹下生成一个objects文件夹，里面就有我们所需要的.dictionary文件。</p>
+<p>原生词典里面是不支持<code>base64</code>格式的字体文件的，所以我们需要手动将原先css里面base64格式的字体转换成它原来的样子并放到<code>Contents</code>文件夹下。</p>
+<p>下面这个网站可以提供在线转换服务</p>
+<p><a href=https://www.motobit.com/util/base64-decoder-encoder.asp>Base64 Online - base64 decode and encode</a></p>
+<p>转换过程如下</p>
+<p>默认css的路径如下所示：</p>
+<blockquote>
+<p>objects/oald8-apple.dictionary/Contents/DefaultStyle.css</p>
+</blockquote>
+<p>打开<code>DefaultStyle.css</code> ， 在里面查找<code>@font-face</code> ，找到里面的将对应字体的base64编码复制到上面那个网站里面，选择decode。输出栏目里面选择export to a binary，其实后面的文件名可以直接以ttf对应的字体格式结尾。例如：ttf，woff之类的。前缀就写成原先的字体名。下面代码中font-family就是对应的字体名。</p>
+<p>下面我举一个修改之前和修改之后的例子吧。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=p>@</span><span class=k>font-face</span> <span class=p>{</span>
+    <span class=nt>font-family</span><span class=o>:</span> <span class=s1>&#39;lm5pp_icomoon&#39;</span><span class=o>;</span>
+    <span class=nt>src</span><span class=o>:</span> <span class=nt>url</span><span class=o>(</span><span class=nt>data</span><span class=p>:</span><span class=nd>font</span><span class=o>/</span><span class=nt>truetype</span><span class=o>;</span><span class=nt>charset</span><span class=o>=</span><span class=nt>utf-8</span><span class=o>;</span><span class=nt>base64</span><span class=o>,</span><span class=nt>AAEAAAAOAIAAAwBgRkZUTX</span><span class=o>/</span><span class=nt>w9zYAAAakAAAAHEdERUYAJwANAAAGhAAAAB5PUy8yDxcGTwAAAWgAAABgY21hcOpwLgYAAAHkAAABZmdhc3AAAAAQAAAGfAAAAAhnbHlmVsOtfQAAA1wAAAE0aGVhZA5ZovkAAADsAAAANmhoZWEHMgPIAAABJAAAACRobXR4DUkAAAAAAcgAAAAcbG9jYQA4ALoAAANMAAAAEG1heHAACwBWAAABSAAAACBuYW1l</span><span class=o>+</span><span class=nt>lhN2AAABJAAAAGbcG9zdIDVhT8AAAYsAAAAT3dlYmaPmVnAAAAGwAAAAAYAAQAAAAAAADy</span><span class=o>/</span><span class=nt>p</span><span class=o>+</span><span class=nt>JfDzz1AAsEAAAAAADV5h5jAAAAANXmQBgAAAAAA3ADgQAAAAgAAgAAAAAAAAABAAADwP</span><span class=o>/</span><span class=nt>AAAAEAAAAAAADcAABAAAAAAAAAAAAAAAAAAAABwABAAAABwBUAAMAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAMC</span><span class=o>/</span><span class=nt>QGQAAUABAKZAswAAACPApkCzAAAAesAMwEJAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAQAAB6icDwP</span><span class=o>/</span><span class=nt>AAEADwABAAAAAAQAAAAAAAAAAAAAAIAABBAAAAAAAAAABVQAAAAAAAAIAAAAB9AAABAAAAAAAAAMAAAADAAAAHAABAAAAAABgAAMAAQAAABwABABEAAAADAAIAAIABAABACAl</span><span class=o>/</span><span class=nt>Oon</span><span class=o>//</span><span class=nt>3</span><span class=o>//</span><span class=nt>wAAAAAAICX86if</span><span class=o>//</span><span class=nt>f</span><span class=o>//</span><span class=nt>AAD</span><span class=o>/</span><span class=nt>5NoJFd8AAwABAAwAAAAAAAAAAAAAAAEAAwAAAQYAAAEDAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAQAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAIABAAGAAgAJoAAQAAAAAAAAAAAAIAADkCAAEAAAAAAAAAAAACAAA5AgABAAAAAAAAAAAAAgAAOQIAAQAAAAAAAAAAAAMAADkDAAMAAAAAA3ADgQAfADgAUwAAJSImJyY0Nz4BNCYnJjQ3NjIXHgMVFA4CBw4BIzEnIiYnJjQ3PgE0JicmNDc2MhceARQGBw4BByImLwEjIiY1ETQ2OwE3PgEXHgEVERQGBw4BAtAKEQcODjExMTEODg4nDh8vIBERIC8fBxEJqwkSBw4OHh8fHg4ODigOLC0tLAcSjgYMBfZzDRMTDXP2BxMJCQsLCQMGgAcIDicOMnuCezIOJw4PDx5HTVQrK1RNRx4IB1sHBw4oDh5NUE0eDigODg4scXRxLAcH2wUE9xMNAUANE</span><span class=o>/</span><span class=nt>cGBAMEEAr8wAoQBAEBAAAAAA4ArgABAAAAAAABAAcAEAABAAAAAAACAAcAKAABAAAAAAADAAcAQAABAAAAAAAEAAcAWAABAAAAAAAFAAsAeAABAAAAAAAGAAcAlAABAAAAAAAKABoA0gADAAEECQABAA4AAAADAAEECQACAA4AGAADAAEECQADAA4AMAADAAEECQAEAA4ASAADAAEECQAFABYAYAADAAEECQAGAA4AhAADAAEECQAKADQAnABpAGMAbwBtAG8AbwBuAABpY29tb29uAABSAGUAZwB1AGwAYQByAABSZWd1bGFyAABpAGMAbwBtAG8AbwBuAABpY29tb29uAABpAGMAbwBtAG8AbwBuAABpY29tb29uAABWAGUAcgBzAGkAbwBuACAAMQAuADAAAFZlcnNpb24gMS4wAABpAGMAbwBtAG8AbwBuAABpY29tb29uAABGAG8AbgB0ACAAZwBlAG4AZQByAGEAdABlAGQAIABiAHkAIABJAGMAbwBNAG8AbwBuAC4AAEZvbnQgZ2VuZXJhdGVkIGJ5IEljb01vb24uAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAABAgACAQMAAwEEAQUGZ2x5cGgxB3VuaTAwMDEHdW5pMjVGQwd1bmlFQTI3AAABAAH</span><span class=o>//</span><span class=nt>wAPAAEAAAAMAAAAFgAAAAIAAQABAAYAAQAEAAAAAgAAAAAAAAABAAAAANQkmLoAAAAA1eYeYwAAAADV5kAYAAFZwI</span><span class=o>+</span><span class=nt>YAAA</span><span class=o>=)</span> <span class=nt>format</span><span class=o>(</span><span class=s1>&#39;truetype&#39;</span><span class=o>);</span>
+    <span class=nt>font-weight</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+    <span class=nt>font-style</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+<span class=p>}</span>
+
+<span class=p>@</span><span class=k>font-face</span> <span class=p>{</span>
+    <span class=nt>font-family</span><span class=o>:</span> <span class=s1>&#39;cjkextent&#39;</span><span class=o>;</span>
+    <span class=nt>src</span><span class=o>:</span> <span class=nt>url</span><span class=o>(</span><span class=nt>data</span><span class=p>:</span><span class=nd>font</span><span class=o>/</span><span class=nt>truetype</span><span class=o>;</span><span class=nt>charset</span><span class=o>=</span><span class=nt>utf-8</span><span class=o>;</span><span class=nt>base64</span><span class=o>,</span><span class=nt>AAEAAAAOAIAAAwBgRkZUTXxzNGMAAAygAAAAHEdERUYAJwAOAAAMgAAAAB5PUy8yVxjhrwAAAWgAAABgY21hcEymT7AAAAHkAAABWmdhc3AAAAAQAAAMeAAAAAhnbHlmDIR02gAAA1QAAAZYaGVhZAhq7tgAAADsAAAANmhoZWEB1gHWAAABJAAAACRobXR4BFsALQAAAcgAAAAabG9jYQTgA1wAAANAAAAAEm1heHAAEwC3AAABSAAAACBuYW1lSV8NJAAACawAAAJvcG9zdDY8ImAAAAwcAAAAWndlYmbBa1pNAAAMvAAAAAYAAQAAAAYUfDZcJ6tfDzz1AAsBAAAAAADR2ym</span><span class=o>+</span><span class=nt>AAAAANZzceoAAP</span><span class=o>/</span><span class=nt>jAPgA1AAAAAgAAgAAAAAAAAABAAAA3P</span><span class=o>/</span><span class=nt>cAAAB9AAAAAAA</span><span class=o>+</span><span class=nt>AABAAAAAAAAAAAAAAAAAAAABQABAAAACAC1AAoAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAQBMAGQAAUABACAAIAAAAAQAIAAgAAAAIAADABBAAACAQYJBgEBAQEBgAACgxAAAAAAAAAWAAAAACAgICAAACX8JkAA3P</span><span class=o>/</span><span class=nt>cACQA3AAkQAAAAcDWAAAAdQCwAAAAIAABAQAAHAAAAAAAVQAAAfQAAAEAAAgACgAJAAgAAAAAAAMAAAADAAAAHAABAAAAAABUAAMAAQAAABwABAA4AAAACgAIAAIAAiX8JgYmCSZA</span><span class=o>//</span><span class=nt>8AACX8JgUmCSZA</span><span class=o>///</span><span class=nt>aB9n</span><span class=o>/</span><span class=nt>2f3ZxwABAAAAAAAAAAAAAAAAAQYAAAEAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAEgASABoApgGIApIDLAAAAAIAHP</span><span class=o>/</span><span class=nt>zAOAAwQADAAcAADcjFTMnIzUz4MTECLW1wc4HwAAAAAEAAAAAAAAAAAADAAA5AwAFAAj</span><span class=o>/</span><span class=nt>5wD2ANIADwAzAFUAWQBdAAA3MzcXBxUXBzUjFQc2NTQnBjcXBwYHHgEVFAYHJic3Fj4BJwYHJzY3JicGByc2NyYnNxYfARYXNSMiByczNxcjFTM3FyMVFjcVBgcuAScGByc</span><span class=o>+</span><span class=nt>ATcXBzc1IxU3NSMVgkoIDgcBDkwOAQEnCxEJDgwNCBUVAhwBGxoHBBsnAioWAwcVGgIXFAwYAhcSPQ8WJg0JCnwLEkYgChI8IScOBCsuERAZAxQUAhQISkxMTMULDQcwGAgODgQfFRUdFBgQAxEPGTAYKSUGDgkFBws2IygYBCYrDw8VDQQQGRMSBAwUihMJUQMKCxIiCxItCAMFAgwEFhkiEQQUMRkOBUscHCMaGgAABQAK</span><span class=o>/+</span><span class=nt>cA8QDTAEoAYACOAJQAnQAAFz4BNTQnFzM1BgcUBgcnPgEnFzY3FwYHFwcVMzcXIxUzNxcOAQcnNyMVNzUXBxU</span><span class=o>/</span><span class=nt>ARcHFRQ3MzI2NTMUFhcOASsBIj0BDwEnFgYHPwEXBgcnNj0BIw4BByc</span><span class=o>+</span><span class=nt>AScXMzcXBzceATY1IxUzNxcHDgIHJic1FjMyPgE3IwcnNzQnFzM2NxcGBzM3FwcOAQcmJw8BJzM3FycWDgEjIicmJxoXAwENEhEYBhYDDAgCDjsQDA8bDAYOCQ0kFggNCQcIAgc2DxEGCwQNHAcNBAMEAwUECQUUDAYDBgEQFFIQAhAHCQMPAQwQAhAEAQ0OBwsHQQ0PAzVACg4JAwUNDQQcFQsHCAQCQQgNCAEQCAcCEQgOJAkOCAEEEAMUIQgINA0SKRQCBQIDAQIHESM5FxcbBysDAj1jJgEeWFoHCwwPAQUJBAgIDRIHDQIHCQESJQQbBwUMAwgJBxAHAQwKCwoBBwILEQIDAy4xFCIOAhQNCwUGIhsbDAIRKxAHBgsERgICGyJeCg4FLx0OBRAGBAQHJSEKCwddCwgVDAoEEwkNBiUeBg0FTgMIDRJ</span><span class=o>/</span><span class=nt>Dg4ECAsLAAAKAAn</span><span class=o>/</span><span class=nt>5QD2ANQALQB1AHkAfwCDAJAAmAChAKsAtAAANzM2NRcPATM3FwcVFwc1IxUzNxcjFTM3FwcOAgcmJzUWMzI2NyMVBzY9ATQnBgcnNjcnBgcnNjcnNxc2NwYHJzY3NSMiByczNDUXBxUzNxcjFTY3Fw8BHgEGJicGBxYXFgYnJicGBxcPATM3FwcGBx4BBiYnNxUzNQYHFzY3IzcVMzUnDwEeAQYmJwYHJzY3FxYOASY</span><span class=o>+</span><span class=nt>AT8BHgEOATU0JicHHgEGIyI1NCYnNx4BBiMiLgEnlgkGFAgKJAgOBwEON0cLDmBKCA0HAgQMCgEZEAgIBQNKDgEBVyUBJhIbCgkDCQcGAwYMBhUYASYRGAsJCTUUBxsLEDYOBw8FBg0KCAgJBg4VCw0ICgoXCQcNBQgkCA4IDQoLDggQCko3nAQeCgopYDeZBwULBwkFBggLAwwGawIEDwcPBAE5DQoGCQgDJgsIBgUEBAIWEQQFBAMBBgSzGAkIBRQKDAYkEQYIEwsSFAkNBC8aEAQMBQQBDjwFBRUOQg0PyAwEFBUaCgcDCgoGAwQSEhMIBBcgLAIJEBQJBRYLEjAUGggECwYLDhEKCgwHCQoWDw4PDAcJAw0IDQUcCggOFBcJoRQUdAYWDBZTEhIKBAgHCg0SBw8MAhYdcxcTBwkRDgkJCw8PAQcIFAUFDBMNCgoPBwYPEgoQEQgAAAAABQAI</span><span class=o>/+</span><span class=nt>MA</span><span class=o>+</span><span class=nt>ADUACUAPwBVAGQAagAAFhcHNj0BIxUHNjU0JxczNCcXBxUzNxcHFRQGBy4BJzUWNj0BIxUnBhUnNjc1IwcnMzUjByczNxcjFTM3FyMVNzYGJjY3MxUzNjcXBgczNxcOAQcnNyM2FgczNxcjIgcnMy4BJzcHHgEGJietAQ8BIQ4BARAfARUHIgcPCAcKAwgLEggjSFEMGQ4OCwojEQsKPgoSJwgIECAoDw0OFAEFQgUIEwsPJgoOCAwIAwlwOBANKQoSbA0JCkEBCgoDExgEDQYMDgcIEBFBPQgRFRYYCA8SCgYRCQwGLgcMBAgHAwQCAQUtSzEhBxEGBkIDCjsDCgsSOwkQPw0yCggREQoMIAwEHAoQAwoLAhVYEAwLEgMKCREKAzINDw8bDQAAAAAAABAAxgABAAAAAAAAACgAUgABAAAAAAABAAoAkQABAAAAAAACAAYAqgABAAAAAAADABcA4QABAAAAAAAEAAoBDwABAAAAAAAFABwBVAABAAAAAAAGAAoBhwABAAAAAAAKAAYBogADAAEECQAAAFAAAAADAAEECQABABQAewADAAEECQACAAwAnAADAAEECQADAC4AsQADAAEECQAEABQA</span><span class=o>+</span><span class=nt>QADAAEECQAFADgBGgADAAEECQAGABQBcQADAAEECQAKAA4BkgBDAHIAZQBhAHQAZQBkACAAYgB5ACAAKABoAHQAdABwADoALwAvAHcAdwB3AC4AZwB1AG8AeAB1AGUAZABhAHMAaABpAC4AbgBlAHQALwApAABDcmVhdGVkIGJ5IChodHRwOi8vd3d3Lmd1b3h1ZWRhc2hpLm5ldC8pAABLAGEAaQBYAGkAbgBTAG8AbgBnAABLYWlYaW5Tb25nAABOAG8AcgBtAGEAbAAATm9ybWFsAABLAGEAaQBYAGkAbgBTAG8AbgBnADoAVgBlAHIAcwBpAG8AbgAgADYALgAwADgAAEthaVhpblNvbmc6VmVyc2lvbiA2LjA4AABLAGEAaQBYAGkAbgBTAG8AbgBnAABLYWlYaW5Tb25nAABWAGUAcgBzAGkAbwBuACAANgAuADAAOAAgAEoAYQBuAHUAYQByAHkAIAA0ACwAIAAyADAAMQA4AABWZXJzaW9uIDYuMDggSmFudWFyeSA0LCAyMDE4AABLAGEAaQBYAGkAbgBTAG8AbgBnAABLYWlYaW5Tb25nAABfAF8AwwBbAIsATwBTAABfX8xbT1MAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAIBAgEDAQQBBQEGB3VuaTI1RkMHdW5pMjYwNQd1bmkyNjA2B3VuaTI2MDkHdW5pMjY0MAAAAAEAAf</span><span class=o>//</span><span class=nt>AA8AAQAAAAwAAAAWAAAAAgABAAEABwABAAQAAAACAAAAAAAAAAEAAAAA1CSYugAAAADR2ym</span><span class=o>+</span><span class=nt>AAAAANZzceoAAVpNwWoAAA</span><span class=o>==)</span> <span class=nt>format</span><span class=o>(</span><span class=s1>&#39;truetype&#39;</span><span class=o>);</span>
+    <span class=nt>font-weight</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+    <span class=nt>font-style</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>记得修改的时候，字符编码和源中保持一致，我现在展示的这个源是uft-8，所以我在下图中选择utf-8。</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104462.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled%201.png></p>
+<p>修改之后的代码如下：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=p>@</span><span class=k>font-face</span> <span class=p>{</span>
+    <span class=nt>font-family</span><span class=o>:</span> <span class=s1>&#39;lm5pp_icomoon&#39;</span><span class=o>;</span>
+    <span class=nt>src</span><span class=o>:</span> <span class=nt>url</span><span class=o>(</span><span class=s2>&#34;lm5pp_icomoon.ttf&#34;</span><span class=o>);</span>
+    <span class=nt>font-weight</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+    <span class=nt>font-style</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+<span class=p>}</span>
+
+<span class=p>@</span><span class=k>font-face</span> <span class=p>{</span>
+    <span class=nt>font-family</span><span class=o>:</span> <span class=s1>&#39;cjkextent&#39;</span><span class=o>;</span>
+    <span class=nt>src</span><span class=o>:</span> <span class=nt>url</span><span class=o>(</span><span class=s2>&#34;cjkextent.ttf&#34;</span><span class=o>);</span>
+    <span class=nt>font-weight</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+    <span class=nt>font-style</span><span class=o>:</span> <span class=nt>normal</span><span class=o>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>把转换之后的字体文件也需要放到<code>Contents</code> 文件夹里面。</p>
+<p>还有一个问题是原生词典不支持加载<code>js</code> 脚本的，所以很多时候都需要我们自己手动调整<code>css</code> 文件，让它全部展开。</p>
+<p>经过上面的步骤，我们就可以得到了自己DIY之后的css，需要将自己修改好的css文件直接替换掉原先路径下的<code>DefaultStyle.css</code> 。使用别人提供的css也一样，也需要把字体从<code>base64</code> 格式转换成原有的格式。然后替换掉默认的css文件。</p>
+<p>最后就是安装了，直接运行下面的命令就会将<code>.dictionary</code>文件夹移动到<code>~/Library/Dictionaries/</code> 。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=nt>make</span> <span class=nt>install</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id=example>Example</h1>
+<h2 id=ldoce5>LDOCE5</h2>
+<p>以下是我转换LDOCE5++时候用到的命令。里面有一些正则表达式可以参考。然后我自己基于lgmcw大佬和trivialstuff的css弄出了一个比较适合mac用的风格。修复上一版中原先的spx音频播放不了的问题。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>python3 ./main.py --write-format<span class=o>=</span>AppleDict ../LDOCE5/LDOCE5++<span class=se>\ </span>V<span class=se>\ </span>2-15.mdx ../朗文当代5
+<span class=nb>cd</span> ../朗文当代5
+find OtherResources  -name <span class=s2>&#34;*.spx&#34;</span> -execdir sh -c <span class=s1>&#39;spx={};speexdec $spx ${spx%.*}.wav&#39;</span> <span class=se>\;</span>
+rm -rf OtherResources/*.spx
+sed -i <span class=s2>&#34;&#34;</span> <span class=s1>&#39;s|\([/_a-zA-Z0-9]*\).spx|\1.wav|g&#39;</span> 朗文当代5.xml
+</code></pre></td></tr></table>
+</div>
+</div><p>lgmcw大和trivialstuff的css放入mac中都有一个问题，就是<code>PHRASAL VERBS</code> 默认不展开，我注意到应该是mdx导致的原因。所以我直接在css里面强制将这些项目全部展开了。以下是效果图。corpus默认不展开，需要的话可以自行在css里面调整。（直接搜索hide，里面会有提示的）</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104474.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled%202.png></p>
+<h2 id=cambridge-english-pronouncing-dictionary---18th-edition>Cambridge English Pronouncing Dictionary - 18th Edition</h2>
+<p>为了节省电脑空间，还是需要把wav压缩一下的。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>python3 ./main.py --write-format<span class=o>=</span>AppleDict ../Cambridge<span class=se>\ </span>English<span class=se>\ </span>Pronouncing<span class=se>\ </span>Dictionary<span class=se>\ </span>-<span class=se>\ </span>18th<span class=se>\ </span>Edition/Cambridge<span class=se>\ </span>English<span class=se>\ </span>Pronouncing<span class=se>\ </span>Dictionary<span class=se>\ </span>-<span class=se>\ </span>18th<span class=se>\ </span>Edition.mdx ../Cambridge<span class=se>\ </span>English<span class=se>\ </span>Pronouncing<span class=se>\ </span>Dictionary<span class=se>\ </span>-<span class=se>\ </span>18th<span class=se>\ </span>Edition-apple
+<span class=nb>cd</span> ../Cambridge<span class=se>\ </span>English<span class=se>\ </span>Pronouncing<span class=se>\ </span>Dictionary<span class=se>\ </span>-<span class=se>\ </span>18th<span class=se>\ </span>Edition-apple
+find OtherResources  -name <span class=s2>&#34;*.spx&#34;</span> -execdir sh -c <span class=s1>&#39;spx={};speexdec $spx ${spx%.*}.wav&#39;</span> <span class=se>\;</span>
+<span class=c1># rm -f OtherResources/*.spx 可能报如下错误</span>
+<span class=c1># zsh: argument list too long: rm， 可以改成下面的命令</span>
+find OtherResources/ -name <span class=s1>&#39;*.spx&#39;</span><span class=p>|</span>xargs rm -f
+<span class=nb>cd</span> OtherResources
+sh ./converter.sh
+<span class=nb>cd</span> ..
+sed -i <span class=s2>&#34;&#34;</span> <span class=s1>&#39;s|\([/_a-zA-Z0-9]*\).spx|\1.mp3|g&#39;</span> Cambridge<span class=se>\ </span>English<span class=se>\ </span>Pronouncing<span class=se>\ </span>Dictionary<span class=se>\ </span>-<span class=se>\ </span>18th<span class=se>\ </span>Edition-apple.xml
+</code></pre></td></tr></table>
+</div>
+</div><p>转换代码， converter.sh。将这个文件放入OtherResources里面, 直接运行即可。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=k>for</span> i in *.wav<span class=p>;</span>
+<span class=k>do</span>
+ffmpeg -i <span class=s2>&#34;</span><span class=nv>$i</span><span class=s2>&#34;</span> -f mp3 <span class=s2>&#34;</span><span class=si>${</span><span class=nv>i</span><span class=si>}</span><span class=s2>.mp3&#34;</span><span class=p>;</span>
+rename <span class=s1>&#39;s/.wav.mp3/.mp3/g&#39;</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>i</span><span class=si>}</span><span class=s2>.mp3&#34;</span>
+rm -f <span class=s2>&#34;</span><span class=nv>$i</span><span class=s2>&#34;</span> <span class=c1># 如果需要保留原先的wav文件，则注释掉这一行</span>
+<span class=k>done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>转换之前我看了一下大概有15G。下图是转换过程中的一张图。原始的spx文件只有400m左右。请忽略文件数量的差异，因为我在转换过程中添加了一些脚本文件。左图显示的是正在转换过程中的截图，有脚本新增的也有还没来得及清理的文件。</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104485.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled%203.png></p>
+<p>wav</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104496.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled%204.png></p>
+<p>spx</p>
+<p><img src="https://image.i-ll.cc/mweb/20210116/16108070104506.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt=Mdic%E5%AD%97%E5%85%B8%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2mac%E5%8E%9F%E7%94%9F%E5%AD%97%E5%85%B8%20a2fc0a9e3b394a39b0bbd8e631bd5736/Untitled%205.png></p>
+<p>mp3</p>
+<h1 id=summary>Summary</h1>
+<p>本文只是做了一个很简单的介绍，如何将第三方词库（Mdic）转换为mac原生词库。时间允许的话我之后会做一个关于修改词典里面css的视频教程。敬请期待！</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2021-01-16
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/macos/>macos</a>
+<a href=/tags/%E6%95%88%E7%8E%87/>效率</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/587/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">通过键盘控制显示器输入源的切换</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/562/>
+<span class="next-text nav-default">美区Apple ID 注册以及绑定美区PayPal付款</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

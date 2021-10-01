@@ -1,0 +1,298 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>hdu 5143 NPY and arithmetic progression(枚举) - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="NPY is learning arithmetic progression in his math class. In mathematics, an arithmetic progression (AP) is a sequence of numbers such that the difference between the consecutive terms is constant.(from wikipedia) He thinks it&amp;rsquo;s easy to understand,and he found a challenging problem from his talented math teacher: You&amp;rsquo;re given four integers, $a_1, a_2, a_3, a_4$, which are the numbers of 1,2,3,4 you have.Can you divide these numbers into some Arithmetic"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/96/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="hdu 5143 NPY and arithmetic progression(枚举)">
+<meta property="og:description" content="NPY is learning arithmetic progression in his math class. In mathematics, an arithmetic progression (AP) is a sequence of numbers such that the difference between the consecutive terms is constant.(from wikipedia) He thinks it&rsquo;s easy to understand,and he found a challenging problem from his talented math teacher: You&rsquo;re given four integers, $a_1, a_2, a_3, a_4$, which are the numbers of 1,2,3,4 you have.Can you divide these numbers into some Arithmetic">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/96/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2017-07-06T00:00:00+00:00">
+<meta property="article:modified_time" content="2017-07-06T00:00:00+00:00">
+<meta itemprop=name content="hdu 5143 NPY and arithmetic progression(枚举)">
+<meta itemprop=description content="NPY is learning arithmetic progression in his math class. In mathematics, an arithmetic progression (AP) is a sequence of numbers such that the difference between the consecutive terms is constant.(from wikipedia) He thinks it&rsquo;s easy to understand,and he found a challenging problem from his talented math teacher: You&rsquo;re given four integers, $a_1, a_2, a_3, a_4$, which are the numbers of 1,2,3,4 you have.Can you divide these numbers into some Arithmetic"><meta itemprop=datePublished content="2017-07-06T00:00:00+00:00">
+<meta itemprop=dateModified content="2017-07-06T00:00:00+00:00">
+<meta itemprop=wordCount content="481">
+<meta itemprop=keywords content="字符串,枚举,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="hdu 5143 NPY and arithmetic progression(枚举)">
+<meta name=twitter:description content="NPY is learning arithmetic progression in his math class. In mathematics, an arithmetic progression (AP) is a sequence of numbers such that the difference between the consecutive terms is constant.(from wikipedia) He thinks it&rsquo;s easy to understand,and he found a challenging problem from his talented math teacher: You&rsquo;re given four integers, $a_1, a_2, a_3, a_4$, which are the numbers of 1,2,3,4 you have.Can you divide these numbers into some Arithmetic"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>hdu 5143 NPY and arithmetic progression(枚举)</h1>
+<div class=post-meta>
+<span class=post-time> 2017-07-06 </span>
+<div class=post-category>
+<a href=/categories/coding/> coding </a>
+</div>
+<span class=more-meta> 约 481 字 </span>
+<span class=more-meta> 预计阅读 1 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents></nav>
+</div>
+</div>
+<div class=post-content>
+<p>NPY is learning arithmetic progression in his math class. In mathematics, an arithmetic progression (AP) is a sequence of numbers such that the difference between the consecutive terms is constant.(from wikipedia)<br>
+He thinks it&rsquo;s easy to understand,and he found a challenging problem from his talented math teacher:<br>
+You&rsquo;re given four integers, $a_1, a_2, a_3, a_4$, which are the numbers of 1,2,3,4 you have.Can you divide these numbers into some Arithmetic Progressions,whose lengths are equal to or greater than 3?(i.e.The number of AP can be one)<br>
+Attention: You must use every number exactly once.<br>
+Can you solve this problem?<br>
+<strong>Input</strong><br>
+The first line contains a integer T — the number of test cases (1≤T≤1000001≤T≤100000).<br>
+The next T lines,each contains 4 integers a1,a2,a3,a4(0≤a1,a2,a3,a4≤109)a1,a2,a3,a4(0≤a1,a2,a3,a4≤109).<br>
+<strong>Output</strong><br>
+For each test case,print &ldquo;Yes&rdquo;(without quotes) if the numbers can be divided properly,otherwise print &ldquo;No&rdquo;(without quotes).<br>
+<strong>Sample Input</strong></p>
+<blockquote>
+<p>3<br>
+1 2 2 1<br>
+1 0 0 0<br>
+3 0 0 0</p>
+</blockquote>
+<p><strong>Sample Output</strong></p>
+<blockquote>
+<p>Yes<br>
+No<br>
+Yes</p>
+</blockquote>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>/*
+解题思路：等差数列共三种情况：123 234 1234 用光所有数字，组成0到多个长度至少为3的等差数列 组不成等差数列返回No 组成返回Yes
+            1. a个1 b个2 c个3 d个4 组成公差为1的等差数列后 剩余的数字大于3的话可以自身组成公差为0的等差数列（例如组成2个123 一个333 那么输入的abcd依次为2250）
+            2. a个1 b个2 c个3 d个4 刚好用完，组成多个公差为1的等差数列
+*/
+
+#include
+#include
+#define MAX 100000
+#define MAX2 1000000000
+int main()
+{
+    int i,j,k,T,flag;
+    int a,b,c,d;
+    scanf(&#34;%d&#34;,&amp;T);
+    if (T=3))&amp;&amp;((b-i-j-k==0)||(b-i-j-k&gt;=3))&amp;&amp;((c-i-j-k==0)||(c-i-j-k&gt;=3))&amp;&amp;((d-j-k==0)||(d-j-k&gt;=3)))
+                            {flag=1;break;}
+                    }
+
+
+
+
+        if (flag)
+            printf(&#34;Yes\n&#34;);        
+        else
+            printf(&#34;No\n&#34;);
+    }
+    }    
+    }
+
+
+    return 0;
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2017-07-06
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/>字符串</a>
+<a href=/tags/%E6%9E%9A%E4%B8%BE/>枚举</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/94/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">118A - String Task</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/95/>
+<span class="next-text nav-default">UVA 1585 Score</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

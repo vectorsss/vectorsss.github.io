@@ -11,7 +11,7 @@
 <meta name=msapplication-navbutton-color content="#f8f5ec">
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="Vectors"><meta name=description content="&amp;lt; div id=”fromjs”&amp;gt; &amp;lt; div class=”markdown_views”&amp;gt; 文章目录 0.0.1 参考微信公众平台开发者文档 0.0.1.1 新定义一个方"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="&amp;lt; div id=&amp;ldquo;fromjs&amp;rdquo;&amp;gt; &amp;lt; div class=&amp;ldquo;markdown_views&amp;rdquo;&amp;gt; 参考微信公众平台开发者文档 https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html 下载示例代码 将示例代码通过FTP传至自己的服务器 配置域名和Token(我这里是dandan) 随机生成"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
 <meta name=generator content="Hugo 0.88.1 with theme even">
 <link rel=canonical href=https://blogg.i-ll.cc/archives/107/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
@@ -23,18 +23,18 @@
 <link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
 <meta property="og:title" content="微信公众平台配置服务器之后实现自动回复">
-<meta property="og:description" content="< div id=”fromjs”> < div class=”markdown_views”> 文章目录 0.0.1 参考微信公众平台开发者文档 0.0.1.1 新定义一个方">
+<meta property="og:description" content="< div id=&ldquo;fromjs&rdquo;> < div class=&ldquo;markdown_views&rdquo;> 参考微信公众平台开发者文档 https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html 下载示例代码 将示例代码通过FTP传至自己的服务器 配置域名和Token(我这里是dandan) 随机生成">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blogg.i-ll.cc/archives/107/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2017-03-09T02:01:00+00:00">
-<meta property="article:modified_time" content="2017-03-09T02:01:00+00:00">
+<meta property="article:published_time" content="2017-03-09T00:00:00+00:00">
+<meta property="article:modified_time" content="2017-03-09T00:00:00+00:00">
 <meta itemprop=name content="微信公众平台配置服务器之后实现自动回复">
-<meta itemprop=description content="< div id=”fromjs”> < div class=”markdown_views”> 文章目录 0.0.1 参考微信公众平台开发者文档 0.0.1.1 新定义一个方"><meta itemprop=datePublished content="2017-03-09T02:01:00+00:00">
-<meta itemprop=dateModified content="2017-03-09T02:01:00+00:00">
-<meta itemprop=wordCount content="1205">
-<meta itemprop=keywords content="PHP,微信公众平台,"><meta name=twitter:card content="summary">
+<meta itemprop=description content="< div id=&ldquo;fromjs&rdquo;> < div class=&ldquo;markdown_views&rdquo;> 参考微信公众平台开发者文档 https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html 下载示例代码 将示例代码通过FTP传至自己的服务器 配置域名和Token(我这里是dandan) 随机生成"><meta itemprop=datePublished content="2017-03-09T00:00:00+00:00">
+<meta itemprop=dateModified content="2017-03-09T00:00:00+00:00">
+<meta itemprop=wordCount content="792">
+<meta itemprop=keywords content="php,微信公众平台,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="微信公众平台配置服务器之后实现自动回复">
-<meta name=twitter:description content="< div id=”fromjs”> < div class=”markdown_views”> 文章目录 0.0.1 参考微信公众平台开发者文档 0.0.1.1 新定义一个方"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta name=twitter:description content="< div id=&ldquo;fromjs&rdquo;> < div class=&ldquo;markdown_views&rdquo;> 参考微信公众平台开发者文档 https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html 下载示例代码 将示例代码通过FTP传至自己的服务器 配置域名和Token(我这里是dandan) 随机生成"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body>
@@ -93,10 +93,10 @@
 <div class=post-meta>
 <span class=post-time> 2017-03-09 </span>
 <div class=post-category>
-<a href=/categories/coding/> Coding </a>
+<a href=/categories/coding/> coding </a>
 </div>
-<span class=more-meta> 约 1205 字 </span>
-<span class=more-meta> 预计阅读 3 分钟 </span>
+<span class=more-meta> 约 792 字 </span>
+<span class=more-meta> 预计阅读 2 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
 </div>
 </header>
@@ -109,68 +109,23 @@
 <ul>
 <li>
 <ul>
-<li><a href=#span-idi参考微信公众平台开发者文档span><span id=i>参考微信公众平台开发者文档</span></a></li>
+<li><a href=#参考微信公众平台开发者文档>参考微信公众平台开发者文档</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href=#span-idi-7完整代码如下span><span id=i-7>完整代码如下</span></a></li>
+<li><a href=#完整代码如下>完整代码如下</a></li>
 </ul>
 </nav>
 </div>
 </div>
 <div class=post-content>
 <p>&lt;</p>
-<p>div id=”fromjs”></p>
+<p>div id=&ldquo;fromjs&rdquo;></p>
 <p>&lt;</p>
-<p>div class=”markdown_views”></p>
-<div id=toc_container class="no_bullets card">
-<p class=toc_title>
-文章目录
-</p>
-<ul class=toc_list>
-<ul>
-<li>
-<ul>
-<li>
-<a href=#i><span class="toc_number toc_depth_3">0.0.1</span> 参考微信公众平台开发者文档</a><ul>
-<li>
-<a href=#i-2><span class="toc_number toc_depth_4">0.0.1.1</span> 新定义一个方法</a>
-</li>
-<li>
-<a href=#i-3><span class="toc_number toc_depth_4">0.0.1.2</span> 注释掉</a>
-</li>
-<li>
-<a href=#i-4><span class="toc_number toc_depth_4">0.0.1.3</span> 新加一行</a>
-</li>
-<li>
-<a href=#-gt-gt><span class="toc_number toc_depth_4">0.0.1.4</span> 开发者文档->消息管理->被动回复消息</a>
-</li>
-<li>
-<a href=#i-5><span class="toc_number toc_depth_4">0.0.1.5</span> 微信的示例代码中没有回复图片消息和语音消息的数据包，所以需要导入。</a>
-</li>
-<li>
-<a href=#i-6><span class="toc_number toc_depth_4">0.0.1.6</span> 还有一个就是默认的示例代码中没有消息类型，所以需要添加一个变量。</a>
-</li>
-<li>
-<a href=#If><span class="toc_number toc_depth_4">0.0.1.7</span> 然后用If 语句判断消息类型做出相应的回复。</a>
-</li>
-<li>
-<a href=#sprintffromUsernametoUsernamefromUsernametoUsername><span class="toc_number toc_depth_4">0.0.1.8</span> 这里要注意的是sprintf()里面需要交换fromUsername和toUsername的顺序，其他的变量顺序不能颠倒，如果颠倒则公众号无法正常回复。因为fromUsername既代表用户发给你，也代表你发送给用户，toUsername同理，微信里面还有很多东西可以去尝试比如语音识别接口等等。</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul></li>
-<pre><code>&lt;li&gt;
-  &lt;a href=&quot;#i-7&quot;&gt;&lt;span class=&quot;toc_number toc_depth_1&quot;&gt;1&lt;/span&gt; 完整代码如下&lt;/a&gt;
-&lt;/li&gt;
-</code></pre>
-</ul>
-</div>
-<h3 id=span-idi参考微信公众平台开发者文档span><span id=i>参考微信公众平台开发者文档</span></h3>
-<p><a href=https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html target=_blank rel=nofollow><a href=https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html>https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html</a></a></p>
+<p>div class=&ldquo;markdown_views&rdquo;></p>
+<h3 id=参考微信公众平台开发者文档>参考微信公众平台开发者文档</h3>
+<p><a href=https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html>https://mp.weixin.qq.com/wiki/8/f9a0b8382e0b77d87b3bcc1ce6fbc104.html</a></p>
 <ol>
 <li>下载示例代码</li>
 <li>将示例代码通过FTP传至自己的服务器</li>
@@ -178,34 +133,34 @@
 <li>随机生成EncodingAESKey</li>
 <li>验证</li>
 </ol>
-<h4 id=span-idi-2新定义一个方法span><span id=i-2>新定义一个方法</span></h4>
+<h4 id=新定义一个方法>新定义一个方法</h4>
 <blockquote>
 <p>public function index(){<br>
-if (isset($_GET[‘echostr’])){<br>
+if (isset($_GET[&lsquo;echostr&rsquo;])){<br>
 $this->valid();<br>
 } else {<br>
 $this->responseMsg();<br>
 }</p>
 </blockquote>
-<h4 id=span-idi-3注释掉span><span id=i-3>注释掉</span></h4>
+<h4 id=注释掉>注释掉</h4>
 <blockquote>
 <p>//$wechatObj->valid();</p>
 </blockquote>
-<h4 id=span-idi-4新加一行span><span id=i-4>新加一行</span></h4>
+<h4 id=新加一行>新加一行</h4>
 <blockquote>
 <p>$wechatObj->index();</p>
 </blockquote>
-<h4 id=span-id-gt-gt开发者文档-消息管理-被动回复消息span><span id=-gt-gt>开发者文档->消息管理->被动回复消息</span></h4>
+<h4 id=开发者文档-消息管理-被动回复消息>开发者文档->消息管理->被动回复消息</h4>
 <p>微信的示例代码里面自带了一个回复文本消息的XML数据包</p>
 <blockquote>
 <p>if(!empty( $keyword ))<br>
 {<br>
-$msgType = “text”;<br>
-$contentStr = “Welcome to wechat world!”;<br>
-<span class="katex math inline">resultStr = sprintf(</span>textTpl, <span class="katex math inline">fromUsername, </span>toUsername, <span class="katex math inline">time, </span>msgType, $contentStr);<br>
+$msgType = &ldquo;text&rdquo;;<br>
+$contentStr = &ldquo;Welcome to wechat world!";<br>
+$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);<br>
 echo $resultStr;<br>
 }else{<br>
-echo “Input something…”;<br>
+echo &ldquo;Input something&mldr;";<br>
 }</p>
 </blockquote>
 <p>示例代码改到这一步的话，你发送任意一个字符给公众号，他都会回复你</p>
@@ -217,66 +172,84 @@ echo “Input something…”;<br>
 <p>文本消息</p>
 <p>12345678</p>
 </blockquote>
-<div class=image-package>
-<img src=http://upload-images.jianshu.io/upload_images/3858429-f18d9582f2e5fef0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240></p>
-<div class=image-caption>
-文本消息
-</div>
-</div>
+<p><img src=https://image.i-ll.cc/2021-10-01-125231.png alt></p>
+<p>文本消息</p>
 <blockquote>
 <p>图片消息</p>
 <p>12345678</p>
 </blockquote>
-<div class=image-package>
-<img src=http://upload-images.jianshu.io/upload_images/3858429-bae0e15c3ebf5cca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240></p>
-<div class=image-caption>
-图片消息
-</div>
-</div>
+<p><img src=https://image.i-ll.cc/2021-10-01-125241.png alt></p>
+<p>图片消息</p>
 <blockquote>
 <p>语音消息</p>
 <p>12345678</p>
 </blockquote>
-<div class=image-package>
-<img src=http://upload-images.jianshu.io/upload_images/3858429-353e71adbc559a6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240></p>
-<div class=image-caption>
-语音消息
-</div>
-</div>
+<p><img src=https://image.i-ll.cc/2021-10-01-125244.png alt></p>
+<p>语音消息</p>
 <p>可以发现MsgType代表的就是消息类型，语音消息和图片消息都有一个MediaID。<br>
-图片、语音、音乐、还有视频。这些都属于媒体，上传到微信服务器后都会生成一个MediaID，相当于每个文件的”身份证”。</p>
-<h4 id=span-idi-5微信的示例代码中没有回复图片消息和语音消息的数据包所以需要导入span><span id=i-5>微信的示例代码中没有回复图片消息和语音消息的数据包，所以需要导入。</span></h4>
-<pre><code>            &lt;span class=&quot;katex math inline&quot;&gt;imgTpl = &quot;%s&quot;;             &lt;/span&gt;voiceTpl = &quot;%s&quot;;
-</code></pre>
-<h4 id=span-idi-6还有一个就是默认的示例代码中没有消息类型所以需要添加一个变量span><span id=i-6>还有一个就是默认的示例代码中没有消息类型，所以需要添加一个变量。</span></h4>
+图片、语音、音乐、还有视频。这些都属于媒体，上传到微信服务器后都会生成一个MediaID，相当于每个文件的"身份证&rdquo;。</p>
+<h4 id=微信的示例代码中没有回复图片消息和语音消息的数据包所以需要导入>微信的示例代码中没有回复图片消息和语音消息的数据包，所以需要导入。</h4>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>            $imgTpl = &#34;%s&#34;;
+            $voiceTpl = &#34;%s&#34;;
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=还有一个就是默认的示例代码中没有消息类型所以需要添加一个变量>还有一个就是默认的示例代码中没有消息类型，所以需要添加一个变量。</h4>
 <blockquote>
-<p><span class="katex math inline">type = </span>postObj->MsgType;</p>
+<p>$type = $postObj->MsgType;</p>
 </blockquote>
-<h4 id=span-idif然后用if-语句判断消息类型做出相应的回复span><span id=If>然后用If 语句判断消息类型做出相应的回复。</span></h4>
+<h4 id=然后用if-语句判断消息类型做出相应的回复>然后用If 语句判断消息类型做出相应的回复。</h4>
 <blockquote>
 <ol>
-<li>用户发送文本消息回复给用户 文本消息+’用户发送的文本’。</li>
+<li>用户发送文本消息回复给用户 文本消息+&lsquo;用户发送的文本&rsquo;。</li>
 <li>用户发送图片消息回复给用户同一张图片。</li>
 <li>用户发送语音消息回复给用户同样的语音消息。</li>
 </ol>
 </blockquote>
-<pre><code>            if(&lt;span class=&quot;katex math inline&quot;&gt;type == 'text') {                 &lt;/span&gt;str = '文本消息' . &lt;span class=&quot;katex math inline&quot;&gt;keyword;                   &lt;/span&gt;MsgType = 'text';
-            &lt;span class=&quot;katex math inline&quot;&gt;echo = sprintf(&lt;/span&gt;textTpl,&lt;span class=&quot;katex math inline&quot;&gt;fromUsername,&lt;/span&gt;toUsername,&lt;span class=&quot;katex math inline&quot;&gt;time,&lt;/span&gt;MsgType,&lt;span class=&quot;katex math inline&quot;&gt;str);             }else if (&lt;/span&gt;type == 'image'){
-                &lt;span class=&quot;katex math inline&quot;&gt;MsgType = 'image';                 &lt;/span&gt;echo = sprintf(&lt;span class=&quot;katex math inline&quot;&gt;imgTpl,&lt;/span&gt;fromUsername,&lt;span class=&quot;katex math inline&quot;&gt;toUsername,&lt;/span&gt;time,&lt;span class=&quot;katex math inline&quot;&gt;MsgType,&lt;/span&gt;postObj-&gt;MediaId);
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>            if($type == &#39;text&#39;) {
+                $str = &#39;文本消息&#39; . $keyword; 
+                 $MsgType = &#39;text&#39;;
+            $echo = sprintf($textTpl,$fromUsername,$toUsername,$time,$MsgType,$str);
+            }else if ($type == &#39;image&#39;){
+                $MsgType = &#39;image&#39;;
+                $echo = sprintf($imgTpl,$fromUsername,$toUsername,$time,$MsgType,$postObj-&gt;MediaId);
 
-            }else if (&lt;span class=&quot;katex math inline&quot;&gt;type =='voice'){                 &lt;/span&gt;MsgType = 'voice';
-                &lt;span class=&quot;katex math inline&quot;&gt;echo = sprintf(&lt;/span&gt;voiceTpl,&lt;span class=&quot;katex math inline&quot;&gt;fromUsername,&lt;/span&gt;toUsername,&lt;span class=&quot;katex math inline&quot;&gt;time,&lt;/span&gt;MsgType,$postObj-&gt;MediaId);
+            }else if ($type ==&#39;voice&#39;){
+                $MsgType = &#39;voice&#39;;
+                $echo = sprintf($voiceTpl,$fromUsername,$toUsername,$time,$MsgType,$postObj-&gt;MediaId);
             }
-</code></pre>
-<h4 id=span-idsprintffromusernametousernamefromusernametousername这里要注意的是sprintf里面需要交换fromusername和tousername的顺序其他的变量顺序不能颠倒如果颠倒则公众号无法正常回复因为fromusername既代表用户发给你也代表你发送给用户tousername同理微信里面还有很多东西可以去尝试比如语音识别接口等等span><span id=sprintffromUsernametoUsernamefromUsernametoUsername>这里要注意的是sprintf()里面需要交换fromUsername和toUsername的顺序，其他的变量顺序不能颠倒，如果颠倒则公众号无法正常回复。因为fromUsername既代表用户发给你，也代表你发送给用户，toUsername同理，微信里面还有很多东西可以去尝试比如语音识别接口等等。</span></h4>
-<h1 id=span-idi-7完整代码如下span><span id=i-7>完整代码如下</span></h1>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=这里要注意的是sprintf里面需要交换fromusername和tousername的顺序其他的变量顺序不能颠倒如果颠倒则公众号无法正常回复因为fromusername既代表用户发给你也代表你发送给用户tousername同理微信里面还有很多东西可以去尝试比如语音识别接口等等>这里要注意的是sprintf()里面需要交换fromUsername和toUsername的顺序，其他的变量顺序不能颠倒，如果颠倒则公众号无法正常回复。因为fromUsername既代表用户发给你，也代表你发送给用户，toUsername同理，微信里面还有很多东西可以去尝试比如语音识别接口等等。</h4>
+<h1 id=完整代码如下>完整代码如下</h1>
 <p>&lt;</p>
-<p>pre></p></p>
+<p>pre></p>
 </div>
 <div class=post-copyright>
 <p class=copyright-item>
 <span class=item-title>文章作者</span>
-<span class=item-content>Vectors</span>
+<span class=item-content>Chi Zhao(Vector)</span>
 </p>
 <p class=copyright-item>
 <span class=item-title>上次更新</span>
@@ -300,17 +273,17 @@ echo “Input something…”;<br>
 </div>
 </div><footer class=post-footer>
 <div class=post-tags>
-<a href=/tags/php/>PHP</a>
+<a href=/tags/php/>php</a>
 <a href=/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0/>微信公众平台</a>
 </div>
 <nav class=post-nav>
-<a class=prev href=/post/archives98/>
+<a class=prev href=/archives/105/>
 <i class="iconfont icon-left"></i>
-<span class="prev-text nav-default">绝对值排序</span>
+<span class="prev-text nav-default">Sublime Text3下两款Markdown插件 支持实时预览与代码高亮</span>
 <span class="prev-text nav-mobile">上一篇</span>
 </a>
-<a class=next href=/post/2016-12-23-drcom%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E4%B8%8A%E7%BD%91/>
-<span class="next-text nav-default">Drcom下如何优雅地使用路由器上网</span>
+<a class=next href=/archives/106/>
+<span class="next-text nav-default">微信公众平台配置服务器后自定义菜单</span>
 <span class="next-text nav-mobile">下一篇</span>
 <i class="iconfont icon-right"></i>
 </a>

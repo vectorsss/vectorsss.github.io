@@ -1,0 +1,411 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="1. 什么是爬虫？ 爬虫是请求⽹网站并提取数据的⾃自动化程序 2. 爬虫的基本流程 发起请求 通过HTTP库向目标站点发起请求，即发送一个Request，请"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/293/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜">
+<meta property="og:description" content="1. 什么是爬虫？ 爬虫是请求⽹网站并提取数据的⾃自动化程序 2. 爬虫的基本流程 发起请求 通过HTTP库向目标站点发起请求，即发送一个Request，请">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/293/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2018-04-16T00:00:00+00:00">
+<meta property="article:modified_time" content="2018-04-16T00:00:00+00:00">
+<meta itemprop=name content="爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜">
+<meta itemprop=description content="1. 什么是爬虫？ 爬虫是请求⽹网站并提取数据的⾃自动化程序 2. 爬虫的基本流程 发起请求 通过HTTP库向目标站点发起请求，即发送一个Request，请"><meta itemprop=datePublished content="2018-04-16T00:00:00+00:00">
+<meta itemprop=dateModified content="2018-04-16T00:00:00+00:00">
+<meta itemprop=wordCount content="2178">
+<meta itemprop=keywords content="python,爬虫,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜">
+<meta name=twitter:description content="1. 什么是爬虫？ 爬虫是请求⽹网站并提取数据的⾃自动化程序 2. 爬虫的基本流程 发起请求 通过HTTP库向目标站点发起请求，即发送一个Request，请"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜</h1>
+<div class=post-meta>
+<span class=post-time> 2018-04-16 </span>
+<div class=post-category>
+<a href=/categories/coding/> coding </a>
+</div>
+<span class=more-meta> 约 2178 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#1-什么是爬虫>1. 什么是爬虫？</a></li>
+<li><a href=#2-爬虫的基本流程>2. 爬虫的基本流程</a></li>
+<li><a href=#3-什么是request和response>3. 什么是Request和Response?</a>
+<ul>
+<li><a href=#31-request中包含什么>3.1 Request中包含什么？</a></li>
+<li><a href=#32-response中包含什么>3.2 Response中包含什么？</a></li>
+</ul>
+</li>
+<li><a href=#4-爬虫可以抓取怎样的数据>4. 爬虫可以抓取怎样的数据？</a></li>
+<li><a href=#5-怎样来解析>5. 怎样来解析？</a></li>
+<li><a href=#6-怎样保存数据>6. 怎样保存数据？</a></li>
+</ul>
+</li>
+<li><a href=#爬虫爬取网易新闻排行榜>爬虫爬取网易新闻排行榜。</a>
+<ul>
+<li><a href=#1-确定目标>1. 确定目标</a></li>
+<li><a href=#2-分析目标网页>2. 分析目标网页</a></li>
+<li><a href=#3-实现过程>3. 实现过程</a>
+<ul>
+<li><a href=#31-请求目标网页并存储网页源文件>3.1 请求目标网页并存储网页源文件</a></li>
+<li><a href=#34-对33的结果进一步处理>3.4 对3.3的结果进一步处理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<hr>
+<h2 id=1-什么是爬虫>1. 什么是爬虫？</h2>
+<p>爬虫是请求⽹网站并提取数据的⾃自动化程序</p>
+<h2 id=2-爬虫的基本流程>2. 爬虫的基本流程</h2>
+<ol>
+<li><strong>发起请求</strong> 通过HTTP库向目标站点发起请求，即发送一个Request，请求可以包含额外的headers等信息，等待服务器器响应。</li>
+<li><strong>解析内容</strong> 如果服务器能正常响应，会得到一个Response，Response的内容便是所要获取的页面内容，类型可能有HTML，Json字符串，二进制数据（如图片视频）等类型。</li>
+<li><strong>获取响应内容</strong> 得到的内容可能是HTML，可以用正则表达式、网页解析库进行解析。可能是Json，可以直接转为Json对象解析，可能是二进制数据，可以做保存或者进一步的处理。</li>
+<li><strong>保存数据</strong> 保存形式多样，可以存为文本，也可以保存至数据库，或者保存特定格式的文件。</li>
+</ol>
+<h2 id=3-什么是request和response>3. 什么是Request和Response?</h2>
+<p><img src=https://image.i-ll.cc/18-4-16/68442293.jpg alt=Request和Response></p>
+<ul>
+<li>浏览器就发送消息给该网址所在的服务器，这个过程叫做HTTP Request。</li>
+<li>服务器收到浏览器发送的消息后，能够根据浏览器发送消息的内容，做相应处理，然后把消息回传给浏览器。这个过程叫做HTTP Response。</li>
+<li>浏览器收到服务器的Response信息后，会对信息进行相应处理，然后展示。</li>
+</ul>
+<h3 id=31-request中包含什么>3.1 Request中包含什么？</h3>
+<ul>
+<li><strong>请求方式</strong>：主要有GET、POST两种类型，另外还有HEAD、PUT、DELETE、OPTIONS等。</li>
+<li><strong>请求头</strong>：包含请求时的头部信息，如User-Agent、Host、Cookies等信息。</li>
+<li><strong>请求URL</strong>：URL全称统一资源定位符，如一个网页文档、一张图片、一个视频等都可以用URL唯一来确定。</li>
+<li><strong>请求体</strong>：请求时额外携带的数据如表单提交时的表单数据</li>
+</ul>
+<h3 id=32-response中包含什么>3.2 Response中包含什么？</h3>
+<ul>
+<li><strong>响应状态</strong>：有多种响应状态，如200代表成功、301跳转、404找不到页面、502服务器错误</li>
+<li><strong>响应头</strong>：如内容类型、内容长度、服务器信息、设置Cookie等等。</li>
+<li><strong>响应体</strong>：最主要的部分，包含了请求资源的内容，如网页HTML、图片二进制数据等。</li>
+</ul>
+<h2 id=4-爬虫可以抓取怎样的数据>4. 爬虫可以抓取怎样的数据？</h2>
+<ul>
+<li>网页文本：如HTML文档、Json格式文本等。</li>
+<li>图片：获取到的是二进制文件，保存为图片格式。</li>
+<li>视频：同为二进制文件，保存为视频格式即可。</li>
+<li>其它：只要是能请求到的，都能获取。</li>
+</ul>
+<h2 id=5-怎样来解析>5. 怎样来解析？</h2>
+<ul>
+<li>直接处理</li>
+<li>Json解析</li>
+<li>正则表达式</li>
+<li>BeautifulSoup</li>
+<li>PyQuery</li>
+<li>Xpath</li>
+</ul>
+<h2 id=6-怎样保存数据>6. 怎样保存数据？</h2>
+<ul>
+<li><strong>文本</strong>：纯文本、Json、Xml等。</li>
+<li><strong>关系型数据库</strong>：如MySQL、Oracle、SQL Server等具有结构化表结构形式存储。</li>
+<li><strong>非关系型数据库</strong>：如MongoDB、Redis等Key-Value形式存储。</li>
+<li><strong>二进制文件</strong>：如图片、视频、音频等直接保存成特定格式即可。</li>
+</ul>
+<hr>
+<h1 id=爬虫爬取网易新闻排行榜>爬虫爬取网易新闻排行榜。</h1>
+<hr>
+<h2 id=1-确定目标>1. 确定目标</h2>
+<p>经过讨论，分析，对比各个新闻门户网站的排行榜，最终选取了内容正规、不良信息少、广告少的网易新闻排行榜。每个整点爬取一次，选取点击率最高的前20条热门新闻。即红框所选内容。 <img src=https://image.i-ll.cc/18-4-15/89071865.jpg alt=网易新闻排行榜></p>
+<h2 id=2-分析目标网页>2. 分析目标网页</h2>
+<p>目标网页：http://news.163.com/special/0001386F/rank_news.html 通过分析网页源代码得知，这个网页排行榜并不是通过JavaScript动态加载生成。所以网页爬取后可以直接处理，简单利用BeautifulSoup + requests库即可实现。</p>
+<h2 id=3-实现过程>3. 实现过程</h2>
+<h3 id=31-请求目标网页并存储网页源文件>3.1 请求目标网页并存储网页源文件</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback># 导入相应的包
+from bs4 import BeautifulSoup
+import requests
+import re
+import datetime
+from connect_mysql import *
+# 获取当前时间并指定格式为2018041018
+time = datetime.datetime.now().strftime(&#34;%Y%m%d%H&#34;)
+url = r&#39;http://news.163.com/special/0001386F/rank_news.html&#39;
+# 模拟真实浏览器进行访问
+headers = {&#39;User-Agent&#39;:
+               &#39;Mozilla/5.0 (Windows NT 10.0; WOW64) &#39;
+               &#39;AppleWebKit/537.36 (KHTML, like Gecko) &#39;
+               &#39;Chrome/55.0.2883.87 Safari/537.36&#39;}
+response = requests.get(url, headers=headers)
+page_html = response.text
+</code></pre></td></tr></table>
+</div>
+</div><p>###3.2 将获取到的内容转换成BeautifulSoup格式，并将html.parser作为解析器</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>soup = BeautifulSoup(page_html, &#39;html.parser&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><p>###3.3 对soup进行分析处理 首先通过分析网站结构得知，我们需要的数据在class = tabContents active的div下的所有a标签中，而这个div又嵌套在class = area-half left的div中。所以我们写如下代码，从网页源代码中找到所有符合要求的标题，限制20条。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>titles = soup.find(&#39;div&#39;, &#39;area-half left&#39;).find(&#39;div&#39;, &#39;tabContents active&#39;).find_all(&#39;a&#39;, limit=20)
+</code></pre></td></tr></table>
+</div>
+</div><p>仅需一行代码，我们就已经获取到了我们需要的部分数据。接下来继续获取新的对我们有用的数据，并存放到数据库。</p>
+<p><img src=https://image.i-ll.cc/18-4-16/92160852.jpg alt=通过开发者调试工具分析网页源代码></p>
+<h3 id=34-对33的结果进一步处理>3.4 对3.3的结果进一步处理</h3>
+<p>由于网页标题显示不全，所以上一步爬取的标题，部分不完整。所以我们需要进一步爬取，步骤和上述几个操作类似，爬取新闻链接，新闻内容，新闻完整标题。这三个内容，并调用自己写的方法，将数据存放到数据库。并用re库对内容进行简单处理(去除\n\t\r )，具体实现如下。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>for title in titles:
+    &#39;&#39;&#39;
+    news_url:新闻链接
+    news_html:新闻页网页源代码 
+    &#39;&#39;&#39;
+    news_url = (str(title.get(&#39;href&#39;)))
+    news_response = requests.get(news_url, headers=headers)
+    news_html = news_response.text
+    # 将获取到的内容转换成BeautifulSoup格式，并将html.parser作为解析器
+    news_soup = BeautifulSoup(news_html, &#39;html.parser&#39;)
+    # 从网页源代码中找到属于post_text类的div，并将所有p标签内容存入列表news_contents
+    if news_soup.find(&#39;div&#39;, &#39;post_text&#39;) is None:  # 如果网页丢失,跳出本次循环
+        continue
+    news_title = news_soup.find(&#39;h1&#39;)
+    contents = news_soup.find(&#39;div&#39;, &#39;post_text&#39;).find_all(&#39;p&#39;)
+    news_contents = []
+    for content in contents:
+        if content.string is not None:
+            #去掉特殊字符
+            news_contents.append(re.sub(&#39;[\r\n\t ]&#39;, &#39;&#39;, str(content.string)))
+    #字符串拼接
+    news_contents = &#39;&#39;.join(news_contents)
+    # 将爬取到的数据存入数据库
+    insert_wangyinews_into_mysql(wangyi_news, str(news_title.string), news_url, news_contents, time)
+</code></pre></td></tr></table>
+</div>
+</div><p>这样，一个简单的爬虫就完成了，不要小看这几十行代码，它们在本项目中发挥了巨大的作用。</p>
+<p><strong>本文所用开发环境：</strong> <strong>anaconda 5.1</strong> <strong>pycharm</strong></p>
+<p>本文第一部分是崔庆才老师的python3网络爬虫视频教程的笔记： 课程链接：https://cuiqingcai.com/4320.html 崔老师的课程对我有很大的帮助，再次感谢。</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2018-04-16
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/python/>python</a>
+<a href=/tags/%E7%88%AC%E8%99%AB/>爬虫</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/296/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/250/>
+<span class="next-text nav-default">折腾(享受DIY的乐趣)----客制化键盘GH60自定义配列</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>CS224 Lecture1 Word2Vec - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="CS224 Lecture1 - Word2Vec 1 Introduction of Natural Language Processing Natural Language is a discrete/symbolic/categorical system. 1.1 Examples of tasks There are many different levels in NLP. For instance: Easy: Spell Checking Keywords Search Finding Synonyms Synonym: 同义词 noun Medium Parsing information from websites, documents, etc. Parse: 对句子进行语法分析 verb Hard Machine Translation Semantic Analysis (What is the meaning of query"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/548/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="CS224 Lecture1 Word2Vec">
+<meta property="og:description" content="CS224 Lecture1 - Word2Vec 1 Introduction of Natural Language Processing Natural Language is a discrete/symbolic/categorical system. 1.1 Examples of tasks There are many different levels in NLP. For instance: Easy: Spell Checking Keywords Search Finding Synonyms Synonym: 同义词 noun Medium Parsing information from websites, documents, etc. Parse: 对句子进行语法分析 verb Hard Machine Translation Semantic Analysis (What is the meaning of query">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/548/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2020-02-19T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-10-01T17:54:16+03:00">
+<meta itemprop=name content="CS224 Lecture1 Word2Vec">
+<meta itemprop=description content="CS224 Lecture1 - Word2Vec 1 Introduction of Natural Language Processing Natural Language is a discrete/symbolic/categorical system. 1.1 Examples of tasks There are many different levels in NLP. For instance: Easy: Spell Checking Keywords Search Finding Synonyms Synonym: 同义词 noun Medium Parsing information from websites, documents, etc. Parse: 对句子进行语法分析 verb Hard Machine Translation Semantic Analysis (What is the meaning of query"><meta itemprop=datePublished content="2020-02-19T00:00:00+00:00">
+<meta itemprop=dateModified content="2021-10-01T17:54:16+03:00">
+<meta itemprop=wordCount content="940">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="CS224 Lecture1 Word2Vec">
+<meta name=twitter:description content="CS224 Lecture1 - Word2Vec 1 Introduction of Natural Language Processing Natural Language is a discrete/symbolic/categorical system. 1.1 Examples of tasks There are many different levels in NLP. For instance: Easy: Spell Checking Keywords Search Finding Synonyms Synonym: 同义词 noun Medium Parsing information from websites, documents, etc. Parse: 对句子进行语法分析 verb Hard Machine Translation Semantic Analysis (What is the meaning of query"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>CS224 Lecture1 Word2Vec</h1>
+<div class=post-meta>
+<span class=post-time> 2020-02-19 </span>
+<div class=post-category>
+<a href=/categories/cs/> cs </a>
+<a href=/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/> 机器学习 </a>
+</div>
+<span class=more-meta> 约 940 字 </span>
+<span class=more-meta> 预计阅读 2 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#cs224-lecture1---word2vec>CS224 Lecture1 - Word2Vec</a></li>
+<li><a href=#1-introduction-of-natural-language-processing>1 Introduction of Natural Language Processing</a>
+<ul>
+<li><a href=#11-examples-of-tasks>1.1 Examples of tasks</a></li>
+<li><a href=#12-how-to-represent-words>1.2 How to represent words?</a>
+<ul>
+<li><a href=#121-wordnet>1.2.1 WordNet</a></li>
+<li><a href=#122-representing-words-as-discrete-symbols>1.2.2 Representing words as discrete symbols</a></li>
+<li><a href=#123-representing-words-by-their-context>1.2.3 Representing words by their context</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#2-word2vec>2 Word2Vec</a>
+<ul>
+<li><a href=#21-word2vec-overview>2.1 Word2Vec: Overview</a></li>
+<li><a href=#22-word2vec-objective-function>2.2 Word2Vec: Objective Function</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=cs224-lecture1---word2vec>CS224 Lecture1 - Word2Vec</h1>
+<h1 id=1-introduction-of-natural-language-processing>1 Introduction of Natural Language Processing</h1>
+<p>Natural Language is a discrete/symbolic/categorical system.</p>
+<h2 id=11-examples-of-tasks>1.1 Examples of tasks</h2>
+<p>There are many different levels in NLP. For instance:</p>
+<p><strong>Easy:</strong></p>
+<ul>
+<li>
+<p>Spell Checking</p>
+</li>
+<li>
+<p>Keywords Search</p>
+</li>
+<li>
+<p>Finding Synonyms</p>
+</li>
+<li>
+<p>Synonym: 同义词 noun</p>
+</li>
+</ul>
+<p><strong>Medium</strong></p>
+<ul>
+<li>
+<p>Parsing information from websites, documents, etc.</p>
+</li>
+<li>
+<p>Parse: 对句子进行语法分析 verb</p>
+</li>
+</ul>
+<p><strong>Hard</strong></p>
+<ul>
+<li>
+<p>Machine Translation</p>
+</li>
+<li>
+<p>Semantic Analysis (What is the meaning of query statement?)</p>
+</li>
+<li>
+<p>Coreference (e.g. What does &ldquo;he&rdquo; or &ldquo;it&rdquo; refer to given a document?)</p>
+<p>Coreference: 共指关系，指代的词</p>
+</li>
+<li>
+<p>Question Answering</p>
+</li>
+</ul>
+<h2 id=12-how-to-represent-words>1.2 How to represent words?</h2>
+<h3 id=121-wordnet>1.2.1 WordNet</h3>
+<ul>
+<li>
+<p>Use e.g. <strong>WordNet</strong>, a thesaurus containing lists of synonym sets and hypernyms (&ldquo;is a&rdquo; relationships).</p>
+<p>hypernym: 上位词</p>
+</li>
+</ul>
+<p><img src="https://image.i-ll.cc/uPic/20200217/YDeWBF.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="https://image.i-ll.cc/uPic/20200217/YDeWBF.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim"></p>
+<p><img src="https://image.i-ll.cc/uPic/20200217/bZlTpI.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="https://image.i-ll.cc/uPic/20200217/bZlTpI.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim"></p>
+<p><strong>Problems with resources like WordNet</strong></p>
+<ul>
+<li>Great as a resource but missing nuance (e.g. &ldquo;proficient&rdquo; is listed as a synonym for &ldquo;good&rdquo;, This is only correct in some contexts.)</li>
+<li>Missing new meanings of words</li>
+<li>Subjective</li>
+<li>Requires human labor to create and adapt</li>
+<li>Can&rsquo;t compute accurate word similarity</li>
+</ul>
+<h3 id=122-representing-words-as-discrete-symbols>1.2.2 Representing words as discrete symbols</h3>
+<p>In traditional NLP, we regard words as discrete symbols: hotel, conference, motel - a localist representation.</p>
+<p>Words can be represented by one-hot vectors, one-hot means one 1 and the rest are 0. Vector dimension = number of words in vocabulary.</p>
+<ul>
+<li>
+<p><strong>Problem with words as discrete symbols:</strong></p>
+<p>For example, if user searches for &ldquo;Seattle motel&rdquo;, we would like to match documents containing &ldquo;Seattle hotel&rdquo;.</p>
+<p>But:</p>
+<p>$$hotel = [0\quad 0\quad 0\quad 0\quad 0\quad 1\quad \cdots \quad 0]\motel = [0\quad 0\quad 0\quad 0\quad 1\quad 0\quad \cdots \quad 0]$$</p>
+<p>These two vectors are <strong>orthogonal</strong>. But for one-hot vectors didn&rsquo;t shown there&rsquo;s natural notion of similarity.</p>
+</li>
+<li>
+<p><strong>Solution:</strong></p>
+<ul>
+<li>
+<p>Could try to rely on WordNet&rsquo;s list of synonyms to get similarity?</p>
+<ul>
+<li>But it is well-known to fail badly: incompleteness, etc.</li>
+</ul>
+</li>
+<li>
+<p><strong>Instead: Learn to encode similarity in the vectors themselves</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=123-representing-words-by-their-context>1.2.3 Representing words by their context</h3>
+<ul>
+<li>
+<p><strong>Distributional semantics:</strong> A word&rsquo;s meaning is given by the words that frequently appear close-by.</p>
+<ul>
+<li>&ldquo;You shall know a word by the company it keeps&rdquo;(J.R. Firth 1957: 11)</li>
+<li>One of the most successful ideas of modern statistical NLP</li>
+</ul>
+</li>
+<li>
+<p>When a word &ldquo;$w$&rdquo; appears in a text, its context is the set of words that appear nearby(within a fixed-size windows).</p>
+</li>
+<li>
+<p>Use the many contexts of &ldquo;$w$&rdquo; to build up a representation of &ldquo;$w$&rdquo;.</p>
+<p><img src="https://image.i-ll.cc/uPic/20200217/SeMoji.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="https://image.i-ll.cc/uPic/20200217/SeMoji.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim"></p>
+</li>
+</ul>
+<h1 id=2-word2vec>2 Word2Vec</h1>
+<ul>
+<li>
+<p><strong>Word Vectors:</strong> In word2vec, a distributed representation of a word is used. Each word is represented by a distribution of weights across those elements. So instead of a one-to-one mapping between an element in the vector and a word, the representation of a word is spread across all of the elements in the vector, and each element in the vector contributes to the definition of many words.</p>
+<p><strong>Note</strong>: Word vectors are sometimes called word embeddings or word representations. They are a distributed representation.</p>
+</li>
+</ul>
+<h2 id=21-word2vec-overview>2.1 Word2Vec: Overview</h2>
+<p>Word2vec (Mikolov et al. 2013) is a framework for learning word vectors.</p>
+<p><strong>Idea:</strong></p>
+<ul>
+<li>We have a large corpus of text</li>
+<li>Every word in a fixed vocabulary is represented by a vector</li>
+<li>Go through each position $t$ in the text, which has a center word $c$ and context (&ldquo;outside&rdquo;) words $o$</li>
+<li>Use the similarity of the word vectors for $c$ and $o$ to calculate the probability of $o$ given $c$ (or vice versa)</li>
+<li>Keep adjusting the word vectors to maximize this probability</li>
+</ul>
+<h2 id=22-word2vec-objective-function>2.2 Word2Vec: Objective Function</h2>
+<p><strong>Example windows and process for computing:</strong></p>
+<p>$$P(w_{t+j}|w_t)$$</p>
+<p><img src="https://image.i-ll.cc/uPic/20200217/TvsULE.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="https://image.i-ll.cc/uPic/20200217/TvsULE.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim"></p>
+<p>For each position, $t=1, \dots , T$ , predict context words within a window of fixed size $m$, given center word $w_j$.</p>
+<p>$$Likelihood=L(\theta)=\prod_{t=1}^T\prod_{-m\leq j \leq m}P(w_{t+j}|w_t;\theta) $$</p>
+<p>where $\theta$ is all variables to be optimized.</p>
+<ul>
+<li>
+<p>The objective function $J(\theta)$ is the average negative log likelihood:</p>
+<p>Sometimes, objective function called $cost$ or $loss$ function.</p>
+</li>
+</ul>
+<p>$$J(\theta)=-\frac{1}{T}\log L(\theta)=-\frac{1}{T}\sum_{t=1}^{T}\sum_{-m\leq j \leq m}\log P(w_{t+j}|w_t;\theta)$$</p>
+<p>So, our target that maximizing predictive accuracy is equivalent to minimizing objective function.</p>
+<p>Minimizing objective function $\Leftrightarrow$ Maximizing predictive accuracy.</p>
+<p><strong>How to calculate $P(w_{t+j}|w_t;\theta)$ ?</strong></p>
+<p>To calculate <strong>$P(w_{t+j}|w_t;\theta)$</strong> use two vectors per word $w$:</p>
+<ul>
+<li>$v_w$ when $w$ is a center word</li>
+<li>$u_w$ when $w$ is a context word</li>
+</ul>
+<p>Then for a center word $c$ and a context word $o$:</p>
+<p>$$P(o|c)=\frac{\exp(u_o^Tv_c)}{\sum_{w\in V}\exp(u_w^Tv_c)}$$</p>
+<p>In the formula above $Exponentiation$ makes anything positive, $u_o^Tv_c$ is dot product that compares similarity of $o$ and $c$. Large dot product = Large probability. Denominator $\sum_{w\in V}\exp(u_w^Tv_c)$normalize over entire vocabulary to give probability distribution.</p>
+<p>The follow is an example of $softmax function$ $\mathbb{R}\rightarrow\mathbb{R}$</p>
+<p>$$softmax(x_i)=\frac{\exp(x_i)}{\sum_{j=1}^{n}\exp(x_j)}=p_i$$</p>
+<p>Softmax Function apply the standard exponential function to each element $x_i$ of the input vector $x$ and normalize these values by dividing by the sum of all these exponentials; this normalization ensures that the sum of the components of the output vector $p$ is 1.</p>
+<p>The softmax function above maps arbitrary values $x_i$ to a probability distribution $p_i$</p>
+<ul>
+<li>$max$ because it amplifies probability of largest $x_i$</li>
+<li>$soft$ because it still assigns some probability to smaller $x_i$</li>
+<li>Frequently used in Deep Learning.</li>
+</ul>
+<p>$\theta$ represents all model parameters. For example we have $V$ words and each vector of word has $d$ dimensional. And every word such as word $w$ have two vectors, one is the center word vector $v_w$ and another is the context vector $u_w$. So, $\theta \in \mathbb{R}^{2dV}$ , we can optimize these parameters by walking down the gradient.</p>
+<p><strong>Useful basics about derivative:</strong></p>
+<p>$$\frac{\partial x^Ta}{\partial x}=\frac{\partial a^Tx}{\partial x}=a$$</p>
+<p>Write out with indices can proof it.</p>
+<p>We need to minimize</p>
+<p>$$J(\theta)=-\frac{1}{T}\log L(\theta)=-\frac{1}{T}\sum_{t=1}^{T}\sum_{-m\leq j \leq m, j\neq0}\log P(w_{t+j}|w_t;\theta)$$</p>
+<p>minimize $J(\theta)$ is equivalent to minimize $\log P(o|c)=\log \frac{\exp(u_o^Tv_c)}{\sum_{w=1}^V\exp(u_w^Tv_c)}$.</p>
+<p>Take the partial of $\log P(o|c)=\log \frac{\exp(u_o^Tv_c)}{\sum_{w=1}^V\exp(u_w^Tv_c)}$, we can get the follow results:</p>
+<p>$$\log P(o|c)=\log \frac{\exp(u_o^Tv_c)}{\sum_{w=1}^V\exp(u_w^Tv_c)}=\log \exp(u_o^Tv_c)-\log \sum_{w=1}^V\exp(u_w^Tv_c)$$</p>
+<p>$$\frac{\partial P(o|c)}{\partial v_c}=u_o-\frac{\sum_{x=1}^V u_x\exp(u_w^Tv_c)}{\sum_{w=1}^V\exp(u_w^Tv_c)}=u_o-\sum_{x=1}^Vu_xP(x|c)$$</p>
+<p>The statement above illustrate the skip-gram language model and how to update the parameters of $J(\theta)$.</p>
+<p><img src="https://image.i-ll.cc/uPic/20200220/QTV0B5.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="https://image.i-ll.cc/uPic/20200220/QTV0B5.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim"></p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2021-10-01
+<a href=https://github.com/MLZC/mlzc.github.io/commit/e7215ccbb043c16ce427e2b1e592841273bb408c title="migrate all post from wordpress to hugo">(e7215cc)</a>
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<nav class=post-nav>
+<a class=prev href=/archives/551/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">MacOS Catalina 10.15.4 alias添加自定义命令</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/534/>
+<span class="next-text nav-default">GitLab+Hexo更改数学公式渲染引擎为Pandoc</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

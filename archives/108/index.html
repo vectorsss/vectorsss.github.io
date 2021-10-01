@@ -1,0 +1,438 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>Drcom下如何优雅地使用路由器上网 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="本次使用的路由器为 联想newifimini Y1 步骤如下 newifi刷openwrt固件 刷uboot 下载地址http://downloads.o"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/108/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="Drcom下如何优雅地使用路由器上网">
+<meta property="og:description" content="本次使用的路由器为 联想newifimini Y1 步骤如下 newifi刷openwrt固件 刷uboot 下载地址http://downloads.o">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/108/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2016-12-23T00:00:00+00:00">
+<meta property="article:modified_time" content="2016-12-23T00:00:00+00:00">
+<meta itemprop=name content="Drcom下如何优雅地使用路由器上网">
+<meta itemprop=description content="本次使用的路由器为 联想newifimini Y1 步骤如下 newifi刷openwrt固件 刷uboot 下载地址http://downloads.o"><meta itemprop=datePublished content="2016-12-23T00:00:00+00:00">
+<meta itemprop=dateModified content="2016-12-23T00:00:00+00:00">
+<meta itemprop=wordCount content="2320">
+<meta itemprop=keywords content="路由器,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Drcom下如何优雅地使用路由器上网">
+<meta name=twitter:description content="本次使用的路由器为 联想newifimini Y1 步骤如下 newifi刷openwrt固件 刷uboot 下载地址http://downloads.o"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Drcom下如何优雅地使用路由器上网</h1>
+<div class=post-meta>
+<span class=post-time> 2016-12-23 </span>
+<div class=post-category>
+<a href=/categories/other/> other </a>
+</div>
+<span class=more-meta> 约 2320 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#本次使用的路由器为-联想newifimini-y1>本次使用的路由器为 联想newifimini Y1</a>
+<ul>
+<li>
+<ul>
+<li><a href=#步骤如下>步骤如下</a></li>
+<li><a href=#newifi刷openwrt固件>newifi刷openwrt固件</a></li>
+</ul>
+</li>
+<li><a href=#进入主题>进入主题</a>
+<ul>
+<li></li>
+<li><a href=#用户名-默认root密码admin>用户名 默认root密码admin</a></li>
+<li><a href=#电脑安装python>电脑安装python</a></li>
+<li><a href=#路由器上安装python>路由器上安装python</a></li>
+<li><a href=#下载drcom_d_configpy-latest-wiredpy>下载drcom_d_config.py latest-wired.py</a></li>
+<li><a href=#现在进入重头戏配置drcom>现在进入重头戏配置drcom</a></li>
+<li><a href=#测试>测试</a></li>
+<li><a href=#将drcom装进路由器>将Drcom装进路由器</a></li>
+<li><a href=#一切正常的话重启路由器就可以连接上校园网了校园网网线接wan口-lan口开启dhcp-其他参数和wan口相同>一切正常的话重启路由器就可以连接上校园网了。（校园网网线接wan口） Lan口开启DHCP 其他参数和wan口相同。</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h1 id=本次使用的路由器为-联想newifimini-y1>本次使用的路由器为 联想newifimini Y1</h1>
+<h3 id=步骤如下>步骤如下</h3>
+<ul>
+<li>
+<h3 id=newifi刷openwrt固件>newifi刷openwrt固件</h3>
+<blockquote>
+<ol>
+<li>刷uboot<br>
+下载地址<a href=http://downloads.openwrt.org.cn/PandoraBox/Lenovo-Y1_RY-1S/u-boot/u-boot-pandorabox-y1-20150113.bin>http://downloads.openwrt.org.cn/PandoraBox/Lenovo-Y1_RY-1S/u-boot/u-boot-pandorabox-y1-20150113.bin</a><br>
+“将IP地址修改为192.168.1.1以外的地址，例如192.168.1.11、192.168.1.22；子网掩码设为255.255.255.0；网关设置为192.168.1.1”<br>
+&ldquo;拔掉路由器WAN口网线和电源线，按住reset，然后插上电源，通电后保持按住reset键不大约3秒不放，此时如果USB灯和2.4G灯同时闪烁，证明当前已进入恢复模式&rdquo;<br>
+&ldquo;打开浏览器进入192.168.1.1进入恢复模式&rdquo;<br>
+“点击【选择文件】，选择本地已下载好的uBoot或固件包后，点击【恢复】开始升级uBoot或固件（注意：升级过程中不要断电），升级uboot或固件后会重启路由器，重启后即可体验到最新版本的恢复模式。”<br>
+“提示升级完毕后，即可体验到最新版本的恢复模式。”</li>
+<li>刷pandorabox<br>
+我刷的固件是PandoraBox-ralink-mt7620-y1-squashfs-sysupgrade-r1024-20150608.bin<br>
+下载地址<br>
+<a href=http://downloads.openwrt.org.cn/PandoraBox/Lenovo-Y1_RY-1S/firmware/stable/PandoraBox-ralink-mt7620-y1-squashfs-sysupgrade-r1024-20150608.bin>http://downloads.openwrt.org.cn/PandoraBox/Lenovo-Y1_RY-1S/firmware/stable/PandoraBox-ralink-mt7620-y1-squashfs-sysupgrade-r1024-20150608.bin</a><br>
+升级过程参考前面刷uboot的步骤。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id=进入主题>进入主题</h2>
+<h4 id=需要的软件winscpputtywiresharkpython>需要的软件:winscp\putty\Wireshark\python</h4>
+<p><img src=https://image.i-ll.cc/2021-10-01-123351.png alt></p>
+<p>wincsp登录界面</p>
+<p><img src=https://image.i-ll.cc/2021-10-01-123352.png alt></p>
+<p>putty登录界面</p>
+<h3 id=用户名-默认root密码admin>用户名 默认root密码admin</h3>
+<p><img src=https://image.i-ll.cc/2021-10-01-123425.png alt></p>
+<p>登录成功</p>
+<ul>
+<li>
+<h3 id=电脑安装python>电脑安装python</h3>
+<p><img src=https://image.i-ll.cc/2021-10-01-123426.png alt></p>
+<p>编辑path变量</p>
+</li>
+</ul>
+<p><img src=https://image.i-ll.cc/2021-10-01-123430.png alt></p>
+<p>如图所示即为安装成功</p>
+<ul>
+<li>
+<h3 id=路由器上安装python>路由器上安装python</h3>
+<blockquote>
+<p>考虑到drcom的坑爹性（连接校园网进不去192.168.1.1 能进192.168.1.1但是又不能上网）所以我们需要进行离线安装<br>
+文件下载地址<br>
+链接：<a href=http://pan.baidu.com/s/1sl89T2t>http://pan.baidu.com/s/1sl89T2t</a> 密码：bp8n<br>
+其他型号的路由请从下面这个网站里面找<br>
+<a href=https://downloads.openwrt.org/barrier_breaker/14.07/ramips/mt7620a>https://downloads.openwrt.org/barrier_breaker/14.07/ramips/mt7620a</a><br>
+下载好之后用winscp登录 进入tmp文件夹 把下载好的文件都直接拖进去<br>
+登录192.168.1.1进入系统->软件包->配置<br>
+在最后面添加如下代码</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>arch all 100
+arch ramips_24kec 200
+arch ramips 300
+</code></pre></td></tr></table>
+</div>
+</div><p>Putty里面运行如下命令 离线安装ipk文件</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>opkg install /tmp/libgcc_4.8-linaro-1_ramips_24kec.ipk
+opkg install /tmp/libc_0.9.33.2-1_ramips_24kec.ipk
+opkg install /tmp/zlib_1.2.8-1_ramips_24kec.ipk   
+opkg install /tmp/libpthread_0.9.33.2-1_ramips_24kec.ipk
+opkg install /tmp/python-mini_2.7.3-2_ramips_24kec.ipk    
+opkg install /tmp/libffi_3.0.13-1_ramips_24kec.ipk  
+opkg install /tmp/python_2.7.3-2_ramips_24kec.ipk
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<h3 id=下载drcom_d_configpy-latest-wiredpy>下载drcom_d_config.py latest-wired.py</h3>
+<blockquote>
+<p>下载地址如下：<br>
+<a href=https://github.com/drcoms/drcom-generic>https://github.com/drcoms/drcom-generic</a></p>
+</blockquote>
+</li>
+<li>
+<h3 id=现在进入重头戏配置drcom>现在进入重头戏配置drcom</h3>
+<blockquote>
+<p>使用的Dr.com设置相关Python脚本源代码：<a href=https://github.com/drcoms/drcom-generic>https://github.com/drcoms/drcom-generic</a><br>
+使用说明：<a href=https://github.com/drcoms/drcom-generic/wiki>https://github.com/drcoms/drcom-generic/wiki</a></p>
+</blockquote>
+</li>
+<li>
+<p>打开Wireshark （前面也已经打包）</p>
+</li>
+<li>
+<p>捕获->接口选择->以太网</p>
+</li>
+<li>
+<p>然后打开drcom 登录并保持一分钟左右在线（这个很重要 否则下一步不能正常进行），然后注销掉客户端，停止捕获。</p>
+</li>
+<li>
+<p>文件->另存为 dr.pcapng</p>
+</li>
+<li>
+<p>将drcom_d_config.py与刚刚截获的包放在同一个目录下</p>
+</li>
+<li>
+<p>用notapad++打开drcom_d_config.py<br>
+将 filename = &lsquo;xxxxx&rsquo; 改为 dr.pcapng<br>
+进入命令提示符 进入drcom_d_config.py所在目录<br>
+例如:我的在F:\d 那就输入F: 然后输入cd d就进入了。</p>
+</li>
+<li>
+<p>输入 <code>python drcom_d_config.py > config.txt</code>打开 config.txt 根据提示<br>
+将类似下面这部分的代码段复制出来 新建一个txt文件->copy进去-> 另存为drcom.conf<br>
+用winscp将它放进路由器的/etc目录下 （password自行修改）<br>
+把drcon.conf中的内容覆盖掉lastest-wired.py中的#CONFIG#段落的内容。同时记录下配置中的IP地址。</p>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>server = &#39;219.244.0.56&#39;
+username=&#39;1060315024011&#39;
+password=&#39;172270&#39;
+CONTROLCHECKSTATUS = &#39;\x20&#39;
+ADAPTERNUM = &#39;\x05&#39;
+host_ip = &#39;10.197.185.150&#39;
+IPDOG = &#39;\x01&#39;
+host_name = &#39;DRCOMFUCKER&#39; &#39;10.197.185.68&#39;
+PRIMARY_DNS = &#39;219.244.1.19&#39;
+dhcp_server = &#39;172.16.180.10&#39;
+AUTH_VERSION = &#39;\x1f\x00&#39;
+mac = 0x204747c5219c
+host_os = &#39;WINDIAOS&#39;
+KEEP_ALIVE_VERSION = &#39;\xdc\x02&#39;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<h3 id=测试>测试</h3>
+<blockquote>
+<p>先在电脑上测试下latest-wired.py是否真的能取代Dr.Com官方客户端软件完成登录认证。<br>
+测试前要先修改latest-wired.py中IS_TEST=False这一行，将赋值改为True。<br>
+在电脑上运行latest-wired.py看是否能上网，能上网就成功了，只要把这个脚本放到路由器上运行就可以抛开电脑由路由器自行完成校园网接入了。</p>
+</blockquote>
+</li>
+<li>
+<h3 id=将drcom装进路由器>将Drcom装进路由器</h3>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>用WinSCP以ftp登录Newifi，将latest-wired.py上传到路由器的/usr/bin/里，改名为drcom（记得改回IS_TEST= False），并且给予执行权限（右键->属性->八进制表后面的数字改为777）。</p>
+</li>
+<li>
+<p>将前面创建好的drcom.conf上传到路由器的/etc/目录。</p>
+</li>
+<li>
+<p>设置drcom开机自启。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>//编辑路由器上的/etc/rc.local
+//在exit 0
+//前加入一行
+drcom &amp;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>通过浏览器进入LuCI控制台，进入网络 – 接口 页面，删除掉WAN6接口，修改WAN接口的信息，将协议从DHCP切换为静态IP（Static IP），IP地址更改为#CONFIG#中的地址，上图，自行根据自己#CONFIG#中的情况对比一下。<br>
+进入网络和共享中心->更改适配器设置->以太网->右键->状态->详细信息 就可以看到网关地址。</p>
+<p><img src=https://image.i-ll.cc/2021-10-01-123432.png alt></p>
+<p>Paste_Image.png</p>
+</li>
+</ol>
+</blockquote>
+<h3 id=一切正常的话重启路由器就可以连接上校园网了校园网网线接wan口-lan口开启dhcp-其他参数和wan口相同>一切正常的话重启路由器就可以连接上校园网了。（校园网网线接wan口） Lan口开启DHCP 其他参数和wan口相同。</h3>
+<blockquote>
+<p>后续大家如果还有问题的话可以去这个网站自行查找解决办法<br>
+<a href=https://github.com/drcoms/drcom-generic/issues>https://github.com/drcoms/drcom-generic/issues</a></p>
+</blockquote>
+<p>ps：(去年校园网还是按照时间计费，就这样轻松带领全宿舍省了一个月网费，创造了全校流量使用最高纪录。)</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2016-12-23
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/>路由器</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/106/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">微信公众平台配置服务器后自定义菜单</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>

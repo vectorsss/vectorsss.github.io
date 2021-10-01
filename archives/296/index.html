@@ -1,0 +1,865 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用 - 淡淡博客</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="[toc] 机器学习之卷积神经网络 标签（空格分隔）： 机器学习 卷积神经网络 1. 神经网络是啥？ 神经网络其实就是按照一定规则连接起来的多个神经元。上图展示了一"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blogg.i-ll.cc/archives/296/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用">
+<meta property="og:description" content="[toc] 机器学习之卷积神经网络 标签（空格分隔）： 机器学习 卷积神经网络 1. 神经网络是啥？ 神经网络其实就是按照一定规则连接起来的多个神经元。上图展示了一">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blogg.i-ll.cc/archives/296/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2018-04-16T00:00:00+00:00">
+<meta property="article:modified_time" content="2018-04-16T00:00:00+00:00">
+<meta itemprop=name content="机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用">
+<meta itemprop=description content="[toc] 机器学习之卷积神经网络 标签（空格分隔）： 机器学习 卷积神经网络 1. 神经网络是啥？ 神经网络其实就是按照一定规则连接起来的多个神经元。上图展示了一"><meta itemprop=datePublished content="2018-04-16T00:00:00+00:00">
+<meta itemprop=dateModified content="2018-04-16T00:00:00+00:00">
+<meta itemprop=wordCount content="9559">
+<meta itemprop=keywords content="机器学习,深度学习,神经网络,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用">
+<meta name=twitter:description content="[toc] 机器学习之卷积神经网络 标签（空格分隔）： 机器学习 卷积神经网络 1. 神经网络是啥？ 神经网络其实就是按照一定规则连接起来的多个神经元。上图展示了一"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>机器学习之卷积神经网络 && 卷积神经网络在NLP中的应用</h1>
+<div class=post-meta>
+<span class=post-time> 2018-04-16 </span>
+<div class=post-category>
+<a href=/categories/coding/> coding </a>
+<a href=/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/> 机器学习 </a>
+</div>
+<span class=more-meta> 约 9559 字 </span>
+<span class=more-meta> 预计阅读 20 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href=#机器学习之卷积神经网络>机器学习之卷积神经网络</a></li>
+</ul>
+</li>
+<li><a href=#1-神经网络是啥><strong>1. 神经网络是啥？</strong></a></li>
+<li><a href=#2-神经网络的训练><strong>2. 神经网络的训练</strong></a></li>
+<li><a href=#3-卷积神经网络处理cnn来处理中文文本><strong>3. 卷积神经网络处理(CNN)来处理中文文本。</strong></a>
+<ul>
+<li><a href=#31-什么是卷积神经网络cnn><strong>3.1 什么是卷积神经网络(CNN)？</strong></a></li>
+<li><a href=#32-如何将cnn用于nlp呢><strong>3.2 如何将CNN用于NLP呢？</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#卷积神经网络cnn在自然语言处理的应用>卷积神经网络(CNN)在自然语言处理的应用</a>
+<ul>
+<li><a href=#1-模型的构建>1. 模型的构建</a></li>
+<li><a href=#2-数据预处理>2. 数据预处理</a></li>
+<li><a href=#3-模型的训练>3. 模型的训练</a></li>
+<li><a href=#4-模型的检验>4. 模型的检验</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<p>[toc]</p>
+<h3 id=机器学习之卷积神经网络>机器学习之卷积神经网络</h3>
+<p>标签（空格分隔）： 机器学习 卷积神经网络</p>
+<hr>
+<h2 id=1-神经网络是啥><strong>1. 神经网络是啥？</strong></h2>
+<p><img src=https://image.i-ll.cc/18-4-16/88416341.jpg alt=神经网络></p>
+<p>神经网络其实就是按照一定规则连接起来的多个神经元。上图展示了一个全连接(full connected, FC)神经网络，通过观察上面的图，我们可以发现它的规则包括：</p>
+<ul>
+<li>神经元按照层来布局。最左边的层叫做输入层，负责接收输入数据；最右边的层叫输出层，我们可以从这层获取神经网络输出数据。输入层和输出层之间的层叫做隐藏层，因为它们对于外部来说是不可见的。</li>
+<li>同一层的神经元之间没有连接。</li>
+<li>第N层的每个神经元和第N-1层的所有神经元相连(这就是full connected的含义)，第N-1层神经元的输出就是第N层神经元的输入。</li>
+<li>每个连接都有一个权值。</li>
+</ul>
+<p>上面这些规则定义了全连接神经网络的结构。事实上还存在很多其它结构的神经网络，比如卷积神经网络(CNN)、循环神经网络(RNN)，他们都具有不同的连接规则。</p>
+<p>但是一个神经网络的搭建，都需要满足三个条件。</p>
+<ul>
+<li>输入和输出</li>
+<li>权重（w）和阈值（b）</li>
+<li>多层感知器的结构</li>
+</ul>
+<h2 id=2-神经网络的训练><strong>2. 神经网络的训练</strong></h2>
+<p>搭建一个神经网络，首先要画出它的网络结构，也就是上面那张图。</p>
+<p>不考虑超参数(hyperparameter)，其中，最困难的部分就是确定权重（w）和阈值（b）。目前为止，这两个值都是主观给出的，但现实中很难估计它们的值，必需有一种方法，可以找出答案。</p>
+<p>这种方法就是试错法。其他参数都不变，w（或b）的微小变动，记作Δw（或Δb），然后观察输出有什么变化。不断重复这个过程，直至得到对应最精确输出的那组w和b，就是我们要的值。这个过程称为模型的训练。</p>
+<p>因此，神经网络的运作过程如下。</p>
+<ol>
+<li>确定输入和输出</li>
+<li>找到一种或多种算法，可以从输入得到输出</li>
+<li>找到一组已知答案的数据集，用来训练模型，估算w和b</li>
+<li>一旦新的数据产生，输入模型，就可以得到结果，同时对w和b进行校正</li>
+</ol>
+<p>上述是阮一峰老师对神经网络运作过程的定义。 下面我以三层BP神经网络为例，简单介绍它的构造以及传播过程： 1. 确定隐藏层数目，输入输出层 2. 选择每一层对应的激活函数：为什么要引入激活函数呢？因为有些问题，线性模型不能很好的解决，所以我们需要对线性模型做一个变换，或者引入激活函数(activation function)，常用的激活函数有tanh,sigmoid,ReLU,Softmax等。我们一般使用ReLU作为中间隐层神经元的激活函数，<strong>AlexNet中提出用ReLU来替代传统的激活函数是深度学习的一大进步。</strong> 3. 确定损失函数(loss function) 4. 选择合适的方法更新参数(这里以梯度下降法为例)，确定学习率$$ \alpha $$，学习率决定学习快慢。但是设置过大可能会导致函数不收敛。 5. 随机初始化参数(w) (b)将数据喂入神经网络。 6. 根据下图公式进行前向传播 <img src=https://image.i-ll.cc/18-4-16/89567312.jpg alt=BP1> 7. 如下图所示C在这里是代价函数，这是一个求最小化损失函数问题。首先来看看梯度下降的一个直观的解释。比如我们在一座大山上的某处位置，由于我们不知道怎么下山，于是决定走一步算一步，也就是在每走到一个位置的时候，求解当前位置的梯度，沿着梯度的负方向，也就是当前最陡峭的位置向下走一步，然后继续求解当前位置梯度，向这一步所在位置沿着最陡峭最易下山的位置走一步。这样一步步的走下去，一直走到觉得我们已经到了山脚。当然这样走下去，有可能我们不能走到山脚，而是到了某一个局部的山峰低处。 <img src=https://image.i-ll.cc/18-4-16/41549786.jpg alt=梯度下降> 反向传播第一步，求C对最后一层中的两个分量求偏导。 <img src=https://image.i-ll.cc/18-4-16/50335934.jpg alt=BP3> 反向传播第二部，求C对第二层中的三个分量求偏导。 <img src=https://image.i-ll.cc/18-4-16/58864279.jpg alt=BP5> 都用到了积分的链式求导法则。总之，选定损失函数与激活函数，这些问题都可以迎刃而解。 8. 参数更新，重复前向传播，反向传播过程，直到损失函数小于某个设定好的数。 现在大家对神经网络应该有了基本的了解，现在我们来看看卷积神经网络(CNN)</p>
+<h2 id=3-卷积神经网络处理cnn来处理中文文本><strong>3. 卷积神经网络处理(CNN)来处理中文文本。</strong></h2>
+<h3 id=31-什么是卷积神经网络cnn><strong>3.1 什么是卷积神经网络(CNN)？</strong></h3>
+<p><img src=http://deeplearning.stanford.edu/wiki/images/6/6c/Convolution_schematic.gif alt=3x3的滤波器做卷积运算> 上图是3x3的滤波器做卷积运算的直观显示。 把左侧的矩阵想象成一幅黑白图像。每一个元素对应一个像素点，0表示黑点，1表示白点（灰度图的像素值一般是0~255）。移动窗口又称作核、滤波器或是特征检测器。这里我们使用3x3的滤波器，将滤波器与矩阵对应的部分逐元素相乘，然后求和。我们平移窗口，使其扫过矩阵的所有像素，对整幅图像做卷积运算。</p>
+<p>说到CNN，大家自然想到图像处理。 说到NLP，大家自然想到LSTM，RNN。 但是，16年的斯坦福论文表明，CNN照样可以应用于NLP，并且效果可能更好。 我用清华大学数据集做了训练，结果标明RNN和CNN在测试集都可以达到90%左右的效果，但是，CNN比RNN快了很多倍。</p>
+<p>卷积神经网络与普通神经网络的区别在于，卷积神经网络包含了一个由卷积层和子采样层构成的特征抽取器。在卷积神经网络的卷积层中，一个神经元只与部分邻层神经元连接。在CNN的一个卷积层中，通常包含若干个特征平面(featureMap)，每个特征平面由一些矩形排列的的神经元组成，同一特征平面的神经元共享权值，这里共享的权值就是卷积核。卷积核一般以随机小数矩阵的形式初始化，在网络的训练过程中卷积核将学习得到合理的权值。共享权值（卷积核）带来的直接好处是减少网络各层之间的连接，同时又降低了过拟合的风险。子采样也叫做池化（pooling），通常有均值子采样（mean pooling）和最大值子采样（max pooling）两种形式。子采样可以看作一种特殊的卷积过程。卷积和子采样大大简化了模型复杂度，减少了模型的参数。</p>
+<h3 id=32-如何将cnn用于nlp呢><strong>3.2 如何将CNN用于NLP呢？</strong></h3>
+<h4 id=321-nlp的输入问题><strong>3.2.1 NLP的输入问题</strong></h4>
+<p>NLP任务的输入不再是像素点了，大多数情况下是以矩阵表示的句子或者文档。矩阵的每一行对应于一个分词元素，一般是一个单词，也可以是一个字符。也就是说每一行是表示一个单词的向量。通常，这些向量都是word embeddings（一种底维度表示）的形式，如word2vec和GloVe，但是也可以用one-hot向量的形式，也即根据词在词表中的索引。若是用100维的词向量表示一句10个单词的句子，我们将得到一个10x100维的矩阵作为输入。这个矩阵相当于是一幅“图像”。</p>
+<h4 id=322-如何解决不同的文本长度不统一的问题><strong>3.2.2 如何解决不同的文本长度不统一的问题？</strong></h4>
+<p>这是一个非常显然的问题，在LeNet-5中，每个输入都是32*32的图像文件，这样我们才能设置固定大小和数量的filters，如果图像分辨率发生了变化，那么就会造成多余的conv操作的结果丢失，从而对模型的结果产生影响，或者会使得网络内部状态发生混乱。在图像处理中，可以通过固定输入的图像的分辨率来解决，但是在自然语言处理中，由于输入的是文档或者sentence，而输入的长度是不固定的，那么如何解决这个问题呢？其实，在NLP中，研究人员一般都采用的是“单层CNN结构”，这里的单层并不是只有一层，而是只有一对卷积层和池化层。可以看到，每次在卷积的时候，都是整行整行的进行的。</p>
+<p>以下内容引用自Kim, Y. (2014). Convolutional Neural Networks for Sentence Classification. Proceedings， <img src=https://image.i-ll.cc/18-4-16/86247854.jpg alt="Kim, Y. (2014). 卷积神经网络用来语句分类"> 在不同的分类数据集上评估CNN模型，主要是基于语义分析和话题分类任务。CNN模型在各个数据集上的表现非常出色，甚至有个别刷新了目前最好的结果。令人惊讶的是，这篇文章采用的网络结构非常简单，但效果相当棒。输入层是一个表示句子的矩阵，每一行是word2vec词向量。接着是由若干个滤波器组成的卷积层，然后是最大池化层，最后是softmax分类器。该论文也尝试了两种不同形式的通道，分别是静态和动态词向量，其中一个通道在训练时动态调整而另一个不变。 <img src=https://image.i-ll.cc/18-4-16/5838841.jpg alt=用于句子分类器的卷积神经网络（CNN）结构示意图> 这里我们对滤波器设置了三种尺寸：2、3和4行，每种尺寸各有两种滤波器。每个滤波器对句子矩阵做卷积运算，得到（不同程度的）特征字典。然后对每个特征字典做最大值池化，也就是只记录每个特征字典的最大值。这样，就由六个字典生成了一串单变量特征向量（univariate feature vector），然后这六个特征拼接形成一个特征向量，传给网络的倒数第二层。最后的softmax层以这个特征向量作为输入，用其来对句子做分类；我们假设这里是二分类问题，因此得到两个可能的输出状态。</p>
+<h4 id=323-cnn的超参数问题><strong>3.2.3 CNN的超参数问题</strong></h4>
+<h5 id=窄卷积-vs-宽卷积><strong>窄卷积 vs 宽卷积</strong></h5>
+<p>在上文中解释卷积运算的时候，我忽略了如何使用滤波器的一个小细节。在矩阵的中部使用3x3的滤波器没有问题，在矩阵的边缘该怎么办呢？左上角的元素没有顶部和左侧相邻的元素，该如何滤波呢？解决的办法是采用补零法（zero-padding）。所有落在矩阵范围之外的元素值都默认为0。这样就可以对输入矩阵的每一个元素做滤波了，输出一个同样大小或是更大的矩阵。补零法又被称为是宽卷积，不使用补零的方法则被称为窄卷积。</p>
+<h5 id=步长><strong>步长</strong></h5>
+<p>卷积运算的另一个超参数是步长，即每一次滤波器平移的距离。上面所有例子中的步长都是1，相邻两个滤波器有重叠。步长越大，则用到的滤波器越少，输出的值也越少。下图来自斯坦福的cs231课程网页，分别是步长为1和2的情况： <img src=https://image.i-ll.cc/18-4-16/9662429.jpg alt=卷积步长> 卷积步长。左侧：步长为1，右侧：步长为2。</p>
+<h5 id=池化层><strong>池化层</strong></h5>
+<p>卷积神经网络的一个重要概念就是池化层，一般是在卷积层之后。池化层对输入做降采样。常用的池化做法是对每个滤波器的输出求最大值。我们并不需要对整个矩阵都做池化，可以只对某个窗口区间做池化。例如，下图所示的是2x2窗口的最大值池化（在NLP里，我们通常对整个输出做池化，每个滤波器只有一个输出值）： <img src=https://image.i-ll.cc/18-4-16/19557039.jpg alt=CNN的最大池化> 池化的特点之一就是它输出一个固定大小的矩阵，这对分类问题很有必要。例如，如果你用了1000个滤波器，并对每个输出使用最大池化，那么无论滤波器的尺寸是多大，也无论输入数据的维度如何变化，你都将得到一个1000维的输出。这让你可以应用不同长度的句子和不同大小的滤波器，但总是得到一个相同维度的输出结果，传入下一层的分类器。</p>
+<p>池化还能降低输出结果的维度，（理想情况下）却能保留显著的特征。你可以认为每个滤波器都是检测一种特定的特征，例如，检测句子是否包含诸如“not amazing”等否定意思。如果这个短语在句子中的某个位置出现，那么对应位置的滤波器的输出值将会非常大，而在其它位置的输出值非常小。通过采用取最大值的方式，能将某个特征是否出现在句子中的信息保留下来，但是无法确定它究竟在句子的哪个位置出现。这个信息出现的位置真的很重要吗？确实是的，它有点类似于一组n-grams模型的行为。尽管丢失了关于位置的全局信息（在句子中的大致位置），但是滤波器捕捉到的局部信息却被保留下来了，比如“not amazing”和“amazing not”的意思就大相径庭。</p>
+<p>在图像识别领域，池化还能提供平移和旋转不变性。若对某个区域做了池化，即使图像平移/旋转几个像素，得到的输出值也基本一样，因为每次最大值运算得到的结果总是一样的。</p>
+<h5 id=通道><strong>通道</strong></h5>
+<p>通道即是输入数据的不同“视角”。比如说，做图像识别时一般会用到RGB通道（红绿蓝）。你可以对每个通道做卷积运算，赋予相同或不同的权值。你也同样可以把NLP想象成有许多个通道：把不同类的词向量表征（例如word2vec和GloVe）看做是独立的通道，或是把不同语言版本的同一句话看作是一个通道。</p>
+<hr>
+<h1 id=卷积神经网络cnn在自然语言处理的应用>卷积神经网络(CNN)在自然语言处理的应用</h1>
+<h2 id=1-模型的构建>1. 模型的构建</h2>
+<p>下图是本次项目中使用的卷积神经网络结构图： <img src=https://image.i-ll.cc/18-4-16/56378354.jpg alt=CNN模型连接图></p>
+<ol>
+<li>首先确定网络结构，如上图。</li>
+<li>本项目第一个Fully Connected层之后接dropout以及relu激活函数。 <img src=https://image.i-ll.cc/18-4-16/13099836.jpg alt=Relu激活函数> 由于是多分类问题，所以输出层使用Softmax函数。 <img src=https://image.i-ll.cc/18-4-16/70306612.jpg alt=Softmax函数></li>
+<li>损失函数(loss function)用交叉熵(Cross Entropy)函数<img src=https://image.i-ll.cc/18-4-16/92066150.jpg alt=交叉熵函数></li>
+<li>优化器用了AdamOptimizer 前面我们已经介绍了Embedding层，卷积层，池化层，现在我们来介绍全连接层(Fully Connected)全连接层（fully connected layers，FC）在整个卷积神经网络中起到“分类器”的作用,传统的网络我们的输出都是分类，也就是几个类别的概率甚至就是一个数&ndash;类别号，那么全连接层就是高度提纯的特征了，方便交给最后的分类器或者回归。因为全连接的参数太多了，所以我们需要dropout一部分参数。</li>
+</ol>
+<p>上述模型用以下代码来构建：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># coding: utf-8</span>
+
+<span class=kn>import</span> <span class=nn>tensorflow</span> <span class=k>as</span> <span class=nn>tf</span>
+
+
+<span class=k>class</span> <span class=nc>TCNNConfig</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;CNN配置参数&#34;&#34;&#34;</span>
+
+    <span class=n>embedding_dim</span> <span class=o>=</span> <span class=mi>64</span>  <span class=c1># 词向量维度</span>
+    <span class=n>seq_length</span> <span class=o>=</span> <span class=mi>600</span>  <span class=c1># 序列长度</span>
+    <span class=n>num_classes</span> <span class=o>=</span> <span class=mi>14</span>  <span class=c1># 类别数</span>
+    <span class=n>num_filters</span> <span class=o>=</span> <span class=mi>512</span>  <span class=c1># 卷积核数目</span>
+    <span class=n>kernel_size</span> <span class=o>=</span> <span class=mi>9</span>  <span class=c1># 卷积核尺寸</span>
+    <span class=n>vocab_size</span> <span class=o>=</span> <span class=mi>6000</span>  <span class=c1># 词汇表达小</span>
+
+    <span class=n>hidden_dim</span> <span class=o>=</span> <span class=mi>128</span>  <span class=c1># 全连接层神经元</span>
+
+    <span class=n>dropout_keep_prob</span> <span class=o>=</span> <span class=mf>0.6</span>  <span class=c1># dropout保留比例</span>
+    <span class=n>learning_rate</span> <span class=o>=</span> <span class=mf>1e-3</span>  <span class=c1># 学习率</span>
+
+    <span class=n>batch_size</span> <span class=o>=</span> <span class=mi>128</span>  <span class=c1># 每批训练大小</span>
+    <span class=n>num_epochs</span> <span class=o>=</span> <span class=mi>10</span>  <span class=c1># 总迭代轮次</span>
+
+    <span class=n>print_per_batch</span> <span class=o>=</span> <span class=mi>1000</span>  <span class=c1># 每多少轮输出一次结果</span>
+    <span class=n>save_per_batch</span> <span class=o>=</span> <span class=mi>10</span>  <span class=c1># 每多少轮存入tensorboard</span>
+
+
+<span class=k>class</span> <span class=nc>TextCNN</span><span class=p>(</span><span class=nb>object</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;文本分类，CNN模型&#34;&#34;&#34;</span>
+
+    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>config</span><span class=p>):</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>config</span> <span class=o>=</span> <span class=n>config</span>
+
+        <span class=c1># 三个待输入的数据</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>input_x</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>placeholder</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>int32</span><span class=p>,</span> <span class=p>[</span><span class=kc>None</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>seq_length</span><span class=p>],</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;input_x&#39;</span><span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>input_y</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>placeholder</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>float32</span><span class=p>,</span> <span class=p>[</span><span class=kc>None</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>num_classes</span><span class=p>],</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;input_y&#39;</span><span class=p>)</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>keep_prob</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>placeholder</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>float32</span><span class=p>,</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;keep_prob&#39;</span><span class=p>)</span>
+
+        <span class=bp>self</span><span class=o>.</span><span class=n>cnn</span><span class=p>()</span>
+
+    <span class=k>def</span> <span class=nf>cnn</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+        <span class=s2>&#34;&#34;&#34;CNN模型&#34;&#34;&#34;</span>
+        <span class=c1># 词向量映射</span>
+        <span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>device</span><span class=p>(</span><span class=s1>&#39;/cpu:0&#39;</span><span class=p>):</span>
+            <span class=n>embedding</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>get_variable</span><span class=p>(</span><span class=s1>&#39;embedding&#39;</span><span class=p>,</span> <span class=p>[</span><span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>vocab_size</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>embedding_dim</span><span class=p>])</span>
+            <span class=n>embedding_inputs</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>embedding_lookup</span><span class=p>(</span><span class=n>embedding</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>input_x</span><span class=p>)</span>
+
+        <span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>name_scope</span><span class=p>(</span><span class=s2>&#34;cnn&#34;</span><span class=p>):</span>
+            <span class=c1># CNN layer</span>
+            <span class=n>conv</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>conv1d</span><span class=p>(</span><span class=n>embedding_inputs</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>num_filters</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>kernel_size</span><span class=p>,</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;conv&#39;</span><span class=p>)</span>
+            <span class=c1># global max pooling layer</span>
+            <span class=n>gmp</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>reduce_max</span><span class=p>(</span><span class=n>conv</span><span class=p>,</span> <span class=n>reduction_indices</span><span class=o>=</span><span class=p>[</span><span class=mi>1</span><span class=p>],</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;gmp&#39;</span><span class=p>)</span>
+
+        <span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>name_scope</span><span class=p>(</span><span class=s2>&#34;score&#34;</span><span class=p>):</span>
+            <span class=c1># 全连接层，后面接dropout以及relu激活</span>
+            <span class=n>fc</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>dense</span><span class=p>(</span><span class=n>gmp</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>hidden_dim</span><span class=p>,</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;fc1&#39;</span><span class=p>)</span>
+            <span class=n>fc</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>contrib</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>dropout</span><span class=p>(</span><span class=n>fc</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>keep_prob</span><span class=p>)</span>
+            <span class=n>fc</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>relu</span><span class=p>(</span><span class=n>fc</span><span class=p>)</span>
+
+            <span class=c1># 分类器</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>logits</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>dense</span><span class=p>(</span><span class=n>fc</span><span class=p>,</span> <span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>num_classes</span><span class=p>,</span> <span class=n>name</span><span class=o>=</span><span class=s1>&#39;fc2&#39;</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>y_pred_cls</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>softmax</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>logits</span><span class=p>),</span> <span class=mi>1</span><span class=p>)</span>  <span class=c1># 预测类别</span>
+
+        <span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>name_scope</span><span class=p>(</span><span class=s2>&#34;optimize&#34;</span><span class=p>):</span>
+            <span class=c1># 损失函数，交叉熵</span>
+            <span class=n>cross_entropy</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>nn</span><span class=o>.</span><span class=n>softmax_cross_entropy_with_logits</span><span class=p>(</span><span class=n>logits</span><span class=o>=</span><span class=bp>self</span><span class=o>.</span><span class=n>logits</span><span class=p>,</span> <span class=n>labels</span><span class=o>=</span><span class=bp>self</span><span class=o>.</span><span class=n>input_y</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>loss</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>reduce_mean</span><span class=p>(</span><span class=n>cross_entropy</span><span class=p>)</span>
+            <span class=c1># 优化器</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>optim</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>train</span><span class=o>.</span><span class=n>AdamOptimizer</span><span class=p>(</span><span class=n>learning_rate</span><span class=o>=</span><span class=bp>self</span><span class=o>.</span><span class=n>config</span><span class=o>.</span><span class=n>learning_rate</span><span class=p>)</span><span class=o>.</span><span class=n>minimize</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>loss</span><span class=p>)</span>
+
+        <span class=k>with</span> <span class=n>tf</span><span class=o>.</span><span class=n>name_scope</span><span class=p>(</span><span class=s2>&#34;accuracy&#34;</span><span class=p>):</span>
+            <span class=c1># 准确率</span>
+            <span class=n>correct_pred</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>equal</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>input_y</span><span class=p>,</span> <span class=mi>1</span><span class=p>),</span> <span class=bp>self</span><span class=o>.</span><span class=n>y_pred_cls</span><span class=p>)</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>acc</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>reduce_mean</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>cast</span><span class=p>(</span><span class=n>correct_pred</span><span class=p>,</span> <span class=n>tf</span><span class=o>.</span><span class=n>float32</span><span class=p>))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=2-数据预处理>2. 数据预处理</h2>
+<p>网络构建好了，然后我们通过以下代码对THUCNews数据集进行处理，将数据集都保存到txt文件中。数据集划分为70%训练集 15%验证集 15%测试集，运用以下代码对数据进行预处理。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=ch>#!/usr/bin/python</span>
+<span class=c1># -*- coding: utf-8 -*-</span>
+
+<span class=s2>&#34;&#34;&#34;
+</span><span class=s2>将文本整合到 train、test、val 三个文件中
+</span><span class=s2>&#34;&#34;&#34;</span>
+
+<span class=kn>import</span> <span class=nn>os</span>
+<span class=kn>from</span> <span class=nn>pathlib</span> <span class=kn>import</span> <span class=n>Path</span> <span class=c1>#python3自带</span>
+
+<span class=k>def</span> <span class=nf>_read_file</span><span class=p>(</span><span class=n>filename</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;读取一个文件并转换为一行&#34;&#34;&#34;</span>
+    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>filename</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+        <span class=k>return</span> <span class=n>f</span><span class=o>.</span><span class=n>read</span><span class=p>()</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\t</span><span class=s1>&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\u3000</span><span class=s1>&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>
+
+<span class=k>def</span> <span class=nf>save_file</span><span class=p>(</span><span class=n>dirname</span><span class=p>):</span>
+    <span class=s2>&#34;&#34;&#34;
+</span><span class=s2>    将多个文件整合并存到3个文件中
+</span><span class=s2>    dirname: 原数据目录
+</span><span class=s2>    文件内容格式:  类别</span><span class=se>\t</span><span class=s2>内容
+</span><span class=s2>    &#34;&#34;&#34;</span>
+    <span class=n>f_train</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.train.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
+    <span class=n>f_test</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.test.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
+    <span class=n>f_val</span> <span class=o>=</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.val.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>category</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>dirname</span><span class=p>):</span>   <span class=c1># 分类目录</span>
+        <span class=n>cat_dir</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>dirname</span><span class=p>,</span> <span class=n>category</span><span class=p>)</span>
+        <span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>cat_dir</span><span class=p>):</span>
+            <span class=k>continue</span>
+        <span class=n>files</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=n>cat_dir</span><span class=p>)</span>
+        <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span>
+        <span class=n>data_num</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=nb>list</span><span class=p>(</span><span class=n>Path</span><span class=p>(</span><span class=n>cat_dir</span><span class=p>)</span><span class=o>.</span><span class=n>iterdir</span><span class=p>()))</span> <span class=c1>#读取当前目录下的文件总数</span>
+        <span class=k>for</span> <span class=n>cur_file</span> <span class=ow>in</span> <span class=n>files</span><span class=p>:</span>
+            <span class=n>filename</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>cat_dir</span><span class=p>,</span> <span class=n>cur_file</span><span class=p>)</span>
+            <span class=n>content</span> <span class=o>=</span> <span class=n>_read_file</span><span class=p>(</span><span class=n>filename</span><span class=p>)</span>
+            <span class=k>if</span> <span class=n>count</span> <span class=o>&lt;</span> <span class=nb>int</span><span class=p>(</span><span class=n>data_num</span><span class=o>*</span><span class=mf>0.7</span><span class=p>):</span>
+                <span class=n>f_train</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>category</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\t</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>content</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+            <span class=k>elif</span> <span class=n>count</span> <span class=o>&lt;</span> <span class=nb>int</span><span class=p>(</span><span class=n>data_num</span><span class=o>*</span><span class=mf>0.85</span><span class=p>):</span>
+                <span class=n>f_test</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>category</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\t</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>content</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+            <span class=k>else</span><span class=p>:</span>
+                <span class=n>f_val</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>category</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\t</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>content</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+            <span class=n>count</span> <span class=o>+=</span> <span class=mi>1</span>
+
+        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Finished:&#39;</span><span class=p>,</span> <span class=n>category</span><span class=p>)</span>
+
+    <span class=n>f_train</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+    <span class=n>f_test</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+    <span class=n>f_val</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+    <span class=n>save_file</span><span class=p>(</span><span class=s1>&#39;data/thucnews&#39;</span><span class=p>)</span>
+    <span class=nb>print</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.train.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>readlines</span><span class=p>()))</span>
+    <span class=nb>print</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.test.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>readlines</span><span class=p>()))</span>
+    <span class=nb>print</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nb>open</span><span class=p>(</span><span class=s1>&#39;data/cnews/cnews.val.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s1>&#39;utf-8&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>readlines</span><span class=p>()))</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>我们的数据集划分如下 <img src=https://image.i-ll.cc/18-4-16/71898920.jpg alt=数据集结构> 经过预处理，得到以下格式的数据。</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:left>Data</th>
+<th style=text-align:left>Shape</th>
+<th style=text-align:left>Data</th>
+<th style=text-align:left>Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:left>x_train</td>
+<td style=text-align:left>[585247, 600]</td>
+<td style=text-align:left>y_train</td>
+<td style=text-align:left>[585247, 14]</td>
+</tr>
+<tr>
+<td style=text-align:left>x_val</td>
+<td style=text-align:left>[125403, 600]</td>
+<td style=text-align:left>y_val</td>
+<td style=text-align:left>[125403, 14]</td>
+</tr>
+<tr>
+<td style=text-align:left>x_test</td>
+<td style=text-align:left>[125425, 600]</td>
+<td style=text-align:left>y_test</td>
+<td style=text-align:left>[125425, 14]</td>
+</tr>
+</tbody>
+</table>
+<h2 id=3-模型的训练>3. 模型的训练</h2>
+<p>现在开始将数据喂进输入层，进行传播。也是两步前向传播和反向传播。</p>
+<p>前向传播：输入数据->通过embedding层将输入的一维序列转为2维矩阵，比如输入层有m个句子，经过embedding层处理之后得到的是一个[m,600,64]的矩阵。然后就可以进行卷积，池化等操作了。 反向传播：确定了每个层的激活函数，以及损失函数，选择了AdamOptimizer优化方法。利用TensorFlow即可自动完成一系列运算。</p>
+<p>由于数据量巨大，我们使用了阿里云的竞价服务器来跑这个神经网络，<img src=https://image.i-ll.cc/18-4-17/82824112.jpg alt=阿里云服务器></p>
+<p>CNN训练过程如下</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Configuring TensorBoard and Saver...
+Loading training and validation data...
+Time usage: 0:09:09
+2018-04-06 22:03:56.913969: I T:\src\github\tensorflow\tensorflow\core\platform\cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2018-04-06 22:03:57.574615: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1344] Found device 0 with properties:
+name: Tesla P100-PCIE-16GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:00:08.0
+totalMemory: 15.91GiB freeMemory: 15.50GiB
+2018-04-06 22:03:57.574811: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1423] Adding visible gpu devices: 0
+2018-04-06 22:06:25.657284: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:911] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-04-06 22:06:25.657401: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:917]      0
+2018-04-06 22:06:25.658838: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:930] 0:   N
+2018-04-06 22:06:25.691139: I T:\src\github\tensorflow\tensorflow\core\common_runtime\gpu\gpu_device.cc:1041] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15039 MB memory) -&gt; physical GPU (device: 0, name: Tesla P100-PCIE-16GB, pci bus id: 0000:00:08.0, compute capability: 6.0)
+Training and evaluating...
+Epoch: 1
+Iter:      0, Train Loss:    2.6, Train Acc:  14.06%, Val Loss:    2.6, Val Acc:  18.46%, Time: 0:00:20 *
+Iter:   1000, Train Loss:   0.25, Train Acc:  91.41%, Val Loss:   0.57, Val Acc:  83.44%, Time: 0:01:13 *
+Iter:   2000, Train Loss:   0.33, Train Acc:  92.97%, Val Loss:   0.58, Val Acc:  83.11%, Time: 0:02:06
+Iter:   3000, Train Loss:   0.18, Train Acc:  96.09%, Val Loss:   0.54, Val Acc:  84.72%, Time: 0:02:59 *
+Iter:   4000, Train Loss:   0.19, Train Acc:  92.97%, Val Loss:   0.51, Val Acc:  84.84%, Time: 0:03:52 *
+Epoch: 2
+Iter:   5000, Train Loss:  0.087, Train Acc:  96.88%, Val Loss:   0.52, Val Acc:  84.83%, Time: 0:04:46
+Iter:   6000, Train Loss:   0.14, Train Acc:  96.88%, Val Loss:   0.52, Val Acc:  85.21%, Time: 0:05:39 *
+Iter:   7000, Train Loss:   0.29, Train Acc:  92.97%, Val Loss:   0.53, Val Acc:  85.06%, Time: 0:06:32
+Iter:   8000, Train Loss:   0.13, Train Acc:  96.88%, Val Loss:   0.54, Val Acc:  84.69%, Time: 0:07:24
+Iter:   9000, Train Loss:   0.16, Train Acc:  95.31%, Val Loss:   0.52, Val Acc:  84.90%, Time: 0:08:17
+Epoch: 3
+Iter:  10000, Train Loss:   0.12, Train Acc:  96.09%, Val Loss:   0.57, Val Acc:  83.93%, Time: 0:09:11
+Iter:  11000, Train Loss:  0.082, Train Acc:  97.66%, Val Loss:   0.56, Val Acc:  84.58%, Time: 0:10:04
+Iter:  12000, Train Loss:   0.12, Train Acc:  95.31%, Val Loss:   0.56, Val Acc:  84.67%, Time: 0:23:15
+Iter:  13000, Train Loss:   0.14, Train Acc:  95.31%, Val Loss:   0.55, Val Acc:  84.99%, Time: 0:24:08
+Epoch: 4
+Iter:  14000, Train Loss:   0.11, Train Acc:  95.31%, Val Loss:   0.59, Val Acc:  85.23%, Time: 0:25:03 *
+Iter:  15000, Train Loss:   0.17, Train Acc:  94.53%, Val Loss:   0.64, Val Acc:  84.65%, Time: 0:25:56
+Iter:  16000, Train Loss:   0.11, Train Acc:  96.09%, Val Loss:   0.64, Val Acc:  83.83%, Time: 0:26:48
+Iter:  17000, Train Loss:   0.13, Train Acc:  94.53%, Val Loss:   0.62, Val Acc:  84.13%, Time: 0:27:41
+Iter:  18000, Train Loss:  0.054, Train Acc:  99.22%, Val Loss:   0.62, Val Acc:  84.48%, Time: 0:28:34
+Epoch: 5
+Iter:  19000, Train Loss:  0.076, Train Acc:  98.44%, Val Loss:   0.69, Val Acc:  84.41%, Time: 0:32:38
+Iter:  20000, Train Loss:  0.062, Train Acc:  96.88%, Val Loss:   0.74, Val Acc:  84.36%, Time: 0:35:25
+Iter:  21000, Train Loss:   0.11, Train Acc:  97.66%, Val Loss:   0.72, Val Acc:  83.92%, Time: 0:36:18
+Iter:  22000, Train Loss:   0.15, Train Acc:  93.75%, Val Loss:   0.65, Val Acc:  83.98%, Time: 0:37:11
+Epoch: 6
+Iter:  23000, Train Loss:  0.056, Train Acc:  96.88%, Val Loss:   0.79, Val Acc:  84.31%, Time: 0:38:05
+Iter:  24000, Train Loss:  0.071, Train Acc:  97.66%, Val Loss:   0.75, Val Acc:  83.90%, Time: 0:38:57
+No optimization for a long time, auto-stopping...
+
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看出在验证集上的最佳效果为85.23%。</p>
+<h2 id=4-模型的检验>4. 模型的检验</h2>
+<p>开始跑测试集，</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-mysql data-lang=mysql><span class=n>Configuring</span><span class=w> </span><span class=n>CNN</span><span class=w> </span><span class=n>model</span><span class=p>...</span><span class=w>
+</span><span class=w></span><span class=n>WARNING</span><span class=p>:</span><span class=n>tensorflow</span><span class=p>:</span><span class=k>From</span><span class=w> </span><span class=n>C</span><span class=p>:</span><span class=err>\</span><span class=n>Anaconda3</span><span class=err>\</span><span class=n>lib</span><span class=err>\</span><span class=n>site</span><span class=o>-</span><span class=n>packages</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>python</span><span class=err>\</span><span class=n>util</span><span class=err>\</span><span class=n>deprecation</span><span class=p>.</span><span class=n>py</span><span class=p>:</span><span class=mi>497</span><span class=p>:</span><span class=w> </span><span class=n>calling</span><span class=w> </span><span class=nf>conv1d</span><span class=w> </span><span class=p>(</span><span class=k>from</span><span class=w> </span><span class=n>tensorflow</span><span class=p>.</span><span class=n>python</span><span class=p>.</span><span class=n>ops</span><span class=p>.</span><span class=n>nn_ops</span><span class=p>)</span><span class=w> </span><span class=k>with</span><span class=w> </span><span class=n>data_format</span><span class=o>=</span><span class=n>NHWC</span><span class=w> </span><span class=k>is</span><span class=w> </span><span class=n>deprecated</span><span class=w> </span><span class=k>and</span><span class=w> </span><span class=n>will</span><span class=w> </span><span class=n>be</span><span class=w> </span><span class=n>removed</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=n>future</span><span class=w> </span><span class=n>version</span><span class=p>.</span><span class=w>
+</span><span class=w></span><span class=n>Instructions</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>updating</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=o>`</span><span class=n>NHWC</span><span class=o>`</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>data_format</span><span class=w> </span><span class=k>is</span><span class=w> </span><span class=n>deprecated</span><span class=p>,</span><span class=w> </span><span class=k>use</span><span class=w> </span><span class=o>`</span><span class=n>NWC</span><span class=o>`</span><span class=w> </span><span class=n>instead</span><span class=w>
+</span><span class=w></span><span class=n>WARNING</span><span class=p>:</span><span class=n>tensorflow</span><span class=p>:</span><span class=k>From</span><span class=w> </span><span class=n>C</span><span class=p>:</span><span class=err>\</span><span class=n>Users</span><span class=err>\</span><span class=n>Administrator</span><span class=err>\</span><span class=n>Desktop</span><span class=err>\</span><span class=n>text_classification</span><span class=err>\</span><span class=n>cnn_model</span><span class=p>.</span><span class=n>py</span><span class=p>:</span><span class=mi>66</span><span class=p>:</span><span class=w> </span><span class=nf>softmax_cross_entropy_with_logits</span><span class=w> </span><span class=p>(</span><span class=k>from</span><span class=w> </span><span class=n>tensorflow</span><span class=p>.</span><span class=n>python</span><span class=p>.</span><span class=n>ops</span><span class=p>.</span><span class=n>nn_ops</span><span class=p>)</span><span class=w> </span><span class=k>is</span><span class=w> </span><span class=n>deprecated</span><span class=w> </span><span class=k>and</span><span class=w> </span><span class=n>will</span><span class=w> </span><span class=n>be</span><span class=w> </span><span class=n>removed</span><span class=w> </span><span class=k>in</span><span class=w> </span><span class=n>a</span><span class=w> </span><span class=n>future</span><span class=w> </span><span class=n>version</span><span class=p>.</span><span class=w>
+</span><span class=w></span><span class=n>Instructions</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=n>updating</span><span class=p>:</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=n>Future</span><span class=w> </span><span class=n>major</span><span class=w> </span><span class=n>versions</span><span class=w> </span><span class=n>of</span><span class=w> </span><span class=n>TensorFlow</span><span class=w> </span><span class=n>will</span><span class=w> </span><span class=n>allow</span><span class=w> </span><span class=n>gradients</span><span class=w> </span><span class=k>to</span><span class=w> </span><span class=n>flow</span><span class=w>
+</span><span class=w></span><span class=k>into</span><span class=w> </span><span class=n>the</span><span class=w> </span><span class=n>labels</span><span class=w> </span><span class=n>input</span><span class=w> </span><span class=k>on</span><span class=w> </span><span class=n>backprop</span><span class=w> </span><span class=k>by</span><span class=w> </span><span class=k>default</span><span class=p>.</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=n>See</span><span class=w> </span><span class=n>tf</span><span class=p>.</span><span class=n>nn</span><span class=p>.</span><span class=n>softmax_cross_entropy_with_logits_v2</span><span class=p>.</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=n>Loading</span><span class=w> </span><span class=n>test</span><span class=w> </span><span class=n>data</span><span class=p>...</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>42</span><span class=p>.</span><span class=mi>164669</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>platform</span><span class=err>\</span><span class=n>cpu_feature_guard</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>140</span><span class=p>]</span><span class=w> </span><span class=n>Your</span><span class=w> </span><span class=n>CPU</span><span class=w> </span><span class=n>supports</span><span class=w> </span><span class=n>instructions</span><span class=w> </span><span class=n>that</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>TensorFlow</span><span class=w> </span><span class=k>binary</span><span class=w> </span><span class=n>was</span><span class=w> </span><span class=k>not</span><span class=w> </span><span class=n>compiled</span><span class=w> </span><span class=k>to</span><span class=w> </span><span class=k>use</span><span class=p>:</span><span class=w> </span><span class=n>AVX2</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>42</span><span class=p>.</span><span class=mi>612697</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>1344</span><span class=p>]</span><span class=w> </span><span class=n>Found</span><span class=w> </span><span class=n>device</span><span class=w> </span><span class=mi>0</span><span class=w> </span><span class=k>with</span><span class=w> </span><span class=n>properties</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=n>name</span><span class=p>:</span><span class=w> </span><span class=n>Tesla</span><span class=w> </span><span class=n>P100</span><span class=o>-</span><span class=n>PCIE</span><span class=o>-</span><span class=mi>16</span><span class=n>GB</span><span class=w> </span><span class=n>major</span><span class=p>:</span><span class=w> </span><span class=mi>6</span><span class=w> </span><span class=n>minor</span><span class=p>:</span><span class=w> </span><span class=mi>0</span><span class=w> </span><span class=nf>memoryClockRate</span><span class=p>(</span><span class=n>GHz</span><span class=p>):</span><span class=w> </span><span class=mi>1</span><span class=p>.</span><span class=mi>3285</span><span class=w>
+</span><span class=w></span><span class=n>pciBusID</span><span class=p>:</span><span class=w> </span><span class=mi>0000</span><span class=p>:</span><span class=mi>00</span><span class=p>:</span><span class=mi>08</span><span class=p>.</span><span class=mi>0</span><span class=w>
+</span><span class=w></span><span class=n>totalMemory</span><span class=p>:</span><span class=w> </span><span class=mi>15</span><span class=p>.</span><span class=mi>91</span><span class=n>GiB</span><span class=w> </span><span class=n>freeMemory</span><span class=p>:</span><span class=w> </span><span class=mi>15</span><span class=p>.</span><span class=mi>50</span><span class=n>GiB</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>42</span><span class=p>.</span><span class=mi>612903</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>1423</span><span class=p>]</span><span class=w> </span><span class=n>Adding</span><span class=w> </span><span class=n>visible</span><span class=w> </span><span class=n>gpu</span><span class=w> </span><span class=n>devices</span><span class=p>:</span><span class=w> </span><span class=mi>0</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>43</span><span class=p>.</span><span class=mi>294863</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>911</span><span class=p>]</span><span class=w> </span><span class=n>Device</span><span class=w> </span><span class=n>interconnect</span><span class=w> </span><span class=n>StreamExecutor</span><span class=w> </span><span class=k>with</span><span class=w> </span><span class=n>strength</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=n>edge</span><span class=w> </span><span class=n>matrix</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>43</span><span class=p>.</span><span class=mi>295002</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>917</span><span class=p>]</span><span class=w>      </span><span class=mi>0</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>43</span><span class=p>.</span><span class=mi>298126</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>930</span><span class=p>]</span><span class=w> </span><span class=mi>0</span><span class=p>:</span><span class=w>   </span><span class=n>N</span><span class=w>
+</span><span class=w></span><span class=mi>2018</span><span class=o>-</span><span class=mi>04</span><span class=o>-</span><span class=mi>06</span><span class=w> </span><span class=mi>22</span><span class=p>:</span><span class=mi>56</span><span class=p>:</span><span class=mi>43</span><span class=p>.</span><span class=mi>299510</span><span class=p>:</span><span class=w> </span><span class=n>I</span><span class=w> </span><span class=n>T</span><span class=p>:</span><span class=err>\</span><span class=n>src</span><span class=err>\</span><span class=n>github</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>tensorflow</span><span class=err>\</span><span class=n>core</span><span class=err>\</span><span class=n>common_runtime</span><span class=err>\</span><span class=n>gpu</span><span class=err>\</span><span class=n>gpu_device</span><span class=p>.</span><span class=n>cc</span><span class=p>:</span><span class=mi>1041</span><span class=p>]</span><span class=w> </span><span class=n>Created</span><span class=w> </span><span class=n>TensorFlow</span><span class=w> </span><span class=nf>device</span><span class=w> </span><span class=p>(</span><span class=o>/</span><span class=n>job</span><span class=p>:</span><span class=n>localhost</span><span class=o>/</span><span class=n>replica</span><span class=p>:</span><span class=mi>0</span><span class=o>/</span><span class=n>task</span><span class=p>:</span><span class=mi>0</span><span class=o>/</span><span class=n>device</span><span class=p>:</span><span class=n>GPU</span><span class=p>:</span><span class=mi>0</span><span class=w> </span><span class=k>with</span><span class=w> </span><span class=mi>15039</span><span class=w> </span><span class=n>MB</span><span class=w> </span><span class=n>memory</span><span class=p>)</span><span class=w> </span><span class=o>-&gt;</span><span class=w> </span><span class=n>physical</span><span class=w> </span><span class=nf>GPU</span><span class=w> </span><span class=p>(</span><span class=n>device</span><span class=p>:</span><span class=w> </span><span class=mi>0</span><span class=p>,</span><span class=w> </span><span class=n>name</span><span class=p>:</span><span class=w> </span><span class=n>Tesla</span><span class=w> </span><span class=n>P100</span><span class=o>-</span><span class=n>PCIE</span><span class=o>-</span><span class=mi>16</span><span class=n>GB</span><span class=p>,</span><span class=w> </span><span class=n>pci</span><span class=w> </span><span class=n>bus</span><span class=w> </span><span class=n>id</span><span class=p>:</span><span class=w> </span><span class=mi>0000</span><span class=p>:</span><span class=mi>00</span><span class=p>:</span><span class=mi>08</span><span class=p>.</span><span class=mi>0</span><span class=p>,</span><span class=w> </span><span class=n>compute</span><span class=w> </span><span class=n>capability</span><span class=p>:</span><span class=w> </span><span class=mi>6</span><span class=p>.</span><span class=mi>0</span><span class=p>)</span><span class=w>
+</span><span class=w></span><span class=n>Testing</span><span class=p>...</span><span class=w>
+</span><span class=w></span><span class=n>Test</span><span class=w> </span><span class=n>Loss</span><span class=p>:</span><span class=w>   </span><span class=mi>0</span><span class=p>.</span><span class=mi>28</span><span class=p>,</span><span class=w> </span><span class=n>Test</span><span class=w> </span><span class=n>Acc</span><span class=p>:</span><span class=w>  </span><span class=mi>92</span><span class=p>.</span><span class=mi>24</span><span class=o>%</span><span class=w>
+</span><span class=w></span><span class=k>Precision</span><span class=p>,</span><span class=w> </span><span class=n>Recall</span><span class=w> </span><span class=k>and</span><span class=w> </span><span class=n>F1</span><span class=o>-</span><span class=n>Score</span><span class=p>...</span><span class=w>
+</span><span class=w>             </span><span class=k>precision</span><span class=w>    </span><span class=n>recall</span><span class=w>  </span><span class=n>f1</span><span class=o>-</span><span class=n>score</span><span class=w>   </span><span class=n>support</span><span class=w>
+</span><span class=w>
+</span><span class=w>         </span><span class=err>体育</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>98</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>99</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>99</span><span class=w>     </span><span class=mi>19741</span><span class=w>
+</span><span class=w>         </span><span class=err>财经</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>83</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>77</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>80</span><span class=w>      </span><span class=mi>5565</span><span class=w>
+</span><span class=w>         </span><span class=err>房产</span><span class=w>       </span><span class=mi>1</span><span class=p>.</span><span class=mi>00</span><span class=w>      </span><span class=mi>1</span><span class=p>.</span><span class=mi>00</span><span class=w>      </span><span class=mi>1</span><span class=p>.</span><span class=mi>00</span><span class=w>      </span><span class=mi>3007</span><span class=w>
+</span><span class=w>         </span><span class=err>家居</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>94</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>94</span><span class=w>      </span><span class=mi>4888</span><span class=w>
+</span><span class=w>         </span><span class=err>教育</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>6290</span><span class=w>
+</span><span class=w>         </span><span class=err>科技</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>91</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>97</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>94</span><span class=w>     </span><span class=mi>24439</span><span class=w>
+</span><span class=w>         </span><span class=err>时尚</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>88</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>91</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>89</span><span class=w>      </span><span class=mi>2005</span><span class=w>
+</span><span class=w>         </span><span class=err>时政</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>84</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>88</span><span class=w>      </span><span class=mi>9463</span><span class=w>
+</span><span class=w>         </span><span class=err>游戏</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>90</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>87</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>88</span><span class=w>      </span><span class=mi>3656</span><span class=w>
+</span><span class=w>         </span><span class=err>娱乐</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>95</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>94</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>94</span><span class=w>     </span><span class=mi>13895</span><span class=w>
+</span><span class=w>         </span><span class=err>股票</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>93</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>87</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>90</span><span class=w>     </span><span class=mi>23160</span><span class=w>
+</span><span class=w>         </span><span class=err>彩票</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>97</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>85</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>91</span><span class=w>      </span><span class=mi>1138</span><span class=w>
+</span><span class=w>         </span><span class=err>社会</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>91</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>84</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>87</span><span class=w>      </span><span class=mi>7627</span><span class=w>
+</span><span class=w>         </span><span class=err>星座</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>98</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>87</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>92</span><span class=w>       </span><span class=mi>537</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=n>avg</span><span class=w> </span><span class=o>/</span><span class=w> </span><span class=n>total</span><span class=w>       </span><span class=mi>0</span><span class=p>.</span><span class=mi>92</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>92</span><span class=w>      </span><span class=mi>0</span><span class=p>.</span><span class=mi>92</span><span class=w>    </span><span class=mi>125411</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=n>Confusion</span><span class=w> </span><span class=n>Matrix</span><span class=p>...</span><span class=w>
+</span><span class=w></span><span class=p>[[</span><span class=mi>19548</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>4</span><span class=w>     </span><span class=mi>6</span><span class=w>    </span><span class=mi>45</span><span class=w>     </span><span class=mi>2</span><span class=w>    </span><span class=mi>10</span><span class=w>     </span><span class=mi>6</span><span class=w>    </span><span class=mi>89</span><span class=w>     </span><span class=mi>5</span><span class=w>     </span><span class=mi>8</span><span class=w>
+</span><span class=w>     </span><span class=mi>18</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>    </span><span class=mi>0</span><span class=w>  </span><span class=mi>4273</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>11</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>11</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>85</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>3</span><span class=w>  </span><span class=mi>1169</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>     </span><span class=mi>13</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>    </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>  </span><span class=mi>3005</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>      </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>11</span><span class=w>     </span><span class=mi>5</span><span class=w>    </span><span class=mi>10</span><span class=w>  </span><span class=mi>4558</span><span class=w>    </span><span class=mi>26</span><span class=w>    </span><span class=mi>23</span><span class=w>    </span><span class=mi>92</span><span class=w>     </span><span class=mi>8</span><span class=w>     </span><span class=mi>1</span><span class=w>   </span><span class=mi>129</span><span class=w>    </span><span class=mi>12</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>     </span><span class=mi>10</span><span class=w>     </span><span class=mi>3</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>21</span><span class=w>     </span><span class=mi>2</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>12</span><span class=w>  </span><span class=mi>5874</span><span class=w>    </span><span class=mi>59</span><span class=w>    </span><span class=mi>17</span><span class=w>   </span><span class=mi>116</span><span class=w>     </span><span class=mi>5</span><span class=w>    </span><span class=mi>23</span><span class=w>    </span><span class=mi>40</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>    </span><span class=mi>121</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>    </span><span class=mi>8</span><span class=w>    </span><span class=mi>14</span><span class=w>     </span><span class=mi>0</span><span class=w>   </span><span class=mi>106</span><span class=w>    </span><span class=mi>28</span><span class=w> </span><span class=mi>23621</span><span class=w>    </span><span class=mi>37</span><span class=w>    </span><span class=mi>49</span><span class=w>   </span><span class=mi>308</span><span class=w>    </span><span class=mi>53</span><span class=w>   </span><span class=mi>174</span><span class=w>     </span><span class=mi>1</span><span class=w>
+</span><span class=w>     </span><span class=mi>39</span><span class=w>     </span><span class=mi>1</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>    </span><span class=mi>3</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>29</span><span class=w>    </span><span class=mi>22</span><span class=w>    </span><span class=mi>17</span><span class=w>  </span><span class=mi>1817</span><span class=w>    </span><span class=mi>37</span><span class=w>     </span><span class=mi>1</span><span class=w>    </span><span class=mi>50</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>     </span><span class=mi>25</span><span class=w>     </span><span class=mi>3</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>47</span><span class=w>    </span><span class=mi>12</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>8</span><span class=w>    </span><span class=mi>91</span><span class=w>   </span><span class=mi>201</span><span class=w>     </span><span class=mi>0</span><span class=w>  </span><span class=mi>8787</span><span class=w>     </span><span class=mi>1</span><span class=w>    </span><span class=mi>42</span><span class=w>   </span><span class=mi>106</span><span class=w>     </span><span class=mi>5</span><span class=w>
+</span><span class=w>    </span><span class=mi>162</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>33</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>6</span><span class=w>    </span><span class=mi>14</span><span class=w>   </span><span class=mi>312</span><span class=w>     </span><span class=mi>9</span><span class=w>     </span><span class=mi>9</span><span class=w>  </span><span class=mi>3187</span><span class=w>    </span><span class=mi>68</span><span class=w>     </span><span class=mi>6</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>     </span><span class=mi>11</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>  </span><span class=mi>118</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>26</span><span class=w>    </span><span class=mi>39</span><span class=w>   </span><span class=mi>228</span><span class=w>    </span><span class=mi>52</span><span class=w>   </span><span class=mi>125</span><span class=w>    </span><span class=mi>31</span><span class=w> </span><span class=mi>13090</span><span class=w>    </span><span class=mi>55</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>    </span><span class=mi>128</span><span class=w>     </span><span class=mi>2</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>14</span><span class=w>   </span><span class=mi>787</span><span class=w>     </span><span class=mi>1</span><span class=w>    </span><span class=mi>39</span><span class=w>    </span><span class=mi>34</span><span class=w>  </span><span class=mi>1150</span><span class=w>     </span><span class=mi>3</span><span class=w>   </span><span class=mi>852</span><span class=w>    </span><span class=mi>10</span><span class=w>    </span><span class=mi>74</span><span class=w> </span><span class=mi>20112</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>     </span><span class=mi>82</span><span class=w>     </span><span class=mi>2</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>  </span><span class=mi>100</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>3</span><span class=w>     </span><span class=mi>5</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>5</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>11</span><span class=w>     </span><span class=mi>2</span><span class=w>   </span><span class=mi>963</span><span class=w>
+</span><span class=w>     </span><span class=mi>47</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>   </span><span class=mi>26</span><span class=w>    </span><span class=mi>81</span><span class=w>     </span><span class=mi>1</span><span class=w>    </span><span class=mi>19</span><span class=w>   </span><span class=mi>165</span><span class=w>   </span><span class=mi>369</span><span class=w>    </span><span class=mi>11</span><span class=w>   </span><span class=mi>350</span><span class=w>     </span><span class=mi>2</span><span class=w>   </span><span class=mi>175</span><span class=w>    </span><span class=mi>33</span><span class=w>    </span><span class=mi>13</span><span class=w>
+</span><span class=w>   </span><span class=mi>6382</span><span class=w>     </span><span class=mi>0</span><span class=p>]</span><span class=w>
+</span><span class=w> </span><span class=p>[</span><span class=w>    </span><span class=mi>3</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>0</span><span class=w>     </span><span class=mi>7</span><span class=w>     </span><span class=mi>6</span><span class=w>     </span><span class=mi>0</span><span class=w>    </span><span class=mi>24</span><span class=w>     </span><span class=mi>1</span><span class=w>     </span><span class=mi>4</span><span class=w>    </span><span class=mi>24</span><span class=w>     </span><span class=mi>2</span><span class=w>     </span><span class=mi>0</span><span class=w>
+</span><span class=w>      </span><span class=mi>0</span><span class=w>   </span><span class=mi>466</span><span class=p>]]</span><span class=w>
+</span><span class=w></span><span class=kt>Time</span><span class=w> </span><span class=k>usage</span><span class=p>:</span><span class=w> </span><span class=mi>0</span><span class=p>:</span><span class=mi>01</span><span class=p>:</span><span class=mi>37</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>在测试集上的准确率达到了92.24%，根据查准率与查全率（Precision & Recall）的调和平均值F1-Score来看，最低为财经类的0.80，其它的几乎都在0.90左右，是一个很不错的成绩。</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2018-04-16
+</span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/>机器学习</a>
+<a href=/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/>深度学习</a>
+<a href=/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/>神经网络</a>
+</div>
+<nav class=post-nav>
+<a class=prev href=/archives/408/>
+<i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">玩彩票赢钱概率有多少？用Python来告诉你</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/archives/293/>
+<span class="next-text nav-default">爬虫基本介绍 && python3 爬虫爬取网易新闻排行榜</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blogg.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2017 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>
