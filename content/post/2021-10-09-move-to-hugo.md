@@ -39,7 +39,9 @@ hideHeaderAndFooter: false
 ## 方案对比
 
 当然，我们可以直接选择官网给出的方案[Migrate to Hugo](https://gohugo.io/tools/migrations/)。对于wordpress，主要有以下几种。
-![wordpress migrate to hugo](https://image.i-ll.cc//uPic/20211009/Drxefh.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim)
+
+  ![wordpress migrate to hugo](https://image.i-ll.cc//uPic/20211009/Drxefh.png?imageMogr2/auto-orient/blur/1x0/quality/75|watermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10|imageslim)
+
 这几种方案我都尝试过，各有优势却都不完美。以下是详细说明
 
 1. [wordpress-to-hugo-exporter](https://github.com/SchumacherFM/wordpress-to-hugo-exporter)： 可以导出，且文件名称就是带有日期和中文的标题名称。但是不是原生markdown格式。而是如下图所示的结构。不满足需求1，2，所以**排除**。
