@@ -1,14 +1,14 @@
 ---
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
+title: ""
 subtitle:    ""
 description: ""
 date: {{ .Date }}
 lastmod: {{ .Date }}
-tags: ["tag1", "tag2"]
-categories: ["cat1", "cat2"]
+tags: ["tag1"]
+categories: ["cat1"]
+keywords: ["kw1"]
 author: "Chi Zhao(Vector)"
-keywords: ["kw1", "kw2"]
-slug: "{{ dateFormat "2006-01-02" .Date }}-{{.Name}}"
+slug: "{{.Name}}"
 draft: true
 hiddenFromHomePage: false
 hideHeaderAndFooter: false
