@@ -1,0 +1,316 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<title>完美迁移博客从wordpress到hugo - 淡淡博客 – 记录生活点滴，关注Python数据挖掘、深度学习相关技术</title>
+<meta name=renderer content="webkit">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta http-equiv=cache-control content="no-transform">
+<meta http-equiv=cache-control content="no-siteapp">
+<meta name=theme-color content="#f8f5ec">
+<meta name=msapplication-navbutton-color content="#f8f5ec">
+<meta name=apple-mobile-web-app-capable content="yes">
+<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
+<meta name=author content="Chi Zhao(Vector)"><meta name=description content="完美迁移博客从wordpress到hugo，包括xml解析、图床的完美迁移以及保持文章原始链接不变。"><meta name=keywords content="wordpress,hugo">
+<meta name=generator content="Hugo 0.88.1 with theme even">
+<link rel=canonical href=https://blog.i-ll.cc/post/2021-10-09-move-to-hugo/>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<meta property="og:title" content="完美迁移博客从wordpress到hugo">
+<meta property="og:description" content="完美迁移博客从wordpress到hugo，包括xml解析、图床的完美迁移以及保持文章原始链接不变。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.i-ll.cc/post/2021-10-09-move-to-hugo/"><meta property="article:section" content="post">
+<meta property="article:published_time" content="2021-10-09T13:00:04+03:00">
+<meta property="article:modified_time" content="2021-10-10T01:19:30+03:00">
+<meta itemprop=name content="完美迁移博客从wordpress到hugo">
+<meta itemprop=description content="完美迁移博客从wordpress到hugo，包括xml解析、图床的完美迁移以及保持文章原始链接不变。"><meta itemprop=datePublished content="2021-10-09T13:00:04+03:00">
+<meta itemprop=dateModified content="2021-10-10T01:19:30+03:00">
+<meta itemprop=wordCount content="2448">
+<meta itemprop=keywords content="hugo,工具-效率,"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="完美迁移博客从wordpress到hugo">
+<meta name=twitter:description content="完美迁移博客从wordpress到hugo，包括xml解析、图床的完美迁移以及保持文章原始链接不变。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+</head>
+<body>
+<div id=mobile-navbar class=mobile-navbar>
+<div class=mobile-header-logo>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<div class=mobile-navbar-icon>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<nav id=mobile-menu class="mobile-menu slideout-menu">
+<ul class=mobile-menu-list>
+<a href=/>
+<li class=mobile-menu-item>Home</li>
+</a><a href=/post/>
+<li class=mobile-menu-item>Archives</li>
+</a><a href=/tags/>
+<li class=mobile-menu-item>Tags</li>
+</a><a href=/categories/>
+<li class=mobile-menu-item>Categories</li>
+</a><a href=/about/>
+<li class=mobile-menu-item>About</li>
+</a>
+</ul>
+</nav>
+<div class=container id=mobile-panel>
+<header id=header class=header>
+<div class=logo-wrapper>
+<a href=/ class=logo>Vector's Blog</a>
+</div>
+<nav class=site-navbar>
+<ul id=menu class=menu>
+<li class=menu-item>
+<a class=menu-item-link href=/>Home</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/post/>Archives</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/tags/>Tags</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/categories/>Categories</a>
+</li><li class=menu-item>
+<a class=menu-item-link href=/about/>About</a>
+</li>
+</ul>
+</nav>
+</header>
+<main id=main class=main>
+<div class=content-wrapper>
+<div id=content class=content>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>完美迁移博客从wordpress到hugo</h1>
+<div class=post-meta>
+<span class=post-time> 2021-10-09 </span>
+<div class=post-category>
+<a href=/categories/%E5%B7%A5%E5%85%B7-%E6%95%88%E7%8E%87/> 工具-效率 </a>
+</div>
+<span class=more-meta> 约 2448 字 </span>
+<span class=more-meta> 预计阅读 5 分钟 </span>
+<span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
+</div>
+</header>
+<div class=post-toc id=post-toc>
+<h2 class=post-toc-title>文章目录</h2>
+<div class="post-toc-content always-active">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#网站情况简介>网站情况简介</a></li>
+<li><a href=#方案对比>方案对比</a></li>
+<li><a href=#最终方案使用说明>最终方案使用说明</a>
+<ul>
+<li><a href=#转换wordpress-xml以及保持文章链接不变>转换Wordpress xml以及保持文章链接不变</a></li>
+<li><a href=#图床迁移>图床迁移</a></li>
+</ul>
+</li>
+<li><a href=#随便说说>随便说说</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class=post-content>
+<h2 id=前言>前言</h2>
+<p>博客一直在阿里云学生机上托管，使用wordpress。自从上了研究生之后博客也就一直荒废了。服务器9月底到期，本想着继续续费一下学生机就不需要再折腾一遍了。但是由于已经不在国内读书了，没法进行学生认证。只好将博客迁移到<strong>hugo</strong>。迁移到<strong>Hugo</strong>而不是<strong>Hexo</strong>的原因主要是因为<strong>hugo</strong>对<strong>Rmarkdown</strong>的支持更好。</p>
+<h2 id=网站情况简介>网站情况简介</h2>
+<p>开始介绍迁移过程之前，我先简单说一下我网站的基本情况供大家参考。如果大家网站情况和我一样，那完全可以采用跟我相同的迁移方案。</p>
+<p>笔者从16年开始写博客，很早之前在简书上随便写一写，然后迁移到了csdn。后来由于在第三方网站上写作不自由，所以就自建博客了。在简书和csdn写作期间，都是用的<strong>平台自己的图床</strong>，直到自建博客开始才开始使用七牛云的OSS服务，每月免费10G但是仅限http流量，2020年我才将图床也全部升级为https调用。</p>
+<p>图床迁移实际上并不是一件容易的事情，因为目前所有的迁移工具都是只能<strong>识别markdown语法</strong>的图片链接而不是<strong>html标签</strong>里面的链接。这就导致我们必须将Wordpress中的所有文章全部转成<strong>markdown语法</strong>。</p>
+<p>最后一个问题就是保证文章的链接迁移前后没有变化，这样就可以保证拥有旧链接的人们可以正常访问。</p>
+<p>综上，我们需要解决三个问题：</p>
+<ol>
+<li>解析Wordpress备份的"XML"为拥有markdown语法的".md"文件；</li>
+<li>图床迁移；</li>
+<li>固定链接。</li>
+</ol>
+<h2 id=方案对比>方案对比</h2>
+<p>当然，我们可以直接选择官网给出的方案<a href=https://gohugo.io/tools/migrations/>Migrate to Hugo</a>。对于wordpress，主要有以下几种。
+<img src="https://image.i-ll.cc//uPic/20211009/Drxefh.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="wordpress migrate to hugo">
+这几种方案我都尝试过，各有优势却都不完美。以下是详细说明</p>
+<ol>
+<li>
+<p><a href=https://github.com/SchumacherFM/wordpress-to-hugo-exporter>wordpress-to-hugo-exporter</a>： 可以导出，且文件名称就是带有日期和中文的标题名称。但是不是原生markdown格式。而是如下图所示的结构。不满足需求1，2，所以<strong>排除</strong>。</p>
+<p><img src="https://image.i-ll.cc//uPic/20211010/InznCv.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="content inside markdown"></p>
+</li>
+<li>
+<p><a href=https://github.com/wooni005/exitwp-for-hugo>exitwp-for-hugo</a>: 原始仓库是用python2.x写的，但是有人完善了python3.x的版本。这个程序可以将Wordpress的xml文件转成markdown语法的md文件，但是文件名太乱。（因为标题中包含了中文，所以这个程序会自动将中文转成unicode编码然后用它作为文件名储存在电脑中）</p>
+<p><img src="https://image.i-ll.cc//uPic/20211010/x3GmFS.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="file name structure - exitwp-for-hugo"></p>
+</li>
+<li>
+<p><a href=https://github.com/palaniraja/blog2md>blog2md</a>: 与<a href=https://github.com/wooni005/exitwp-for-hugo>exitwp-for-hugo</a>类似，文件名太乱且不包含日期。</p>
+<p><img src="https://image.i-ll.cc//uPic/20211010/8JNn1t.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="file name structure - blog2md"></p>
+</li>
+<li>
+<p><a href=https://github.com/nantipov/wordhugopress>wordhugopress</a>: java写的程序，对于新手不太友好，但是也可以基于Wordpress博客中的文章生成markdown语法的md文件。需要配置数据库用户名和密码，而且最后生成的目录结构很乱。</p>
+<p><img src="https://image.i-ll.cc//uPic/20211010/By0AxI.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="output structure - wordhugopress"></p>
+</li>
+</ol>
+<p>然后突然发现一个仓库<a href=https://github.com/AvantaR/wordpress-export-to-markdown>wordpress-export-to-markdow_L版</a>，这个只需要自己在电脑上安装node.js环境，然后就可以直接运行了。它可以解决除<strong>固定链接</strong>以外的所有问题，是一个近乎完美的方案。基于L版，<a href=https://github.com/AvantaR>AvantaR</a>，在markdown的yaml头文件中添加了<strong>slug</strong>参数，详细实现见该仓库<a href=https://github.com/AvantaR/wordpress-export-to-markdown>wordpress-export-to-markdow_A版</a>。</p>
+<p>实际上<strong>slug</strong>和<strong>url</strong>还是有区别的。以下面这个yaml头和网站<a href=https://blog.i-ll.cc>https://blog.i-ll.cc</a>为例：</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>title</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Drcom下如何优雅地使用路由器上网&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>date</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2016-12-23&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>categories</span><span class=p>:</span><span class=w> 
+</span><span class=w>  </span>- <span class=s2>&#34;other&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>tags</span><span class=p>:</span><span class=w> 
+</span><span class=w>  </span>- <span class=s2>&#34;路由器&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>url</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/archives/108&#34;</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>上面的配置文件中使用了<strong>url</strong>，所以该文章最后的链接是<a href=https://blog.i-ll.cc/archives/108/>https://blog.i-ll.cc/archives/108/</a>。如果将<strong>url</strong>改为<strong>slug</strong>，如下所示。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>title</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;Drcom下如何优雅地使用路由器上网&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>date</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;2016-12-23&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>categories</span><span class=p>:</span><span class=w> 
+</span><span class=w>  </span>- <span class=s2>&#34;other&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>tags</span><span class=p>:</span><span class=w> 
+</span><span class=w>  </span>- <span class=s2>&#34;路由器&#34;</span><span class=w>
+</span><span class=w></span><span class=nt>slug</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/archives/108&#34;</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><p>那么该文章最后的链接是<a href=https://blog.i-ll.cc/post/archives/108/>https://blog.i-ll.cc/post/archives/108/</a>。</p>
+<p>两者的区别就是<strong>slug</strong>指的是文章的缩写名，在最后生成的文章链接中，会在前面加上文章所在的目录名（根域名+目录名+slug参数对应的值）（上面的例子中，目录名是post），而<strong>url</strong>后面的参数就是直接添加到根域名下的参数。因为我网站的固定连接下没有post路径，所以我在L版的基础上进行了修改得到了M版<a href=https://github.com/MLZC/wordpress-export-to-markdown>wordpress-export-to-markdown_M</a>以达到我自己的需求。</p>
+<h2 id=最终方案使用说明>最终方案使用说明</h2>
+<h3 id=转换wordpress-xml以及保持文章链接不变>转换Wordpress xml以及保持文章链接不变</h3>
+<p>使用方法就是直接clone该仓库，然后将Wordpress的xml文件放到该程序的根目录下并改名为<em>export.xml</em>, 然后执行下面的命令。因为我修改了一些默认参数，所以可以设置<code>--wizard=false</code>， 当然，如果你们像自己更改默认值，可以去掉<code>--wizard=false</code>。</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>npm install <span class=o>&amp;&amp;</span> node index.js --wizard<span class=o>=</span><span class=nb>false</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=图床迁移>图床迁移</h3>
+<p>这部分实际上没有什么好说的，主要使用这两个软件，都是图形化界面，配置一下图床信息，选择一下markdown文件或者文件夹地址就可以自动迁移了。后者是免费的，前者虽然收费但是有免费体验期，对于只使用一次的用户来说就是免费。</p>
+<p><img src="https://image.i-ll.cc//uPic/20211010/EvkeIl.png?imageMogr2/auto-orient/blur/1x0/quality/75%7Cwatermark/2/text/WmhhbyBDaGnigJhzIEJsb2c=/font/dGltZXMgbmV3IHJvbWFu/fontsize/240/fill/IzAwMDAwMA==/dissolve/75/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="iPic and iPic Mover"></p>
+<p><del>实际上还有<a href=https://github.com/Molunerfinn/PicGo>PicGo</a>和<a href=https://github.com/PicGo/picgo-plugin-pic-migrater>picgo-plugin-pic-migrater</a>，可以使用。</del> 之前可能有用，但是程序很久都没有更新过了，一堆bug，根本不能正常迁移。还是推荐大家使用iPic和iPic Mover。</p>
+<h2 id=随便说说>随便说说</h2>
+<p>服务器是2021年9月27日到期，由于我学习和工作太忙，一直抽不出时间来弄。就又将服务器续费了7天。抽空的时候研究一下怎么迁移最方便。直到2021年10月2号才完全弄好，今天才有一点时间将迁移过程总结一下。这个方案完美适配我自己的网站，不一定适合所有人，在此分享出迁移思路或许对大家有所帮助。(ps. 研究生期间没有怎么更新blog，PhD期间争取做到一到两周更一次，内容大概会聚焦在研究方向和大数据相关的知识上。)</p>
+</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>Chi Zhao(Vector)</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2021-10-10
+<a href=https://github.com/MLZC/mlzc.github.io/commit/e5be9a87497ca3310088806568be7b4da45e26e9 title="tidy archetypes/default.md and add post: move-to-hugo">(e5be9a8)</a>
+</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span>
+</p>
+</div>
+<div class=post-reward>
+<input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞赏支持</label>
+<div class=qr-code>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/wechatpay-qr.JPG>
+<span>微信打赏</span>
+</label>
+<label class=qr-code-image for=reward>
+<img class=image src=/img/alipay-qr.JPG>
+<span>支付宝打赏</span>
+</label>
+</div>
+</div><footer class=post-footer>
+<div class=post-tags>
+<a href=/tags/hugo/>hugo</a>
+<a href=/tags/%E5%B7%A5%E5%85%B7-%E6%95%88%E7%8E%87/>工具-效率</a>
+</div>
+<nav class=post-nav>
+<a class=next href=/archives/587/>
+<span class="next-text nav-default">通过键盘控制显示器输入源的切换</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
+</a>
+</nav>
+</footer>
+</article>
+</div>
+<script src=https://utteranc.es/client.js repo=mlzc/mlzc.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
+</div>
+</main>
+<footer id=footer class=footer>
+<div class=social-links>
+<a href=mailto:dandanhome@hotmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/dandanv5/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://www.github.com/mlzc class="iconfont icon-github" title=github></a>
+<a href=https://www.zhihu.com/people/dandanV5 class="iconfont icon-zhihu" title=zhihu></a>
+<a href=https://gitlab.com/Chizhao class="iconfont icon-gitlab" title=gitlab></a>
+<a href=https://space.bilibili.com/28723853 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=https://blog.i-ll.cc/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
+</div>
+<div class=copyright>
+<span class=power-by>
+由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span>
+<span class=division>|</span>
+<span class=theme-info>
+主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
+</span>
+<div class=busuanzi-footer>
+<span id=busuanzi_container_site_pv> 本站总访问量 <span id=busuanzi_value_site_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次 </span>
+<span class=division>|</span>
+<span id=busuanzi_container_site_uv> 本站总访客数 <span id=busuanzi_value_site_uv><img src=/img/spinner.svg alt=spinner.svg></span> 人 </span>
+</div>
+<span class=copyright-year>
+&copy;
+2016 -
+2021<span class=heart><i class="iconfont icon-heart"></i></span><span>Chi Zhao(Vector)</span>
+</span>
+</div>
+</footer>
+<div class=back-to-top id=back-to-top>
+<i class="iconfont icon-up"></i>
+</div>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
+</body>
+</html>
