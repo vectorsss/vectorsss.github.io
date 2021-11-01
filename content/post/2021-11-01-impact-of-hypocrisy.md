@@ -16,6 +16,8 @@ toc: false
 ---
 
 Opinion Dynamics focus on the generation, diffusion and aggregation of opinions or behaviors in a social network. Humans have a demonstrated tendency to copy or imitate the behavior and attitude of others and actively influence each other’s opinions. But, publicly revealed opinions are not necessarily in line with internal opinions, causing complex social influence dynamics.
+
 <!--more-->
+[Download presentation](../../slides/2021-11-01-impact-of-hypocrisy.pdf)
 
 {{< embed-pdf url="slides/2021-11-01-impact-of-hypocrisy.pdf" >}}
