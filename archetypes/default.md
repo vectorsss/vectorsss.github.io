@@ -12,6 +12,7 @@ slug: "{{.Name}}"
 draft: true
 hiddenFromHomePage: false
 hideHeaderAndFooter: false
+toc: true
 ---
 
 
