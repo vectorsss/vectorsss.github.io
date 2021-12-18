@@ -4,8 +4,8 @@ subtitle:    ""
 description: ""
 date: 2021-12-18T11:06:59+03:00
 lastmod: 2021-12-18T11:06:59+03:00
-tags: ["tools"]
-categories: ["tools"]
+tags: ["tools","vim"]
+categories: ["tools","vim"]
 keywords: ["vim"]
 author: "Chi Zhao(Vector)"
 slug: "2021-12-18-vim-awesome-cheatsheets"
