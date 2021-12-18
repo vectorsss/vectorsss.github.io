@@ -12,7 +12,7 @@
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
 <meta name=author content="Chi Zhao(Vector)"><meta name=description content="基本运算 取模(mod)取余(rem) 定义 给定一个正整数p，任意一个整数n，一定存在等式 ： n = kp + r ； 其中 k、r 是整数，且 0 ≤ r 对于正整数 p 和"><meta name=keywords content="deep learning,machine learning,python,opinion dynamic,data science,Coding Theory">
-<meta name=generator content="Hugo 0.88.1 with theme even">
+<meta name=generator content="Hugo 0.91.0 with theme even">
 <link rel=canonical href=https://blog.i-ll.cc/archives/74/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
@@ -31,7 +31,7 @@
 <meta itemprop=name content="数论基础">
 <meta itemprop=description content="基本运算 取模(mod)取余(rem) 定义 给定一个正整数p，任意一个整数n，一定存在等式 ： n = kp + r ； 其中 k、r 是整数，且 0 ≤ r 对于正整数 p 和"><meta itemprop=datePublished content="2017-07-16T00:00:00+00:00">
 <meta itemprop=dateModified content="2017-07-16T00:00:00+00:00">
-<meta itemprop=wordCount content="2675">
+<meta itemprop=wordCount content="2671">
 <meta itemprop=keywords content="数论基础,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="数论基础">
 <meta name=twitter:description content="基本运算 取模(mod)取余(rem) 定义 给定一个正整数p，任意一个整数n，一定存在等式 ： n = kp + r ； 其中 k、r 是整数，且 0 ≤ r 对于正整数 p 和"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -95,7 +95,7 @@
 <div class=post-category>
 <a href=/categories/coding/> coding </a>
 </div>
-<span class=more-meta> 约 2675 字 </span>
+<span class=more-meta> 约 2671 字 </span>
 <span class=more-meta> 预计阅读 6 分钟 </span>
 <span id=busuanzi_container_page_pv class=more-meta> <span id=busuanzi_value_page_pv><img src=/img/spinner.svg alt=spinner.svg></span> 次阅读 </span>
 </div>
@@ -286,7 +286,7 @@ return b?gcd(b,a%b):a;
 <li>如果x为该方程的解，那么该方程所有的解可以表示为{x+k*c/g |k∈Z}</li>
 <li>上述方程等价于ax+cy=b</li>
 <li>b%g!=0则方程无解 例如：3x≡2(mod 6) gcd(3,6)=3 3不整除2,方程无解。</li>
-<li>b%g=0时,用扩展欧几里得算法可以求出(x,y),使得a_x+c_y=g,则a_(b/g)_x+c_(b/g)_y=b,所以x=x_(b/g)为该方程的一个解,进而可知原方程的所有解可以表示为{x+k_(c/g) | k∈Z}。</li>
+<li>b%g=0时,用扩展欧几里得算法可以求出(x,y),使得a_x+c_y=g,则a_(b/g)<em>x+c</em>(b/g)<em>y=b,所以x=x</em>(b/g)为该方程的一个解,进而可知原方程的所有解可以表示为{x+k_(c/g) | k∈Z}。</li>
 <li>求特殊解:由5可知,x=x*(b/g)是该方程的一个解,其他解都关于c/g与x同余，在模c下，共有c/g个解。</li>
 </ol>
 </blockquote>

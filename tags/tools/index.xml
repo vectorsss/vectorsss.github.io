@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tools on 淡淡博客 – 记录生活点滴，关注Python数据挖掘、深度学习相关技术</title><link>https://blog.i-ll.cc/tags/tools/</link><description>Recent content in tools on 淡淡博客 – 记录生活点滴，关注Python数据挖掘、深度学习相关技术</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 18 Dec 2021 11:06:59 +0300</lastBuildDate><atom:link href="https://blog.i-ll.cc/tags/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Vim Awesome Cheatsheets -- 中文版</title><link>https://blog.i-ll.cc/post/2021-12-18-vim-awesome-cheatsheets/</link><pubDate>Sat, 18 Dec 2021 11:06:59 +0300</pubDate><guid>https://blog.i-ll.cc/post/2021-12-18-vim-awesome-cheatsheets/</guid><description>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-plaintext" data-lang="plaintext">VIM CHEATSHEET (中文速查表) - by skywind (created on 2017/10/12)
+Version: 47, Last Modified: 2020/10/10 11:02
+https://github.com/skywind3000/awesome-cheatsheets
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
